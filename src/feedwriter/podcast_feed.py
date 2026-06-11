@@ -37,6 +37,13 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.channel, "itunes:explicit").text = text
 
+    # add post with required tags
+    def post(self, title, url, file_size, type, guid):
+        self.item.append(ET.SubElement(self.channel, "item"))
+        ET.SubElement(self.item[-1], "title").text = title
+        ET.SubElement(self.item[-1], "enclosure", url=url, length=file_size, type=type)
+        ET.SubElement(self.item[-1], "guid").text = guid
+
     # write tree to xml file
     def write(self, filename):
         self.tree = ET.ElementTree(self.root)

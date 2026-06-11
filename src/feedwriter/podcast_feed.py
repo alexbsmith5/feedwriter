@@ -8,6 +8,35 @@ class PodcastFeed:
         self.tree = ET.ElementTree(self.root)
         self.item = []
 
+    # set title
+    def title(self, title: str):
+        ET.SubElement(self.channel, "title").text = title
+
+    # set description
+    def description(self, description: str):
+        ET.SubElement(self.channel, "description").text = description
+
+    # set image
+    def image(self, url):
+        ET.SubElement(self.channel, "itunes:image", href=url).text
+
+    # set language
+    def language(self, language: str):
+        ET.SubElement(self.channel, "language").text = language
+
+    # set category
+    # TODO: add support for subcategories
+    def category(self, category: str):
+        ET.SubElement(self.channel, "itunes:category", text=category).text
+
+    # set explicit
+    def explicit(self, explicit: bool):
+        if explicit:
+            text = "true"
+        else:
+            text = "false"
+        ET.SubElement(self.channel, "itunes:explicit").text = text
+
     # write tree to xml file
     def write(self, filename):
         self.tree = ET.ElementTree(self.root)

@@ -1,0 +1,10 @@
+[project]
+name = "feedwriter"
+version = "0.0.0"
+requires-python = ">=3.13"
+license = "LGPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"

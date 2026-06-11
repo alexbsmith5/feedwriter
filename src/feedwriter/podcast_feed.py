@@ -37,12 +37,34 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.channel, "itunes:explicit").text = text
 
-    # add post with required tags
-    def post(self, title, url, file_size, type, guid):
+    # find post index given title
+    def get_post_index(self, title: str) -> int:
+        index = 0
+        for item in self.root.findall(".//item"):
+            if item.find('title').text == title:
+                return index
+            index += 1
+        return -1 # if title not found return -1 index
+
+    # add enclosure to post from index
+    def post_enclosure(self, url: str, file_size: str, type: str, index: int = -1):
+        ET.SubElement(self.item[index], "enclosure", url=url, length=file_size, type=type)
+
+    # add enclosure to post from index
+    def post_guid(self, guid: str, index: int = -1):
+        ET.SubElement(self.item[index], "guid").text = guid
+
+    # add post with title
+    def new_post(self, title: str):
         self.item.append(ET.SubElement(self.channel, "item"))
         ET.SubElement(self.item[-1], "title").text = title
-        ET.SubElement(self.item[-1], "enclosure", url=url, length=file_size, type=type)
-        ET.SubElement(self.item[-1], "guid").text = guid
+
+    # add post with required tags
+    def new_post_required(self, title: str, url: str, file_size: str, type: str, guid: str):
+        self.item.append(ET.SubElement(self.channel, "item"))
+        ET.SubElement(self.item[-1], "title").text = title
+        self.post_enclosure(url, file_size, type)
+        self.post_guid(guid)
 
     # write tree to xml file
     def write(self, filename):

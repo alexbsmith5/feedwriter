@@ -50,6 +50,8 @@ def main():
     feed.post_episode_number(5)
     feed.post_season_number(1)
     feed.post_type("full")
+    feed.post_chapters("https://website.com/post-5-chapters.json", "application/json+chapters")
+    feed.post_chapters("https://website.com/post-5-transcript.vtt", "text/vtt")
     feed.post_block()
 
 

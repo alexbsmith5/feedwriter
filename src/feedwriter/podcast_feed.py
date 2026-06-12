@@ -87,13 +87,75 @@ class PodcastFeed:
             index += 1
         return -1 # if title not found return -1 index
 
-    # add enclosure to post from index
+    # add post enclosure to post from index
     def post_enclosure(self, url: str, file_size: str, type: str, index: int = -1):
         ET.SubElement(self.item[index], "enclosure", url=url, length=file_size, type=type)
 
-    # add enclosure to post from index
+    # add post enclosure
     def post_guid(self, guid: str, index: int = -1):
         ET.SubElement(self.item[index], "guid").text = guid
+
+    # add post date
+    # date format according to RFC 2822 specification
+    def post_date(self, date: str, index: int = -1):
+        # TODO: better way for user to input date
+        #  option to input date object?
+        ET.SubElement(self.item[index], "pubdate").text = date
+
+    # add post description
+    def post_description(self, description: str, index: int = -1):
+        ET.SubElement(self.item[index], "description").text = description
+
+    # add post duration (in seconds)
+    def post_duration(self, seconds: int, index: int = -1):
+        # TODO: add more formats?
+        #  itunes docs mention other formats (recommended to stay in seconds
+        ET.SubElement(self.item[index], "itunes:duration").text = str(seconds)
+
+    # add post url
+    # use when post has corresponsing webpage
+    def post_link(self, url: str, index: int = -1):
+        ET.SubElement(self.item[index], "link").text = url
+
+    # add post image url
+    def post_image(self, url: str, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:image", href=url).text
+
+    # add explicit tag
+    def post_explicit(self, explicit: bool, index: int = -1):
+        if explicit:
+            text = "true"
+        else:
+            text = "false"
+        ET.SubElement(self.item[index], "itunes:explicit").text = text
+
+    # add itunes title
+    # specific episode name for apple podcasts
+    def post_itunes_title(self, title: str, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:title").text = title
+
+    # add post number
+    # not needed for episodic shows (default)
+    def post_episode_number(self, num: int, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:episode").text = str(num)
+
+    # add season number
+    # not needed for episodic shows (default)
+    def post_season_number(self, num: int, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:season").text = str(num)
+
+    # add post type
+    # options: full, trailer, bonus
+    def post_type(self, type: str, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:episodeType").text = type
+
+    # TODO: podcast namespace tags
+
+    # add post block
+    # add post block (removes episode from apple directory
+    # don't use if not trying to block
+    def post_block(self, index: int = -1):
+        ET.SubElement(self.item[index], "itunes:block").text = "Yes"
 
     # add post with title
     def new_post(self, title: str):

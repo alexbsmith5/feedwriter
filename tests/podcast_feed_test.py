@@ -35,8 +35,23 @@ def main():
 
     # add new posts incrementally
     feed.new_post("Post 5")
+    # required tags
     feed.post_enclosure("https://website.com/post-5.mp3", "5650880", "audio/mpeg", 5)
     feed.post_guid("5")
+    # recommended tags
+    feed.post_date("Sat, 01 Apr 2023 19:00:00 GMT")
+    feed.post_description("Description for post 5")
+    feed.post_duration(6351)
+    feed.post_link("https://website.com/post-5-info.html")
+    feed.post_image("https://website.com/post-5.jpg")
+    feed.post_explicit(True)
+    # situational tags
+    feed.post_itunes_title("Post 5")
+    feed.post_episode_number(5)
+    feed.post_season_number(1)
+    feed.post_type("full")
+    feed.post_block()
+
 
     # write feed
     feed.write("test_feed.xml")

@@ -2,6 +2,7 @@ from src.feedwriter import podcast_feed
 
 def main():
     feed = podcast_feed.PodcastFeed()
+
     # required channel tags
     feed.title("Test RSS Feed")
     feed.description("Description for \"Test RSS Feed\".")
@@ -9,6 +10,19 @@ def main():
     feed.language("eng")
     feed.category("Comedy")
     feed.explicit(True)
+
+    # recommended tags
+    feed.author("Podcast Author")
+    feed.link("https://website.com")
+
+    # situational tags
+    feed.itunes_title("Test RSS Feed")
+    feed.copyright("2026 Podcast Author")
+    feed.feed_url_new("https://website1.com/feed.xml")
+    feed.block()
+    feed.complete()
+    feed.verify("token")
+    feed.generator("https://github.com/alexbsmith5/feedwriter")
 
     # add new posts at once
     for i in range(5):

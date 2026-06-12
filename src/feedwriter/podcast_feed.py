@@ -37,6 +37,47 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.channel, "itunes:explicit").text = text
 
+    # set author
+    def author(self, author: str):
+        ET.SubElement(self.channel, "itunes:author").text = author
+
+    # set link
+    def link(self, url: str):
+        ET.SubElement(self.channel, "link").text = url
+
+    # set itunes title
+    # specific name on apple podcasts
+    def itunes_title(self, title: str):
+        ET.SubElement(self.channel, "itunes:title").text = title
+
+    # TODO: <itunes:type>
+    #  if serial type is chosen, <itunes:episode> tag must be specified for each post
+
+    # set copyright
+    def copyright(self, copyright: str):
+        ET.SubElement(self.channel, "copyright").text = copyright
+
+    # set url of new feed
+    def feed_url_new(self, url: str):
+        ET.SubElement(self.channel, "itunes:new-feed-url").text = url
+
+    # set block (removes podcast from apple directory)
+    # don't use if not trying to block
+    def block(self):
+        ET.SubElement(self.channel, "itunes:block").text = "Yes"
+
+    # set complete, no more new episodes will be added
+    def complete(self):
+        ET.SubElement(self.channel, "itunes:complete").text = "Yes"
+
+    # set token to verify podcast with apple podcasts
+    def verify(self, token: str):
+        ET.SubElement(self.channel, "itunes:applepodcastsverify").text = token
+
+    # set name of rss-generator
+    def generator(self, url: str):
+        ET.SubElement(self.channel, "generator").text = url
+
     # find post index given title
     def get_post_index(self, title: str) -> int:
         index = 0

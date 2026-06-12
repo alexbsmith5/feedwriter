@@ -72,7 +72,7 @@ class PodcastFeed:
 
     # set token to verify podcast with apple podcasts
     def verify(self, token: str):
-        ET.SubElement(self.channel, "itunes:applepodcastsverify").text = token
+        ET.SubElement(self.channel, "podcast:txt", purpose="applepodcastsverify").text = token
 
     # set name of rss-generator
     def generator(self, url: str):

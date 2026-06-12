@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 class PodcastFeed:
     # empty constructor
     def __init__(self):
-        self.root = ET.Element("rss", { "version":"2.0", "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd" })
+        self.root = ET.Element("rss", { "version":"2.0", "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd", "xmlns:podcast": "https://podcastindex.org/namespace/1.0" })
         self.channel = ET.SubElement(self.root, "channel")
         self.tree = ET.ElementTree(self.root)
         self.item = []
@@ -149,7 +149,15 @@ class PodcastFeed:
     def post_type(self, type: str, index: int = -1):
         ET.SubElement(self.item[index], "itunes:episodeType").text = type
 
-    # TODO: podcast namespace tags
+    # add post chapters url
+    # url points to file that follows podcastindex.org json chapters format
+    def post_chapters(self, url: str, type: str, index: int = -1):
+        ET.SubElement(self.item[index], "podcast:chapters", url=url, type=type).text
+
+    # add transcript url
+    # url point to file that follows either VTT or SRT transcript format
+    def post_chapters(self, url: str, type: str, index: int = -1):
+        ET.SubElement(self.item[index], "podcast:transcript", url=url, type=type).text
 
     # add post block
     # add post block (removes episode from apple directory

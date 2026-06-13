@@ -26,17 +26,18 @@ def main():
 
     # add new posts at once
     for i in range(5):
-        feed.new_post_required(f"Post {i}", f"https://website.com/post-{i}.mp3", f"{5650880+i}", "audio/mpeg", str(i))
+        feed.new_post(f"Post {i}", f"https://website.com/post-{i}.mp3", f"{5650880+i}", "audio/mpeg", guid=str(i))
 
     # add additional information to posts
     post_3 = feed.get_post_index("Post 3")
     if post_3 != -1: # check if get_post_index found valid index
         feed.post_guid("33", 3)
 
+
     # add new posts incrementally
-    feed.new_post("Post 5")
+    feed.new_post("Post 5", "https://website.com/post-5.mp3", "5650880", "audio/mpeg")
     # required tags
-    feed.post_enclosure("https://website.com/post-5.mp3", "5650880", "audio/mpeg", 5)
+    # feed.post_enclosure("https://website.com/post-5.mp3", "5650880", "audio/mpeg")
     feed.post_guid("5")
     # recommended tags
     feed.post_date("Sat, 01 Apr 2023 19:00:00 GMT")
@@ -51,9 +52,24 @@ def main():
     feed.post_season_number(1)
     feed.post_type("full")
     feed.post_chapters("https://website.com/post-5-chapters.json", "application/json+chapters")
-    feed.post_chapters("https://website.com/post-5-transcript.vtt", "text/vtt")
-    feed.post_block()
+    feed.post_transcript("https://website.com/post-5-transcript.vtt", "text/vtt")
+    feed.post_block(True)
 
+    # add new post with all kwargs
+    feed.new_post(f"Post 6", f"https://website.com/post-6.mp3", 5650880,
+                  guid="6",
+                  date="Thu, 11 Jun 2026 10:00:00 +0000",
+                  description="Description for post 6",
+                  duration=6356,
+                  link="https://website.com/post-6-info.html",
+                  image="https://website.com/post-5.jpg",
+                  explicit=True,
+                  itunes_title="Post 6",
+                  episode_number=6,
+                  season_number=1,
+                  type="full",
+                  block=True
+                  )
 
     # write feed
     feed.write("test_feed.xml")

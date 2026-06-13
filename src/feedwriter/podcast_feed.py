@@ -8,6 +8,8 @@ class PodcastFeed:
         self.tree = ET.ElementTree(self.root)
         self.item = []
 
+    # channel tags
+
     # set title
     def title(self, title: str):
         ET.SubElement(self.channel, "title").text = title
@@ -78,6 +80,8 @@ class PodcastFeed:
     def generator(self, url: str):
         ET.SubElement(self.channel, "generator").text = url
 
+    # episode tags
+
     # find post index given title
     def get_post_index(self, title: str) -> int:
         index = 0
@@ -88,8 +92,8 @@ class PodcastFeed:
         return -1 # if title not found return -1 index
 
     # add post enclosure to post from index
-    def post_enclosure(self, url: str, file_size: str, type: str, index: int = -1):
-        ET.SubElement(self.item[index], "enclosure", url=url, length=file_size, type=type)
+    def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
+        ET.SubElement(self.item[index], "enclosure", url=url, length=str(file_size), type=type)
 
     # add post enclosure
     def post_guid(self, guid: str, index: int = -1):
@@ -156,26 +160,43 @@ class PodcastFeed:
 
     # add transcript url
     # url point to file that follows either VTT or SRT transcript format
-    def post_chapters(self, url: str, type: str, index: int = -1):
+    def post_transcript(self, url: str, type: str, index: int = -1):
         ET.SubElement(self.item[index], "podcast:transcript", url=url, type=type).text
 
     # add post block
-    # add post block (removes episode from apple directory
+    # add post block (removes episode from apple directory)
     # don't use if not trying to block
-    def post_block(self, index: int = -1):
+    def post_block(self, block: bool, index: int = -1):
         ET.SubElement(self.item[index], "itunes:block").text = "Yes"
 
-    # add post with title
-    def new_post(self, title: str):
+    # add post
+    def new_post(self, title: str, url: str, file_size: int, audio_type: str="audio/mpeg", **kwargs):
         self.item.append(ET.SubElement(self.channel, "item"))
         ET.SubElement(self.item[-1], "title").text = title
+        self.post_enclosure(url, file_size, audio_type)
 
-    # add post with required tags
-    def new_post_required(self, title: str, url: str, file_size: str, type: str, guid: str):
-        self.item.append(ET.SubElement(self.channel, "item"))
-        ET.SubElement(self.item[-1], "title").text = title
-        self.post_enclosure(url, file_size, type)
-        self.post_guid(guid)
+        func_map = {
+                'guid': self.post_guid,
+                'date': self.post_date,
+                'link': self.post_link,
+                'description': self.post_description,
+                'duration': self.post_duration,
+                'link': self.post_link,
+                'image': self.post_image,
+                'explicit': self.post_explicit,
+                'itunes_title': self.post_itunes_title,
+                'episode_num': self.post_episode_number,
+                'seasion_num': self.post_season_number,
+                'type': self.post_type,
+                # TODO: post_chapters + post_transcript
+                #  functions take in two parameters
+                'block': self.post_block
+        }
+
+        for func, value in kwargs.items():
+            if func in func_map:
+                mapped_function = func_map[func]
+                mapped_function(value)
 
     # write tree to xml file
     def write(self, filename):

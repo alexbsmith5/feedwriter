@@ -26,7 +26,7 @@ def main():
 
     # add new posts at once
     for i in range(5):
-        feed.new_post(f"Post {i}", f"https://website.com/post-{i}.mp3", f"{5650880+i}", "audio/mpeg", guid=str(i))
+        feed.new_post(f"Post {i}", f"https://website.com/post-{i}.mp3", 5650880 + i, "audio/mpeg", guid=str(i))
 
     # add additional information to posts
     post_3 = feed.get_post_index("Post 3")
@@ -35,9 +35,9 @@ def main():
 
 
     # add new posts incrementally
-    feed.new_post("Post 5", "https://website.com/post-5.mp3", "5650880", "audio/mpeg")
+    feed.new_post("Post 5", "https://website.com/post-5.mp3", 5650880, "audio/mpeg")
     # required tags
-    # feed.post_enclosure("https://website.com/post-5.mp3", "5650880", "audio/mpeg")
+    # feed.post_enclosure("https://website.com/post-5.mp3", 5650880, "audio/mpeg")
     feed.post_guid("5")
     # recommended tags
     feed.post_date("Sat, 01 Apr 2023 19:00:00 GMT")

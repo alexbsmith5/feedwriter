@@ -19,7 +19,7 @@ class PodcastFeed:
         ET.SubElement(self.channel, "description").text = description
 
     # set image
-    def image(self, url):
+    def image(self, url: str):
         ET.SubElement(self.channel, "itunes:image", href=url).text
 
     # set language

@@ -8,7 +8,8 @@ def main():
     feed.description("Description for \"Test RSS Feed\".")
     feed.image("https://website.com/image.jpg")
     feed.language("eng")
-    feed.category("Comedy")
+    feed.category("Education")
+    feed.category("Comedy", "Comedy Interviews")
     feed.explicit(True)
 
     # recommended tags

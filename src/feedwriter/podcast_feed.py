@@ -6,6 +6,7 @@ class PodcastFeed:
         self.root = ET.Element("rss", { "version":"2.0", "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd", "xmlns:podcast": "https://podcastindex.org/namespace/1.0" })
         self.channel = ET.SubElement(self.root, "channel")
         self.tree = ET.ElementTree(self.root)
+        self.channel_category = []
         self.item = []
 
     # channel tags
@@ -27,9 +28,11 @@ class PodcastFeed:
         ET.SubElement(self.channel, "language").text = language
 
     # set category
-    # TODO: add support for subcategories
-    def category(self, category: str):
-        ET.SubElement(self.channel, "itunes:category", text=category).text
+    def category(self, category: str, subcategory: str=None):
+        self.channel_category.append(ET.SubElement(self.channel, "itunes:category", text=category))
+        if subcategory != None:
+            ET.SubElement(self.channel_category[-1], "itunes:category", text=subcategory).text
+
 
     # set explicit
     def explicit(self, explicit: bool):

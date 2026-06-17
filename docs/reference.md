@@ -83,6 +83,15 @@ Set the specific title for show on Apple Podcasts.
 **Parameters:**
 - `title`: string of show name.
 
+### type
+```python
+type(type: str)
+```
+Set the show as either `episodic` or `serial`. If `serial` type is chosen, the `<itunes:episode>` tag must be specified for each post.
+
+**Parameters:**
+- `type`: string containing either `episodic` or `serial`.
+
 ### copyright
 ```python
 copyright(copyrightd; str)

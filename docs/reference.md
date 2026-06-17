@@ -12,7 +12,8 @@ Create the PodcastFeed object.
 ```python
 title(title: str)
 ```
-Set the show title.
+Set show title.
+
 **Parameters:**
 - `title`: string of channel name.
 
@@ -20,6 +21,8 @@ Set the show title.
 ```python
 description(description: str)
 ```
+Set show description.
+
 **Parameters:**
 - `description`: string of show description.
 
@@ -27,8 +30,9 @@ description(description: str)
 ```python
 image(url: str)
 ```
-Set the show artwork.
-**Paramters:**
+Set show artwork.
+
+**Paraters:**
 - `image`: string of url pointing to a `.jpg` or `.png`.
 <!-- TODO: general section going over image guidelines -->
 
@@ -36,16 +40,18 @@ Set the show artwork.
 ```python
 language(language: str)
 ```
-Set the language.
-**Paramters:**
+Set show language.
+
+**Parameters:**
 - `language`: string of a lanauge from the [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php) specification.
 
 ### category
 ```python
 category(category: str)
 ```
-Set category.
-**Paramters:**
+Set show category.
+
+**Parameters:**
 - `category`: string of category from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list.
 
 ### explicit
@@ -53,15 +59,17 @@ Set category.
 explicit(explicit: bool)
 ```
 Set show as explicit or not.
-**Paramters:**
+
+**Parameters:**
 - `explicit`: bool representing explicit status.
 
 ### author
 ```python
 author(author: str)
 ```
-Set the author for the show.
-**Paramters:**
+Set show author(s).
+
+**Parameters:**
 - `author`: string of author name.
 
 ### itunes_title
@@ -69,15 +77,17 @@ Set the author for the show.
 itunes_title(title: str)
 ```
 Set the specific title for show on Apple Podcasts.
-**Paramters:**
+
+**Parameters:**
 - `title`: string of show name.
 
 ### copyright
 ```python
 copyright(copyrightd; str)
 ```
-Set the copyright for the show.
-**Paramters:**
+Set show copyright information.
+
+**Parameters:**
 - `copyright`: string of copyright information.
 
 ### feed_url_new
@@ -85,15 +95,16 @@ Set the copyright for the show.
 feed_url_new(url: str)
 ```
 Set url of new rss feed location.
-Only necessary if switching urls for rss feed.
-**Paramters:**
+Only necessary if changing url of rss feed.
+
+**Parameters:**
 - `url`: string of url pointing to rss feed.
 
 ### block
 ```python
 block()
 ```
-Removes podcast from apple directory.
+Removes show from apple directory.
 
 ### complete
 ```python
@@ -106,7 +117,8 @@ Set show as complete, no new episodes will be added.
 verify(token: str)
 ```
 Set token to verify podcast with Apple Podcasts. Token will be provided by Apple.
-**Paramters:**
+
+**Parameters:**
 - `token`: string of token.
 
 ### generator
@@ -114,5 +126,6 @@ Set token to verify podcast with Apple Podcasts. Token will be provided by Apple
 generator(url: str)
 ```
 Set url of rss generator.
-**Paramters:**
+
+**Parameters:**
 - `url`: string of url.

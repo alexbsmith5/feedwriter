@@ -47,12 +47,14 @@ Set show language.
 
 ### category
 ```python
-category(category: str)
+category(category: str, subcategory: str)
 ```
 Set show category.
 
 **Parameters:**
 - `category`: string of category from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list.
+
+- `subcategory`: string of subcategory from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list (OPTIONAL).
 
 ### explicit
 ```python

@@ -140,3 +140,158 @@ Set url of rss generator.
 
 **Parameters:**
 - `url`: string of url.
+
+## Episode Tags
+
+### post_enclosure
+```python
+post_enclosure(url: str, file_size: int, type: str, index: int = -1):
+```
+Set url, length, and type of media for post.
+
+**Parameters:**
+- `url`: string of url to mp3 file.
+- `length`: int of file size in bytes.
+- `type`: string of type (usually `audio/mpeg`).
+  - Options: `audio/x-m4a`, `audio/mpeg`, `video/quicktime`, `video/mp4`, `video/x-m4v`, `application/pdf`.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_guid
+```python
+post_guid(guid: str, index: int = -1):
+```
+Set guid (globally unique identifier) for post.
+
+**Parameters:**
+- `guid`: string of guid.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_date
+```python
+post_date(date: str, index: int = -1):
+```
+Set date of the post's release.
+
+**Parameters:**
+- `date`: string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3).
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_description
+```python
+post_description(description: str, index: int = -1):
+```
+Set post description.
+
+**Parameters:**
+- `description`: string of post description.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_duration
+```python
+post_duration(seconds: int, index: int = -1):
+```
+Set the length of audio, in seconds.
+
+**Parameters:**
+- `seconds`: int of seconds.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_link
+```python
+post_link(, index: int = -1):
+```
+Set link to external webpage for post.
+
+**Parameters:**
+- `url`: string of url.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_image
+```python
+post_image(url: str, index: int = -1):
+```
+Set image for post.
+
+**Parameters:**
+- `url`: string of url pointing to a `.jpg` or `.png`.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_explicit
+```python
+post_explicit(explicit: bool, index: int = -1):
+```
+Set post as explicit or not.
+
+**Parameters:**
+- `explicit`: bool representing explicit status.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_itunes_title
+```python
+post_itunes_title(title: str, index: int = -1):
+```
+Set the specific title for post on Apple Podcasts.
+
+**Parameters:**
+- `title`: string of post name.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_episode_number
+```python
+post_number(num: int, index: int = -1):
+```
+Add post number. Only required for shows of `serial` type.
+
+**Parameters:**
+- `num`: int of episode number.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_season_number
+```python
+post_season_number(num: int, index: int = -1):
+```
+Add season number. Only required for shows of `serial` type.
+
+**Parameters:**
+- `num`: int of season number.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_type
+```python
+post_type(type: str, index: int = -1):
+```
+Set episode as `full`, `trailer`, or `bonus`.
+
+**Parameters:**
+- `type`: string of type.
+  - Options: `full`, `trailer`, `type`.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_chapters
+```python
+post_chapters(url: str, index: int = -1):
+```
+Set url of chapters file. File must follow the [podcastindex.org json chapters format](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/examples/chapters/jsonChapters.md).
+
+**Parameters:**
+- `url`: string of url pointing to `.json` file.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_transcript
+```python
+post_transcript(url: str, index: int = -1):
+```
+Set url of post file. File must follow the [podcastindex.org json chapters format](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/examples/chapters/jsonChapters.md).
+
+**Parameters:**
+- `url`: string of url pointing to `.json` file.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+### post_block
+```python
+post_block(index: int = -1):
+```
+Add post block (hides episode in Apple Podcasts). Only call function if trying to block episode.
+
+**Parameters:**
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.

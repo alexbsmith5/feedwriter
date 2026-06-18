@@ -55,12 +55,9 @@ class PodcastFeed:
     def itunes_title(self, title: str):
         ET.SubElement(self.channel, "itunes:title").text = title
 
-    # TODO: <itunes:type>
     # set type
     def type(self, type: str):
         ET.SubElement(self.channel, "itunes:type").text = type
-
-    #  if serial type is chosen, <itunes:episode> tag must be specified for each post
 
     # set copyright
     def copyright(self, copyright: str):

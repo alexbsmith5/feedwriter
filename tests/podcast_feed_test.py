@@ -1,19 +1,25 @@
 import xml.etree.ElementTree as ET
+import pytest
 
 from feedwriter.podcast_feed import PodcastFeed
 
-def test_podcast_feed(tmp_path):
-    feed_file = tmp_path / "feed.xml"
+# return xml root
+@pytest.fixture
+def get_root(tmp_path):
 
+    def generate(feed_object):
+        feed_file = tmp_path / "feed.xml"
+        feed_object.write(feed_file)
+        return ET.parse(feed_file).getroot()
+
+    return generate
+
+def test_title(get_root):
     feed = PodcastFeed()
-    title_text = "Testing Title"
-    feed.title(title_text)
-    feed.write(feed_file)
 
-    tree = ET.parse(feed_file)
-    root = tree.getroot()
+    feed.title(test_title)
+    test_title = "Testing Title"
 
-    title_element = root.find("./channel/title")
+    root = get_root(feed)
 
-    assert title_element != None
-    assert title_element.text == title_text
+    assert root.find("./channel/title").text == test_title

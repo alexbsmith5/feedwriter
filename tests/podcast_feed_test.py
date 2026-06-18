@@ -73,7 +73,7 @@ def main():
                   )
 
     # write feed
-    feed.write("test_feed.xml")
+    feed.write("./tests/test_feed.xml")
 
 if __name__ == "__main__":
     main()

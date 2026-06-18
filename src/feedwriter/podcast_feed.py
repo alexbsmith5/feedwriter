@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 class PodcastFeed:
     # empty constructor
@@ -32,7 +33,6 @@ class PodcastFeed:
         self.channel_category.append(ET.SubElement(self.channel, "itunes:category", text=category))
         if subcategory != None:
             ET.SubElement(self.channel_category[-1], "itunes:category", text=subcategory).text
-
 
     # set explicit
     def explicit(self, explicit: bool):
@@ -203,6 +203,6 @@ class PodcastFeed:
                 mapped_function(value)
 
     # write tree to xml file
-    def write(self, filename):
+    def write(self, path: Path):
         self.tree = ET.ElementTree(self.root)
-        self.tree.write(filename, xml_declaration=True, encoding="UTF-8")
+        self.tree.write(path, xml_declaration=True, encoding="UTF-8")

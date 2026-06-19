@@ -1,79 +1,245 @@
-from src.feedwriter import podcast_feed
+import pytest
 
-def main():
-    feed = podcast_feed.PodcastFeed()
+@pytest.mark.parametrize(
+        "func_name, func_kwargs, xpath, expected_text, expected_attrib",
+        [
+            # channel tags
+            (
+                "title",
+                {"title": "Lorem Ipsum"},
+                "./channel/title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "description",
+                {"description": "Lorem ipsum dolor sit amet."},
+                "./channel/description",
+                "Lorem ipsum dolor sit amet.",
+                None
+            ),
+            (
+                "image",
+                {"url": "https://example.com/image.jpg"},
+                "./channel/itunes:image",
+                None,
+                { "href": "https://example.com/image.jpg" }
+            ),
+            (
+                "language",
+                {"language": "eng"},
+                "./channel/language",
+                "eng",
+                None
+            ),
+            (
+                "category",
+                {"category": "Education"},
+                "./channel/itunes:category",
+                None,
+                { "text": "Education" }
+            ),
+            ( # category w/ subcategory
+                "category",
+                {"category": "Fiction", "subcategory": "Drama"},
+                "./channel/itunes:category",
+                None,
+                { "text": "Fiction" }
+            ),
+            ( # subcategory
+                "category",
+                {"category": "Fiction", "subcategory": "Drama"},
+                "./channel/itunes:category/itunes:category",
+                None,
+                { "text": "Drama" }
+            ),
+            (
+                "explicit",
+                {"explicit": True},
+                "./channel/itunes:explicit",
+                "true",
+                None
+            ),
+            (
+                "author",
+                {"author": "Lorem Ipsum"},
+                "./channel/itunes:author",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "link",
+                {"url": "https://example.com/webpage.html"},
+                "./channel/link",
+                "https://example.com/webpage.html",
+                None
+            ),
+            (
+                "itunes_title",
+                {"title": "Lorem Ipsum"},
+                "./channel/itunes:title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "itunes_title",
+                {"title": "Lorem Ipsum"},
+                "./channel/itunes:title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "type",
+                {"type": "episodic"},
+                "./channel/itunes:type",
+                "episodic",
+                None
+            ),
+            (
+                "feed_url_new",
+                {"url": "https://example.com/new_feed.xml"},
+                "./channel/itunes:new-feed-url",
+                "https://example.com/new_feed.xml",
+                None
+            ),
+            (
+                "block",
+                { },
+                "./channel/itunes:block",
+                "Yes",
+                None
+            ),
+            (
+                "complete",
+                { },
+                "./channel/itunes:complete",
+                "Yes",
+                None
+            ),
+            (
+                "verify",
+                { "token": "token" },
+                "./channel/podcast:txt",
+                "token",
+                { "purpose": "applepodcastsverify" }
+            ),
+            (
+                "generator",
+                { "url": "https://github.com/alexbsmith5/feedwriter" },
+                "./channel/generator",
+                "https://github.com/alexbsmith5/feedwriter",
+                None
+            ),
+            (
+                "new_post",
+                { "title": "Lorem Ipsum" },
+                "./channel/item/title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "new_post",
+                { "enclosure": ("https://website.com/post.mp3", 5650880, "audio/mpeg")},
+                "./channel/item/enclosure",
+                None,
+                { "url": "https://website.com/post.mp3", "length": "5650880", "type": "audio/mpeg" }
+            ),
+            (
+                "new_post",
+                { "date": "Thu, 11 Jun 2026 10:00:00 +0000" },
+                "./channel/item/pubdate",
+                "Thu, 11 Jun 2026 10:00:00 +0000",
+                None
+            ),
+            (
+                "new_post",
+                { "description": "Lorem ipsum dolor sit amet." },
+                "./channel/item/description",
+                "Lorem ipsum dolor sit amet.",
+                None
+            ),
+            (
+                "new_post",
+                { "duration": 6536 },
+                "./channel/item/itunes:duration",
+                "6536",
+                None
+            ),
+            (
+                "new_post",
+                { "link": "https://example.com/post.html" },
+                "./channel/item/link",
+                "https://example.com/post.html",
+                None
+            ),
+            (
+                "new_post",
+                { "image": "https://example.com/post.jpg" },
+                "./channel/item/itunes:image",
+                None,
+                { "href": "https://example.com/post.jpg" }
+            ),
+            (
+                "new_post",
+                { "explicit": True },
+                "./channel/item/itunes:explicit",
+                "true",
+                None
+            ),
+            (
+                "new_post",
+                { "itunes_title": "Lorem Ipsum" },
+                "./channel/item/itunes:title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "new_post",
+                { "episode_num": 1 },
+                "./channel/item/itunes:episode",
+                "1",
+                None
+            ),
+            (
+                "new_post",
+                { "season_num": 1 },
+                "./channel/item/itunes:season",
+                "1",
+                None
+            ),
+            (
+                "new_post",
+                { "type": "full" },
+                "./channel/item/itunes:episodeType",
+                "full",
+                None
+            ),
+            (
+                "new_post",
+                { "chapters": ("https://example.com/post-chapters.json", "application/json+chapters") },
+                "./channel/item/podcast:chapters",
+                None,
+                { "url": "https://example.com/post-chapters.json", "type": "application/json+chapters" }
+            ),
+            (
+                "new_post",
+                { "transcript": ("https://example.com/post-transcript.vtt", "text/vtt") },
+                "./channel/item/podcast:transcript",
+                None,
+                { "url": "https://example.com/post-transcript.vtt", "type": "text/vtt" }
+            ),
+            (
+                "new_post",
+                { "block": True },
+                "./channel/item/itunes:block",
+                "Yes",
+                None
+            ),
+        ]
+)
 
-    # required channel tags
-    feed.title("Test RSS Feed")
-    feed.description("Description for \"Test RSS Feed\".")
-    feed.image("https://website.com/image.jpg")
-    feed.language("eng")
-    feed.category("Education")
-    feed.category("Comedy", "Comedy Interviews")
-    feed.explicit(True)
+def test_element(base_feed, assert_xml, func_name, func_kwargs, xpath, expected_text, expected_attrib):
+    mapped_func = getattr(base_feed, func_name)
+    mapped_func(**func_kwargs)
 
-    # recommended tags
-    feed.author("Podcast Author")
-    feed.link("https://website.com")
-
-    # situational tags
-    feed.itunes_title("Test RSS Feed")
-    feed.copyright("2026 Podcast Author")
-    feed.feed_url_new("https://website1.com/feed.xml")
-    feed.block()
-    feed.complete()
-    feed.verify("token")
-    feed.generator("https://github.com/alexbsmith5/feedwriter")
-
-    # add new posts at once
-    for i in range(5):
-        feed.new_post(f"Post {i}", f"https://website.com/post-{i}.mp3", 5650880 + i, "audio/mpeg", guid=str(i))
-
-    # add additional information to posts
-    post_3 = feed.get_post_index("Post 3")
-    if post_3 != -1: # check if get_post_index found valid index
-        feed.post_guid("33", 3)
-
-
-    # add new posts incrementally
-    feed.new_post("Post 5", "https://website.com/post-5.mp3", 5650880, "audio/mpeg")
-    # required tags
-    # feed.post_enclosure("https://website.com/post-5.mp3", 5650880, "audio/mpeg")
-    feed.post_guid("5")
-    # recommended tags
-    feed.post_date("Sat, 01 Apr 2023 19:00:00 GMT")
-    feed.post_description("Description for post 5")
-    feed.post_duration(6351)
-    feed.post_link("https://website.com/post-5-info.html")
-    feed.post_image("https://website.com/post-5.jpg")
-    feed.post_explicit(True)
-    # situational tags
-    feed.post_itunes_title("Post 5")
-    feed.post_episode_number(5)
-    feed.post_season_number(1)
-    feed.post_type("full")
-    feed.post_chapters("https://website.com/post-5-chapters.json", "application/json+chapters")
-    feed.post_transcript("https://website.com/post-5-transcript.vtt", "text/vtt")
-    feed.post_block(True)
-
-    # add new post with all kwargs
-    feed.new_post(f"Post 6", f"https://website.com/post-6.mp3", 5650880,
-                  guid="6",
-                  date="Thu, 11 Jun 2026 10:00:00 +0000",
-                  description="Description for post 6",
-                  duration=6356,
-                  link="https://website.com/post-6-info.html",
-                  image="https://website.com/post-5.jpg",
-                  explicit=True,
-                  itunes_title="Post 6",
-                  episode_number=6,
-                  season_number=1,
-                  type="full",
-                  block=True
-                  )
-
-    # write feed
-    feed.write("./tests/test_feed.xml")
-
-if __name__ == "__main__":
-    main()
+    assert_xml(base_feed, xpath, expected_text=expected_text, expected_attrib=expected_attrib)

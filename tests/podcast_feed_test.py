@@ -130,11 +130,109 @@ import pytest
                 "https://github.com/alexbsmith5/feedwriter",
                 None
             ),
-            ( # title
+            (
                 "new_post",
                 { "title": "Lorem Ipsum" },
                 "./channel/item/title",
                 "Lorem Ipsum",
+                None
+            ),
+            (
+                "new_post",
+                { "enclosure": ("https://website.com/post.mp3", 5650880, "audio/mpeg")},
+                "./channel/item/enclosure",
+                None,
+                { "url": "https://website.com/post.mp3", "length": "5650880", "type": "audio/mpeg" }
+            ),
+            (
+                "new_post",
+                { "date": "Thu, 11 Jun 2026 10:00:00 +0000" },
+                "./channel/item/pubdate",
+                "Thu, 11 Jun 2026 10:00:00 +0000",
+                None
+            ),
+            (
+                "new_post",
+                { "description": "Lorem ipsum dolor sit amet." },
+                "./channel/item/description",
+                "Lorem ipsum dolor sit amet.",
+                None
+            ),
+            (
+                "new_post",
+                { "duration": 6536 },
+                "./channel/item/itunes:duration",
+                "6536",
+                None
+            ),
+            (
+                "new_post",
+                { "link": "https://example.com/post.html" },
+                "./channel/item/link",
+                "https://example.com/post.html",
+                None
+            ),
+            (
+                "new_post",
+                { "image": "https://example.com/post.jpg" },
+                "./channel/item/itunes:image",
+                None,
+                { "href": "https://example.com/post.jpg" }
+            ),
+            (
+                "new_post",
+                { "explicit": True },
+                "./channel/item/itunes:explicit",
+                "true",
+                None
+            ),
+            (
+                "new_post",
+                { "itunes_title": "Lorem Ipsum" },
+                "./channel/item/itunes:title",
+                "Lorem Ipsum",
+                None
+            ),
+            (
+                "new_post",
+                { "episode_num": 1 },
+                "./channel/item/itunes:episode",
+                "1",
+                None
+            ),
+            (
+                "new_post",
+                { "season_num": 1 },
+                "./channel/item/itunes:season",
+                "1",
+                None
+            ),
+            (
+                "new_post",
+                { "type": "full" },
+                "./channel/item/itunes:episodeType",
+                "full",
+                None
+            ),
+            (
+                "new_post",
+                { "chapters": ("https://example.com/post-chapters.json", "application/json+chapters") },
+                "./channel/item/podcast:chapters",
+                None,
+                { "url": "https://example.com/post-chapters.json", "type": "application/json+chapters" }
+            ),
+            (
+                "new_post",
+                { "transcript": ("https://example.com/post-transcript.vtt", "text/vtt") },
+                "./channel/item/podcast:transcript",
+                None,
+                { "url": "https://example.com/post-transcript.vtt", "type": "text/vtt" }
+            ),
+            (
+                "new_post",
+                { "block": True },
+                "./channel/item/itunes:block",
+                "Yes",
                 None
             ),
         ]

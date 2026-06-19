@@ -192,7 +192,7 @@ class PodcastFeed:
                 'explicit': self.post_explicit,
                 'itunes_title': self.post_itunes_title,
                 'episode_num': self.post_episode_number,
-                'seasion_num': self.post_season_number,
+                'season_num': self.post_season_number,
                 'type': self.post_type,
                 'chapters': self.post_chapters,
                 'transcript': self.post_transcript,

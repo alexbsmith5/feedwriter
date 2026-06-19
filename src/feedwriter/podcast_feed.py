@@ -95,6 +95,9 @@ class PodcastFeed:
             index += 1
         return -1 # if title not found return -1 index
 
+    def post_title(self, title: str, index: int = -1):
+        ET.SubElement(self.item[index], "title").text = title
+
     # add post enclosure to post from index
     def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
         ET.SubElement(self.item[index], "enclosure", url=url, length=str(file_size), type=type)
@@ -174,11 +177,11 @@ class PodcastFeed:
         ET.SubElement(self.item[index], "itunes:block").text = "Yes"
 
     # add post
-    def new_post(self, title: str, **kwargs):
+    def new_post(self, **kwargs):
         self.item.append(ET.SubElement(self.channel, "item"))
-        ET.SubElement(self.item[-1], "title").text = title
 
         func_map = {
+                'title': self.post_title,
                 'enclosure': self.post_enclosure,
                 'guid': self.post_guid,
                 'date': self.post_date,
@@ -199,7 +202,7 @@ class PodcastFeed:
         for func, value in kwargs.items():
             if func in func_map:
                 mapped_function = func_map[func]
-                if isinstance(value, (tuple, list)):
+                if isinstance(value, tuple):
                     mapped_function(*value)
                 else:
                     mapped_function(value)

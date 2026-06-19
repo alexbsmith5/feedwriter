@@ -130,6 +130,13 @@ import pytest
                 "https://github.com/alexbsmith5/feedwriter",
                 None
             ),
+            (
+                "new_post",
+                { "title": "Lorem Ipsum", "url": "https://example.com/audio.mp3", "file_size": 56321, },
+                "./channel/item/enclosure",
+                None,
+                { "url": "https://example.com/audio.mp3", "length": "56321", "type": "audio/mpeg"}
+            ),
         ]
 )
 

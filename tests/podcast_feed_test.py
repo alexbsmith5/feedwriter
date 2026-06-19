@@ -39,9 +39,20 @@ import pytest
                 None,
                 { "text": "Education" }
             ),
-
-            # TODO: category with subcategory
-
+            ( # category w/ subcategory
+                "category",
+                {"category": "Fiction", "subcategory": "Drama"},
+                "./channel/itunes:category",
+                None,
+                { "text": "Fiction" }
+            ),
+            ( # subcategory
+                "category",
+                {"category": "Fiction", "subcategory": "Drama"},
+                "./channel/itunes:category/itunes:category",
+                None,
+                { "text": "Drama" }
+            ),
             (
                 "explicit",
                 {"explicit": True},

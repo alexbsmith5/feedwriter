@@ -132,10 +132,10 @@ import pytest
             ),
             (
                 "new_post",
-                { "title": "Lorem Ipsum", "url": "https://example.com/audio.mp3", "file_size": 56321, },
-                "./channel/item/enclosure",
-                None,
-                { "url": "https://example.com/audio.mp3", "length": "56321", "type": "audio/mpeg"}
+                { "title": "Lorem Ipsum" },
+                "./channel/item/title",
+                "Lorem Ipsum",
+                None
             ),
         ]
 )

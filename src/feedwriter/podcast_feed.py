@@ -174,15 +174,14 @@ class PodcastFeed:
         ET.SubElement(self.item[index], "itunes:block").text = "Yes"
 
     # add post
-    def new_post(self, title: str, url: str, file_size: int, audio_type: str="audio/mpeg", **kwargs):
+    def new_post(self, title: str, **kwargs):
         self.item.append(ET.SubElement(self.channel, "item"))
         ET.SubElement(self.item[-1], "title").text = title
-        self.post_enclosure(url, file_size, audio_type)
 
         func_map = {
+                'enclosure': self.post_enclosure,
                 'guid': self.post_guid,
                 'date': self.post_date,
-                'link': self.post_link,
                 'description': self.post_description,
                 'duration': self.post_duration,
                 'link': self.post_link,
@@ -192,15 +191,18 @@ class PodcastFeed:
                 'episode_num': self.post_episode_number,
                 'seasion_num': self.post_season_number,
                 'type': self.post_type,
-                # TODO: post_chapters + post_transcript
-                #  functions take in two parameters
+                'chapters': self.post_chapters,
+                'transcript': self.post_transcript,
                 'block': self.post_block
         }
 
         for func, value in kwargs.items():
             if func in func_map:
                 mapped_function = func_map[func]
-                mapped_function(value)
+                if isinstance(value, (tuple, list)):
+                    mapped_function(*value)
+                else:
+                    mapped_function(value)
 
     # write tree to xml file
     def write(self, path: Path):

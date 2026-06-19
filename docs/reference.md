@@ -143,6 +143,16 @@ Set url of rss generator.
 
 ## Episode Tags
 
+### post_title
+```python
+post_enclosure(title: str, index: int = -1):
+```
+Set title for post.
+
+**Parameters:**
+- `title`: string of post name.
+- (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
 ### post_enclosure
 ```python
 post_enclosure(url: str, file_size: int, type: str, index: int = -1):

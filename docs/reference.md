@@ -6,6 +6,17 @@ PodcastFeed.PodcastFeed()
 ```
 Create the PodcastFeed object.
 
+### Write to file
+
+### write
+```python
+write(path: Path)
+```
+Write tree to .xml file.
+
+**Parameters:**
+- `path`: path object representing location of output file.
+
 ## Channel tags
 
 ### title
@@ -140,6 +151,16 @@ Set url of rss generator.
 
 **Parameters:**
 - `url`: string of url.
+
+## Add Post
+
+### new_post
+```python
+new_post(title=None, enclosure=None, guid=None, date=None, description=None, duration=None, link=None, image=None, explicit=None, itunes_title=None, episode=None, season=None, type=None, chapters=None, transcript=None, block=None):
+```
+Create a new post, adding optional keyword arguments to add tags to post. Each parameter is calling a specific episode tag function with `post_{arg}' format.
+
+Paramaters can either be passed directy or with a tuple. The tuple is used when the function takes in more than one parameter.
 
 ## Episode Tags
 
@@ -305,3 +326,16 @@ Add post block (hides episode in Apple Podcasts). Only call function if trying t
 
 **Parameters:**
 - (OPTIONAL) `index`: index int of post. Defaults to post last created.
+
+## Helper functions
+
+### get_post_index
+```python
+get_post_index(title: str) -> int
+```
+Find the index of a post from the title.
+
+Returns the index if found or `-1` if not found.
+
+**Parameters:**
+- `title`: string of the exact title of a post.

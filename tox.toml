@@ -9,4 +9,4 @@ commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true
 description = "run linters"
 skip_install = true
 deps = [ "-rrequirements-dev.txt", ]
-commands = [["black", "src", "tests"]]
+commands = [["black", "--check", "src", "tests"]]

@@ -1,10 +1,18 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+
 class PodcastFeed:
     # empty constructor
     def __init__(self):
-        self.root = ET.Element("rss", { "version":"2.0", "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd", "xmlns:podcast": "https://podcastindex.org/namespace/1.0" })
+        self.root = ET.Element(
+            "rss",
+            {
+                "version": "2.0",
+                "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+                "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
+            },
+        )
         self.channel = ET.SubElement(self.root, "channel")
         self.tree = ET.ElementTree(self.root)
         self.channel_category = []
@@ -29,10 +37,14 @@ class PodcastFeed:
         ET.SubElement(self.channel, "language").text = language
 
     # set category
-    def category(self, category: str, subcategory: str=None):
-        self.channel_category.append(ET.SubElement(self.channel, "itunes:category", text=category))
+    def category(self, category: str, subcategory: str = None):
+        self.channel_category.append(
+            ET.SubElement(self.channel, "itunes:category", text=category)
+        )
         if subcategory != None:
-            ET.SubElement(self.channel_category[-1], "itunes:category", text=subcategory).text
+            ET.SubElement(
+                self.channel_category[-1], "itunes:category", text=subcategory
+            ).text
 
     # set explicit
     def explicit(self, explicit: bool):
@@ -78,7 +90,9 @@ class PodcastFeed:
 
     # set token to verify podcast with apple podcasts
     def verify(self, token: str):
-        ET.SubElement(self.channel, "podcast:txt", purpose="applepodcastsverify").text = token
+        ET.SubElement(
+            self.channel, "podcast:txt", purpose="applepodcastsverify"
+        ).text = token
 
     # set name of rss-generator
     def generator(self, url: str):
@@ -90,17 +104,19 @@ class PodcastFeed:
     def get_post_index(self, title: str) -> int:
         index = 0
         for item in self.root.findall(".//item"):
-            if item.find('title').text == title:
+            if item.find("title").text == title:
                 return index
             index += 1
-        return -1 # if title not found return -1 index
+        return -1  # if title not found return -1 index
 
     def post_title(self, title: str, index: int = -1):
         ET.SubElement(self.item[index], "title").text = title
 
     # add post enclosure to post from index
     def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
-        ET.SubElement(self.item[index], "enclosure", url=url, length=str(file_size), type=type)
+        ET.SubElement(
+            self.item[index], "enclosure", url=url, length=str(file_size), type=type
+        )
 
     # add post enclosure
     def post_guid(self, guid: str, index: int = -1):
@@ -181,22 +197,22 @@ class PodcastFeed:
         self.item.append(ET.SubElement(self.channel, "item"))
 
         func_map = {
-                'title': self.post_title,
-                'enclosure': self.post_enclosure,
-                'guid': self.post_guid,
-                'date': self.post_date,
-                'description': self.post_description,
-                'duration': self.post_duration,
-                'link': self.post_link,
-                'image': self.post_image,
-                'explicit': self.post_explicit,
-                'itunes_title': self.post_itunes_title,
-                'episode': self.post_episode,
-                'season': self.post_season,
-                'type': self.post_type,
-                'chapters': self.post_chapters,
-                'transcript': self.post_transcript,
-                'block': self.post_block
+            "title": self.post_title,
+            "enclosure": self.post_enclosure,
+            "guid": self.post_guid,
+            "date": self.post_date,
+            "description": self.post_description,
+            "duration": self.post_duration,
+            "link": self.post_link,
+            "image": self.post_image,
+            "explicit": self.post_explicit,
+            "itunes_title": self.post_itunes_title,
+            "episode": self.post_episode,
+            "season": self.post_season,
+            "type": self.post_type,
+            "chapters": self.post_chapters,
+            "transcript": self.post_transcript,
+            "block": self.post_block,
         }
 
         for func, value in kwargs.items():

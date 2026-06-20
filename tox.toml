@@ -1,0 +1,8 @@
+env_list = ["3.13", "3.12"]
+
+[env_run_base]
+description = "run the test suite with pytest"
+deps = [
+    "-rrequirements-dev.txt",
+]
+commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true }]]

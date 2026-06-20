@@ -246,9 +246,9 @@ Set the specific title for post on Apple Podcasts.
 - `title`: string of post name.
 - (OPTIONAL) `index`: index int of post. Defaults to post last created.
 
-### post_episode_number
+### post_episode
 ```python
-post_number(num: int, index: int = -1):
+post_episode(num: int, index: int = -1):
 ```
 Add post number. Only required for shows of `serial` type.
 
@@ -256,9 +256,9 @@ Add post number. Only required for shows of `serial` type.
 - `num`: int of episode number.
 - (OPTIONAL) `index`: index int of post. Defaults to post last created.
 
-### post_season_number
+### post_season
 ```python
-post_season_number(num: int, index: int = -1):
+post_season(num: int, index: int = -1):
 ```
 Add season number. Only required for shows of `serial` type.
 

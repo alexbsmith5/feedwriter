@@ -195,14 +195,14 @@ import pytest
             ),
             (
                 "new_post",
-                { "episode_num": 1 },
+                { "episode": 1 },
                 "./channel/item/itunes:episode",
                 "1",
                 None
             ),
             (
                 "new_post",
-                { "season_num": 1 },
+                { "season": 1 },
                 "./channel/item/itunes:season",
                 "1",
                 None

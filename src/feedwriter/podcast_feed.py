@@ -147,12 +147,12 @@ class PodcastFeed:
 
     # add post number
     # not needed for episodic shows (default)
-    def post_episode_number(self, num: int, index: int = -1):
+    def post_episode(self, num: int, index: int = -1):
         ET.SubElement(self.item[index], "itunes:episode").text = str(num)
 
     # add season number
     # not needed for episodic shows (default)
-    def post_season_number(self, num: int, index: int = -1):
+    def post_season(self, num: int, index: int = -1):
         ET.SubElement(self.item[index], "itunes:season").text = str(num)
 
     # add post type
@@ -191,8 +191,8 @@ class PodcastFeed:
                 'image': self.post_image,
                 'explicit': self.post_explicit,
                 'itunes_title': self.post_itunes_title,
-                'episode_num': self.post_episode_number,
-                'season_num': self.post_season_number,
+                'episode': self.post_episode,
+                'season': self.post_season,
                 'type': self.post_type,
                 'chapters': self.post_chapters,
                 'transcript': self.post_transcript,

@@ -37,11 +37,11 @@ class PodcastFeed:
         ET.SubElement(self.channel, "language").text = language
 
     # set category
-    def category(self, category: str, subcategory: str = None):
+    def category(self, category: str, subcategory: str = ""):
         self.channel_category.append(
             ET.SubElement(self.channel, "itunes:category", text=category)
         )
-        if subcategory != None:
+        if subcategory != "":
             ET.SubElement(
                 self.channel_category[-1], "itunes:category", text=subcategory
             ).text

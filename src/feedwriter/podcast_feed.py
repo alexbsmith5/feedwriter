@@ -25,8 +25,13 @@ class PodcastFeed:
         ET.SubElement(self.channel, "title").text = title
 
     # set description
-    def description(self, description: str):
-        ET.SubElement(self.channel, "description").text = description
+    def description(self, description: str, cdata: bool = False):
+        if cdata:
+            ET.SubElement(
+                self.channel, "description"
+            ).text = f"<!CDATA[ {description} ]]>"
+        else:
+            ET.SubElement(self.channel, "description").text = description
 
     # set image
     def image(self, url: str):
@@ -130,8 +135,13 @@ class PodcastFeed:
         ET.SubElement(self.item[index], "pubdate").text = date
 
     # add post description
-    def post_description(self, description: str, index: int = -1):
-        ET.SubElement(self.item[index], "description").text = description
+    def post_description(self, description: str, cdata: bool = False, index: int = -1):
+        if cdata:
+            ET.SubElement(
+                self.item[index], "description"
+            ).text = f"<!CDATA[ {description} ]]>"
+        else:
+            ET.SubElement(self.item[index], "description").text = description
 
     # add post duration (in seconds)
     def post_duration(self, seconds: int, index: int = -1):

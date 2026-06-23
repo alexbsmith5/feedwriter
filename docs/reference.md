@@ -30,12 +30,13 @@ Set show title.
 
 ### description
 ```python
-description(description: str)
+description(description: str, cdata: bool = False)
 ```
 Set show description.
 
 **Parameters:**
 - `description`: string of show description.
+- `cdata`: whether or not rich html is included. `<a>`, `<p>`, `<li>` etc.
 
 ### image
 ```python
@@ -209,12 +210,13 @@ Set date of the post's release.
 
 ### post_description
 ```python
-post_description(description: str, index: int = -1):
+post_description(description: str, cdata: bool = False index: int = -1):
 ```
 Set post description.
 
 **Parameters:**
 - `description`: string of post description.
+- `cdata`: whether or not rich html is included. `<a>`, `<p>`, `<li>` etc.
 - (OPTIONAL) `index`: index int of post. Defaults to post last created.
 
 ### post_duration

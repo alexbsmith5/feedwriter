@@ -6,11 +6,21 @@ import pytest
     [
         # channel tags
         ("title", {"title": "Lorem Ipsum"}, "./channel/title", "Lorem Ipsum", None),
-        (
+        (  # description w/o cdata
             "description",
             {"description": "Lorem ipsum dolor sit amet."},
             "./channel/description",
             "Lorem ipsum dolor sit amet.",
+            None,
+        ),
+        (  # description w/ cdata
+            "description",
+            {
+                "description": '<a href="example.com">Lorem</a> ipsum dolor sit amet.',
+                "cdata": True,
+            },
+            "./channel/description",
+            '<!CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
             None,
         ),
         (
@@ -120,11 +130,23 @@ import pytest
             "Thu, 11 Jun 2026 10:00:00 +0000",
             None,
         ),
-        (
+        (  # description w/o cdata
             "new_post",
             {"description": "Lorem ipsum dolor sit amet."},
             "./channel/item/description",
             "Lorem ipsum dolor sit amet.",
+            None,
+        ),
+        (  # description w/ cdata
+            "new_post",
+            {
+                "description": (
+                    '<a href="example.com">Lorem</a> ipsum dolor sit amet.',
+                    True,
+                ),
+            },
+            "./channel/item/description",
+            '<!CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
             None,
         ),
         (

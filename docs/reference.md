@@ -200,12 +200,14 @@ Set guid (globally unique identifier) for post.
 
 ### post_date
 ```python
-post_date(date: str, index: int = -1):
+post_date(date: str | datetime, index: int = -1):
 ```
 Set date of the post's release.
 
 **Parameters:**
-- `date`: string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3).
+- `date`: option of string or datetime type:
+  - string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3).
+  - datetime object with tzinfo optional (assumes utc).
 - (OPTIONAL) `index`: index int of post. Defaults to post last created.
 
 ### post_description

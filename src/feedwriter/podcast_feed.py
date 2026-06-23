@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from datetime import datetime
 
 
 class PodcastFeed:
@@ -129,10 +130,15 @@ class PodcastFeed:
 
     # add post date
     # date format according to RFC 2822 specification
-    def post_date(self, date: str, index: int = -1):
-        # TODO: better way for user to input date
-        #  option to input date object?
-        ET.SubElement(self.item[index], "pubdate").text = date
+    def post_date(self, date: str | datetime, index: int = -1):
+        if isinstance(date, str):
+            ET.SubElement(self.item[index], "pubdate").text = date
+        elif isinstance(date, datetime):
+            if date.tzinfo is not None:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
+            else:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
+            ET.SubElement(self.item[index], "pubdate").text = date_str
 
     # add post description
     def post_description(self, description: str, cdata: bool = False, index: int = -1):
@@ -145,8 +151,6 @@ class PodcastFeed:
 
     # add post duration (in seconds)
     def post_duration(self, seconds: int, index: int = -1):
-        # TODO: add more formats?
-        #  itunes docs mention other formats (recommended to stay in seconds
         ET.SubElement(self.item[index], "itunes:duration").text = str(seconds)
 
     # add post url

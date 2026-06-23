@@ -1,5 +1,8 @@
 import pytest
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 
 @pytest.mark.parametrize(
     "func_name, func_kwargs, xpath, expected_text, expected_attrib",
@@ -123,11 +126,25 @@ import pytest
                 "type": "audio/mpeg",
             },
         ),
-        (
+        (  # date w/ string
             "new_post",
             {"date": "Thu, 11 Jun 2026 10:00:00 +0000"},
             "./channel/item/pubdate",
             "Thu, 11 Jun 2026 10:00:00 +0000",
+            None,
+        ),
+        (  # date w/ datetime object (no tz)
+            "new_post",
+            {"date": datetime(2001, 1, 1, hour=1, minute=1, second=1)},
+            "./channel/item/pubdate",
+            "Mon, 01 Jan 2001 01:01:01 +0000",
+            None,
+        ),
+        (  # date w/ datetime object (EST tz)
+            "new_post",
+            {"date": datetime(2001, 1, 1, tzinfo=ZoneInfo("America/New_York"))},
+            "./channel/item/pubdate",
+            "Mon, 01 Jan 2001 00:00:00 -0500",
             None,
         ),
         (  # description w/o cdata

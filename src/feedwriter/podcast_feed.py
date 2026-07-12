@@ -24,7 +24,6 @@ class PodcastFeed:
 
     # channel tags
 
-    # set title
     def title(self, title: str):
         """
         Set show title.
@@ -34,7 +33,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "title").text = title
 
-    # set description
     def description(self, description: str, cdata: bool = False):
         """
         Set show description.
@@ -51,7 +49,6 @@ class PodcastFeed:
         else:
             ET.SubElement(self.channel, "description").text = description
 
-    # set image
     def image(self, url: str):
         """
         Set show artwork.
@@ -61,7 +58,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:image", href=url).text
 
-    # set language
     def language(self, language: str):
         """
         Set show language.
@@ -71,7 +67,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "language").text = language
 
-    # set category
     def category(self, category: str, subcategory: str = ""):
         """
         Set show category.
@@ -87,7 +82,6 @@ class PodcastFeed:
                 self.channel_category[-1], "itunes:category", text=subcategory
             ).text
 
-    # set explicit
     def explicit(self, explicit: bool):
         """
         Set show as explicit or not.
@@ -101,7 +95,6 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.channel, "itunes:explicit").text = text
 
-    # set author
     def author(self, author: str):
         """
         Set show author(s).
@@ -111,7 +104,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:author").text = author
 
-    # set link
     def link(self, url: str):
         """
         Set link to show's external website.
@@ -121,8 +113,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "link").text = url
 
-    # set itunes title
-    # specific name on apple podcasts
     def itunes_title(self, title: str):
         """
         Set specific title for show on Apple Podcasts.
@@ -132,7 +122,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:title").text = title
 
-    # set type
     def type(self, type: str):
         """
         Set show as either ``episodic`` or ``serial``.
@@ -144,7 +133,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:type").text = type
 
-    # set copyright
     def copyright(self, copyright: str):
         """
         Set show copyright information.
@@ -154,7 +142,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "copyright").text = copyright
 
-    # set url of new feed
     def feed_url_new(self, url: str):
         """
         Set url of new rss feed location
@@ -166,11 +153,11 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:new-feed-url").text = url
 
-    # set block (removes podcast from apple directory)
-    # don't use if not trying to block
     def block(self):
         """
         Remove show from Apple Podcasts directory.
+
+        Don't use if not trying to block.
         """
         ET.SubElement(self.channel, "itunes:block").text = "Yes"
 
@@ -446,9 +433,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "podcast:transcript", url=url, type=type).text
 
-    # add post block
-    # add post block (removes episode from apple directory)
-    # don't use if not trying to block
     def post_block(self, block: bool, index: int = -1):
         """
         Add post block (hides epsiode in Apple Podcasts.
@@ -460,7 +444,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:block").text = "Yes"
 
-    # add post
     def new_post(self, **kwargs):
         """
         Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with ``post_{arg}`` format.

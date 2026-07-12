@@ -1,6 +1,11 @@
-env_list = ["3.10", "3.11", "3.12" ,"3.13", "3.14"]
+env_list = ["3.10", "3.11", "3.12" ,"3.13", "3.14", "docs"]
 
 [env_run_base]
 description = "run the test suite with pytest"
 deps = [ "-rrequirements-dev.txt", ]
 commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true }]]
+
+[env.docs]
+description = "build documentation with sphinx"
+deps = [ "-rrequirements-dev.txt", ]
+commands = [["sphinx-build", "-M", "markdown", "docs/source", "docs/build", ]]

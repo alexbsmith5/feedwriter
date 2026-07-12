@@ -1,10 +1,6 @@
 # feedwriter documentation
 
-Add your content using `reStructuredText` syntax. See the
-[reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html)
-documentation for details.
-
-## Functions
+## API Reference
 
 ### *class* feedwriter.podcast_feed.PodcastFeed(test=None)
 
@@ -102,6 +98,8 @@ Only necessary if changing url of rss feed.
 #### block()
 
 Remove show from Apple Podcasts directory.
+
+Don’t use if not trying to block.
 
 #### complete()
 

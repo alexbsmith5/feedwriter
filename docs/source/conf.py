@@ -16,6 +16,7 @@ release = "0.0.0"
 
 extensions = [
     "sphinx_markdown_builder",
+    "sphinx.ext.autodoc",
 ]
 
 templates_path = ["_templates"]

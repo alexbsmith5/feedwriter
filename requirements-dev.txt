@@ -1,3 +1,4 @@
 pytest
 tox
 sphinx
+sphinx-markdown-builder==0.6.10

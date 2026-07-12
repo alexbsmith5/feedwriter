@@ -161,14 +161,12 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:block").text = "Yes"
 
-    # set complete, no more new episodes will be added
     def complete(self):
         """
         Set show as complete, meaning no new episodes will be added.
         """
         ET.SubElement(self.channel, "itunes:complete").text = "Yes"
 
-    # set token to verify podcast with apple podcasts
     def verify(self, token: str):
         """
         Set token to verify podcast with Apple Podcasts.
@@ -182,7 +180,6 @@ class PodcastFeed:
             self.channel, "podcast:txt", purpose="applepodcastsverify"
         ).text = token
 
-    # set name of rss-generator
     def generator(self, url: str):
         """
         Set url of rss generator website.
@@ -194,7 +191,6 @@ class PodcastFeed:
 
     # episode tags
 
-    # find post index given title
     def get_post_index(self, title: str) -> int:
         """
         Find the index of a post from the title.
@@ -222,7 +218,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "title").text = title
 
-    # add post enclosure to post from index
     def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
         """
         Set url, length, and type of media for post.
@@ -241,7 +236,6 @@ class PodcastFeed:
             self.item[index], "enclosure", url=url, length=str(file_size), type=type
         )
 
-    # add post enclosure
     def post_guid(self, guid: str, index: int = -1):
         """
         Set guid (globally unique identifier) for post.
@@ -253,8 +247,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "guid").text = guid
 
-    # add post date
-    # date format according to RFC 2822 specification
     def post_date(self, date: str | datetime, index: int = -1):
         """
         Set date of the post's release.
@@ -273,7 +265,6 @@ class PodcastFeed:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
             ET.SubElement(self.item[index], "pubdate").text = date_str
 
-    # add post description
     def post_description(self, description: str, cdata: bool = False, index: int = -1):
         """
         Set post description.
@@ -292,7 +283,6 @@ class PodcastFeed:
         else:
             ET.SubElement(self.item[index], "description").text = description
 
-    # add post duration (in seconds)
     def post_duration(self, seconds: int, index: int = -1):
         """
         Set the length of audio, in seconds.
@@ -304,8 +294,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:duration").text = str(seconds)
 
-    # add post url
-    # use when post has corresponsing webpage
     def post_link(self, url: str, index: int = -1):
         """
         Set link to external website for post.
@@ -317,7 +305,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "link").text = url
 
-    # add post image url
     def post_image(self, url: str, index: int = -1):
         """
         Set image for post.
@@ -329,7 +316,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:image", href=url).text
 
-    # add explicit tag
     def post_explicit(self, explicit: bool, index: int = -1):
         """
         Set post as explicit or not.
@@ -345,8 +331,6 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.item[index], "itunes:explicit").text = text
 
-    # add itunes title
-    # specific episode name for apple podcasts
     def post_itunes_title(self, title: str, index: int = -1):
         """
         Set specific title for post on Apple Podcasts.
@@ -358,8 +342,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:title").text = title
 
-    # add post number
-    # not needed for episodic shows (default)
     def post_episode(self, num: int, index: int = -1):
         """
         Add post's episode number.
@@ -373,8 +355,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:episode").text = str(num)
 
-    # add season number
-    # not needed for episodic shows (default)
     def post_season(self, num: int, index: int = -1):
         """
         Add post's season number.
@@ -388,8 +368,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:season").text = str(num)
 
-    # add post type
-    # options: full, trailer, bonus
     def post_type(self, type: str, index: int = -1):
         """
         Set episode as ``full``, ``trailer``, or ``bonus``.
@@ -401,8 +379,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "itunes:episodeType").text = type
 
-    # add post chapters url
-    # url points to file that follows podcastindex.org json chapters format
     def post_chapters(self, url: str, type: str, index: int = -1):
         """
         Set url of chapters file.
@@ -416,8 +392,6 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "podcast:chapters", url=url, type=type).text
 
-    # add transcript url
-    # url point to file that follows either VTT or SRT transcript format
     def post_transcript(self, url: str, type: str, index: int = -1):
         """
         Set url of transcript file.

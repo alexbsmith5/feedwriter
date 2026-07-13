@@ -264,7 +264,7 @@ File must follow the [podcastindex.org transcript format](https://github.com/Pod
   * **type** (*string*) – mime type of file. Options `text/plain`, `text/html`, `text/vtt`, `application/json` or `application/x-subrip`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-#### post_block(block: bool, index: int = -1)
+#### post_block(index: int = -1)
 
 Add post block (hides epsiode in Apple Podcasts.
 
@@ -280,22 +280,22 @@ Create new post, using optional keyword arguments to add tags. Each parameter is
 Parameters can either be passed directly or with a tuple. The tuple type is used when the function takes in more than one paramater.
 
 * **Parameters:**
-  * **title** (*string*) – post title.
-  * **enclosure** (*tuple*) – `(url, length, type)`.
-  * **guid** (*string*) – unique text.
-  * **date** (*string* *or* *datetime object*) – release date of post.
-  * **description** (*string*) – post description.
-  * **duration** (*int*) – length of audio (in seconds).
-  * **link** (*string*) – url of external website.
-  * **image** (*string*) – url of image.
-  * **explicit** (*bool*) – set explicit.
-  * **itunes_title** (*string*) – itunes-specific name.
-  * **episode** (*int*) – episode number.
-  * **season** (*int*) – season number.
-  * **type** (*string*) – episode type.
-  * **chapters** (*tuple*) – `(url, type)`.
-  * **transcript** (*tuple*) – `(url, type)`.
-  * **block** (*bool*) – hide post.
+  * **title** (*string*) – (optional) post title.
+  * **enclosure** (*tuple*) – (optional) `(url, length, type)`.
+  * **guid** (*string*) – (optional) unique text.
+  * **date** (*string* *or* *datetime object*) – (optional) release date of post.
+  * **description** (*string*) – (optional) post description.
+  * **duration** (*int*) – (optional) length of audio (in seconds).
+  * **link** (*string*) – (optional) url of external website.
+  * **image** (*string*) – (optional) url of image.
+  * **explicit** (*bool*) – (optional) set explicit.
+  * **itunes_title** (*string*) – (optional) itunes-specific name.
+  * **episode** (*int*) – (optional) episode number.
+  * **season** (*int*) – (optional) season number.
+  * **type** (*string*) – (optional) episode type.
+  * **chapters** (*tuple*) – (optional) `(url, type)`.
+  * **transcript** (*tuple*) – (optional) `(url, type)`.
+  * **block** (*tuple*) – (optional) hide post. Use empty tuple `()`.
 
 #### write(path: Path)
 

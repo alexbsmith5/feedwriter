@@ -2,7 +2,7 @@
 
 ## API Reference
 
-### *class* feedwriter.podcast_feed.PodcastFeed(test=None)
+### *class* feedwriter.podcast_feed.PodcastFeed
 
 PodcastFeed Class.
 

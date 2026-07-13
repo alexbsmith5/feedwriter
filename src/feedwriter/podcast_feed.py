@@ -5,7 +5,7 @@ from datetime import datetime
 
 class PodcastFeed:
     """
-    PodcastFeed Class
+    PodcastFeed Class.
     """
 
     def __init__(self, test=None):
@@ -423,6 +423,39 @@ class PodcastFeed:
         Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with ``post_{arg}`` format.
 
         Parameters can either be passed directly or with a tuple. The tuple type is used when the function takes in more than one paramater.
+
+        :param title: post title.
+        :type title: string
+        :param enclosure: ``(url, length, type)``.
+        :type enclosure: tuple
+        :param guid: unique text.
+        :type guid: string
+        :param date: release date of post.
+        :type date: string or datetime object
+        :param description: post description.
+        :type description: string
+        :param duration: length of audio (in seconds).
+        :type duration: int
+        :param link: url of external website.
+        :type link: string
+        :param image: url of image.
+        :type image: string
+        :param explicit: set explicit.
+        :type explicit: bool
+        :param itunes_title: itunes-specific name.
+        :type itunes_title: string
+        :param episode: episode number.
+        :type episode: int
+        :param season: season number.
+        :type season: int
+        :param type: episode type.
+        :type type: string
+        :param chapters: ``(url, type)``.
+        :type chapters: tuple
+        :param transcript: ``(url, type)``.
+        :type transcript: tuple
+        :param block: hide post.
+        :type block: bool
         """
         self.item.append(ET.SubElement(self.channel, "item"))
 

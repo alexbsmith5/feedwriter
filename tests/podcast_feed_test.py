@@ -232,7 +232,7 @@ from zoneinfo import ZoneInfo
             None,
             {"url": "https://example.com/post-transcript.vtt", "type": "text/vtt"},
         ),
-        ("new_post", {"block": True}, "./channel/item/itunes:block", "Yes", None),
+        ("new_post", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
     ],
 )
 def test_element(

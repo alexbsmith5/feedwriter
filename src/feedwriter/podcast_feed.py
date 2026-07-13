@@ -407,7 +407,7 @@ class PodcastFeed:
         """
         ET.SubElement(self.item[index], "podcast:transcript", url=url, type=type).text
 
-    def post_block(self, block: bool, index: int = -1):
+    def post_block(self, index: int = -1):
         """
         Add post block (hides epsiode in Apple Podcasts.
 
@@ -424,38 +424,38 @@ class PodcastFeed:
 
         Parameters can either be passed directly or with a tuple. The tuple type is used when the function takes in more than one paramater.
 
-        :param title: post title.
+        :param title: (optional) post title.
         :type title: string
-        :param enclosure: ``(url, length, type)``.
+        :param enclosure: (optional) ``(url, length, type)``.
         :type enclosure: tuple
-        :param guid: unique text.
+        :param guid: (optional) unique text.
         :type guid: string
-        :param date: release date of post.
+        :param date: (optional) release date of post.
         :type date: string or datetime object
-        :param description: post description.
+        :param description: (optional) post description.
         :type description: string
-        :param duration: length of audio (in seconds).
+        :param duration: (optional) length of audio (in seconds).
         :type duration: int
-        :param link: url of external website.
+        :param link: (optional) url of external website.
         :type link: string
-        :param image: url of image.
+        :param image: (optional) url of image.
         :type image: string
-        :param explicit: set explicit.
+        :param explicit: (optional) set explicit.
         :type explicit: bool
-        :param itunes_title: itunes-specific name.
+        :param itunes_title: (optional) itunes-specific name.
         :type itunes_title: string
-        :param episode: episode number.
+        :param episode: (optional) episode number.
         :type episode: int
-        :param season: season number.
+        :param season: (optional) season number.
         :type season: int
-        :param type: episode type.
+        :param type: (optional) episode type.
         :type type: string
-        :param chapters: ``(url, type)``.
+        :param chapters: (optional) ``(url, type)``.
         :type chapters: tuple
-        :param transcript: ``(url, type)``.
+        :param transcript: (optional) ``(url, type)``.
         :type transcript: tuple
-        :param block: hide post.
-        :type block: bool
+        :param block: (optional) hide post. Use empty tuple ``()``.
+        :type block: tuple
         """
         self.item.append(ET.SubElement(self.channel, "item"))
 

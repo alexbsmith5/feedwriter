@@ -46,7 +46,7 @@ class PodcastFeed:
         if cdata:
             ET.SubElement(
                 self.channel, "description"
-            ).text = f"<!CDATA[ {description} ]]>"
+            ).text = f"<![CDATA[ {description} ]]>"
         else:
             ET.SubElement(self.channel, "description").text = description
 
@@ -280,7 +280,7 @@ class PodcastFeed:
         if cdata:
             ET.SubElement(
                 self.item[index], "description"
-            ).text = f"<!CDATA[ {description} ]]>"
+            ).text = f"<![CDATA[ {description} ]]>"
         else:
             ET.SubElement(self.item[index], "description").text = description
 

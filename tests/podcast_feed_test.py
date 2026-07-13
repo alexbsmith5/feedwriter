@@ -23,7 +23,7 @@ from zoneinfo import ZoneInfo
                 "cdata": True,
             },
             "./channel/description",
-            '<!CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
+            '<![CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
             None,
         ),
         (
@@ -163,7 +163,7 @@ from zoneinfo import ZoneInfo
                 ),
             },
             "./channel/item/description",
-            '<!CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
+            '<![CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
             None,
         ),
         (

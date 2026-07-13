@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import pytest
 
-from feedwriter.podcast_feed import PodcastFeed
+from feedwriter import PodcastFeed
 
 
 # create base rss feed
@@ -32,14 +32,14 @@ def assert_xml(tmp_path):
         assert element is not None, f"Element {xpath} is not found in the XML output."
 
         if expected_text is not None:
-            assert (
-                element.text == expected_text
-            ), f"Expected {element.tag} to contain {expected_text}, got {element.text}."
+            assert element.text == expected_text, (
+                f"Expected {element.tag} to contain {expected_text}, got {element.text}."
+            )
 
         if expected_attrib is not None:
             for key, value in expected_attrib.items():
-                assert (
-                    element.get(key) == value
-                ), f"Expected {key} to contain {value}, got {element.get(key)}."
+                assert element.get(key) == value, (
+                    f"Expected {key} to contain {value}, got {element.get(key)}."
+                )
 
     return _assert_xml

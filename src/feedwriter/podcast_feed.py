@@ -2,6 +2,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime
 
+from urllib.parse import quote
+
 
 class PodcastFeed:
     """
@@ -57,7 +59,7 @@ class PodcastFeed:
         :param url: url pointing to a ``.jpg`` or ``.png``.
         :type url: string
         """
-        ET.SubElement(self.channel, "itunes:image", href=url).text
+        ET.SubElement(self.channel, "itunes:image", href=quote(url, safe="/:")).text
 
     def language(self, language: str):
         """
@@ -112,7 +114,7 @@ class PodcastFeed:
         :param url: url pointing to a website.
         :type url: string
         """
-        ET.SubElement(self.channel, "link").text = url
+        ET.SubElement(self.channel, "link").text = quote(url, safe="/:")
 
     def itunes_title(self, title: str):
         """
@@ -152,7 +154,7 @@ class PodcastFeed:
         :param url: url pointing to new rss feed location.
         :type url: string
         """
-        ET.SubElement(self.channel, "itunes:new-feed-url").text = url
+        ET.SubElement(self.channel, "itunes:new-feed-url").text = quote(url, safe="/:")
 
     def block(self):
         """
@@ -188,7 +190,7 @@ class PodcastFeed:
         :param url: url pointing to rss generator website.
         :type url: string
         """
-        ET.SubElement(self.channel, "generator").text = url
+        ET.SubElement(self.channel, "generator").text = quote(url, safe="/:")
 
     # episode tags
 
@@ -234,7 +236,11 @@ class PodcastFeed:
         :type index: int
         """
         ET.SubElement(
-            self.item[index], "enclosure", url=url, length=str(file_size), type=type
+            self.item[index],
+            "enclosure",
+            url=quote(url, safe="/:"),
+            length=str(file_size),
+            type=type,
         )
 
     def post_guid(self, guid: str, index: int = -1):
@@ -304,7 +310,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "link").text = url
+        ET.SubElement(self.item[index], "link").text = quote(url, safe="/:")
 
     def post_image(self, url: str, index: int = -1):
         """
@@ -315,7 +321,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:image", href=url).text
+        ET.SubElement(self.item[index], "itunes:image", href=quote(url, safe="/:")).text
 
     def post_explicit(self, explicit: bool, index: int = -1):
         """
@@ -391,7 +397,9 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "podcast:chapters", url=url, type=type).text
+        ET.SubElement(
+            self.item[index], "podcast:chapters", url=quote(url, safe="/:"), type=type
+        ).text
 
     def post_transcript(self, url: str, type: str, index: int = -1):
         """
@@ -406,7 +414,9 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "podcast:transcript", url=url, type=type).text
+        ET.SubElement(
+            self.item[index], "podcast:transcript", url=quote(url, safe="/:"), type=type
+        ).text
 
     def post_block(self, index: int = -1):
         """

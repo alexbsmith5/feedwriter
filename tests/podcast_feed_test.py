@@ -33,6 +33,13 @@ from zoneinfo import ZoneInfo
             None,
             {"href": "https://example.com/image.jpg"},
         ),
+        (
+            "image",
+            {"url": "https://example.com/post image.jpg"},
+            "./channel/itunes:image",
+            None,
+            {"href": "https://example.com/post%20image.jpg"},
+        ),
         ("language", {"language": "eng"}, "./channel/language", "eng", None),
         (
             "category",
@@ -68,6 +75,13 @@ from zoneinfo import ZoneInfo
             {"url": "https://example.com/webpage.html"},
             "./channel/link",
             "https://example.com/webpage.html",
+            None,
+        ),
+        (
+            "link",
+            {"url": "https://example.com/lorem ipsum.html"},
+            "./channel/link",
+            "https://example.com/lorem%20ipsum.html",
             None,
         ),
         (
@@ -122,6 +136,23 @@ from zoneinfo import ZoneInfo
             None,
             {
                 "url": "https://website.com/post.mp3",
+                "length": "5650880",
+                "type": "audio/mpeg",
+            },
+        ),
+        (
+            "new_post",
+            {
+                "enclosure": (
+                    "https://website.com/lorem ipsum.mp3",
+                    5650880,
+                    "audio/mpeg",
+                )
+            },
+            "./channel/item/enclosure",
+            None,
+            {
+                "url": "https://website.com/lorem%20ipsum.mp3",
                 "length": "5650880",
                 "type": "audio/mpeg",
             },
@@ -182,10 +213,24 @@ from zoneinfo import ZoneInfo
         ),
         (
             "new_post",
+            {"link": "https://example.com/lorem ipsum.html"},
+            "./channel/item/link",
+            "https://example.com/lorem%20ipsum.html",
+            None,
+        ),
+        (
+            "new_post",
             {"image": "https://example.com/post.jpg"},
             "./channel/item/itunes:image",
             None,
             {"href": "https://example.com/post.jpg"},
+        ),
+        (
+            "new_post",
+            {"image": "https://example.com/lorem ipsum.jpg"},
+            "./channel/item/itunes:image",
+            None,
+            {"href": "https://example.com/lorem%20ipsum.jpg"},
         ),
         (
             "new_post",
@@ -227,10 +272,32 @@ from zoneinfo import ZoneInfo
         ),
         (
             "new_post",
+            {
+                "chapters": (
+                    "https://example.com/post chapters.json",
+                    "application/json+chapters",
+                )
+            },
+            "./channel/item/podcast:chapters",
+            None,
+            {
+                "url": "https://example.com/post%20chapters.json",
+                "type": "application/json+chapters",
+            },
+        ),
+        (
+            "new_post",
             {"transcript": ("https://example.com/post-transcript.vtt", "text/vtt")},
             "./channel/item/podcast:transcript",
             None,
             {"url": "https://example.com/post-transcript.vtt", "type": "text/vtt"},
+        ),
+        (
+            "new_post",
+            {"transcript": ("https://example.com/post transcript.vtt", "text/vtt")},
+            "./channel/item/podcast:transcript",
+            None,
+            {"url": "https://example.com/post%20transcript.vtt", "type": "text/vtt"},
         ),
         ("new_post", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
     ],

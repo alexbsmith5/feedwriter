@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime
-
 from urllib.parse import quote
+from .helpers import _escape
 
 
 class PodcastFeed:
@@ -34,7 +34,7 @@ class PodcastFeed:
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "title").text = title
+        ET.SubElement(self.channel, "title").text = _escape(title)
 
     def description(self, description: str, cdata: bool = False):
         """
@@ -50,7 +50,7 @@ class PodcastFeed:
                 self.channel, "description"
             ).text = f"<![CDATA[ {description} ]]>"
         else:
-            ET.SubElement(self.channel, "description").text = description
+            ET.SubElement(self.channel, "description").text = _escape(description)
 
     def image(self, url: str):
         """
@@ -78,11 +78,11 @@ class PodcastFeed:
         :type category: string
         """
         self.channel_category.append(
-            ET.SubElement(self.channel, "itunes:category", text=category)
+            ET.SubElement(self.channel, "itunes:category", text=_escape(category))
         )
         if subcategory != "":
             ET.SubElement(
-                self.channel_category[-1], "itunes:category", text=subcategory
+                self.channel_category[-1], "itunes:category", text=_escape(subcategory)
             ).text
 
     def explicit(self, explicit: bool):
@@ -105,7 +105,7 @@ class PodcastFeed:
         :param author: one or multiple author names.
         :type author: string
         """
-        ET.SubElement(self.channel, "itunes:author").text = author
+        ET.SubElement(self.channel, "itunes:author").text = _escape(author)
 
     def link(self, url: str):
         """
@@ -123,7 +123,7 @@ class PodcastFeed:
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "itunes:title").text = title
+        ET.SubElement(self.channel, "itunes:title").text = _escape(title)
 
     def type(self, type: str):
         """
@@ -143,7 +143,7 @@ class PodcastFeed:
         :param copyright: copyright information.
         :type copyright: string
         """
-        ET.SubElement(self.channel, "copyright").text = copyright
+        ET.SubElement(self.channel, "copyright").text = _escape(copyright)
 
     def feed_url_new(self, url: str):
         """
@@ -288,7 +288,7 @@ class PodcastFeed:
                 self.item[index], "description"
             ).text = f"<![CDATA[ {description} ]]>"
         else:
-            ET.SubElement(self.item[index], "description").text = description
+            ET.SubElement(self.item[index], "description").text = _escape(description)
 
     def post_duration(self, seconds: int, index: int = -1):
         """
@@ -347,7 +347,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:title").text = title
+        ET.SubElement(self.item[index], "itunes:title").text = _escape(title)
 
     def post_episode(self, num: int, index: int = -1):
         """

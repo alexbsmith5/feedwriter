@@ -9,6 +9,20 @@ from zoneinfo import ZoneInfo
     [
         # channel tags
         ("title", {"title": "Lorem Ipsum"}, "./channel/title", "Lorem Ipsum", None),
+        (
+            "title",
+            {"title": "Lorem & Ipsum"},
+            "./channel/title",
+            "Lorem &amp; Ipsum",
+            None,
+        ),
+        (  # description w/o cdata
+            "description",
+            {"description": "Lorem & ipsum dolor sit amet."},
+            "./channel/description",
+            "Lorem &amp; ipsum dolor sit amet.",
+            None,
+        ),
         (  # description w/o cdata
             "description",
             {"description": "Lorem ipsum dolor sit amet."},
@@ -48,12 +62,26 @@ from zoneinfo import ZoneInfo
             None,
             {"text": "Education"},
         ),
+        (
+            "category",
+            {"category": "Kids & Family"},
+            "./channel/itunes:category",
+            None,
+            {"text": "Kids &amp; Family"},
+        ),
         (  # category w/ subcategory
             "category",
             {"category": "Fiction", "subcategory": "Drama"},
             "./channel/itunes:category",
             None,
             {"text": "Fiction"},
+        ),
+        (  # category w/ subcategory
+            "category",
+            {"category": "Arts", "subcategory": "Fashion & Beauty"},
+            "./channel/itunes:category/itunes:category",
+            None,
+            {"text": "Fashion &amp; Beauty"},
         ),
         (  # subcategory
             "category",
@@ -68,6 +96,13 @@ from zoneinfo import ZoneInfo
             {"author": "Lorem Ipsum"},
             "./channel/itunes:author",
             "Lorem Ipsum",
+            None,
+        ),
+        (
+            "author",
+            {"author": "Lorem & Ipsum"},
+            "./channel/itunes:author",
+            "Lorem &amp; Ipsum",
             None,
         ),
         (
@@ -93,12 +128,26 @@ from zoneinfo import ZoneInfo
         ),
         (
             "itunes_title",
+            {"title": "Lorem & Ipsum"},
+            "./channel/itunes:title",
+            "Lorem &amp; Ipsum",
+            None,
+        ),
+        (
+            "itunes_title",
             {"title": "Lorem Ipsum"},
             "./channel/itunes:title",
             "Lorem Ipsum",
             None,
         ),
         ("type", {"type": "episodic"}, "./channel/itunes:type", "episodic", None),
+        (
+            "copyright",
+            {"copyright": "© Lorem Ipsum"},
+            "./channel/copyright",
+            "&#xA9; Lorem Ipsum",
+            None,
+        ),
         (
             "feed_url_new",
             {"url": "https://example.com/new_feed.xml"},
@@ -185,6 +234,13 @@ from zoneinfo import ZoneInfo
             "Lorem ipsum dolor sit amet.",
             None,
         ),
+        (  # description w/o cdata
+            "new_post",
+            {"description": "Lorem & ipsum dolor sit amet."},
+            "./channel/item/description",
+            "Lorem &amp; ipsum dolor sit amet.",
+            None,
+        ),
         (  # description w/ cdata
             "new_post",
             {
@@ -244,6 +300,13 @@ from zoneinfo import ZoneInfo
             {"itunes_title": "Lorem Ipsum"},
             "./channel/item/itunes:title",
             "Lorem Ipsum",
+            None,
+        ),
+        (
+            "new_post",
+            {"itunes_title": "Lorem & Ipsum"},
+            "./channel/item/itunes:title",
+            "Lorem &amp; Ipsum",
             None,
         ),
         ("new_post", {"episode": 1}, "./channel/item/itunes:episode", "1", None),

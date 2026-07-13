@@ -4,7 +4,7 @@
 
 ### *class* feedwriter.podcast_feed.PodcastFeed(test=None)
 
-PodcastFeed Class
+PodcastFeed Class.
 
 #### title(title: str)
 
@@ -278,6 +278,24 @@ Only call function if trying to block episodes.
 Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with `post_{arg}` format.
 
 Parameters can either be passed directly or with a tuple. The tuple type is used when the function takes in more than one paramater.
+
+* **Parameters:**
+  * **title** (*string*) – post title.
+  * **enclosure** (*tuple*) – `(url, length, type)`.
+  * **guid** (*string*) – unique text.
+  * **date** (*string* *or* *datetime object*) – release date of post.
+  * **description** (*string*) – post description.
+  * **duration** (*int*) – length of audio (in seconds).
+  * **link** (*string*) – url of external website.
+  * **image** (*string*) – url of image.
+  * **explicit** (*bool*) – set explicit.
+  * **itunes_title** (*string*) – itunes-specific name.
+  * **episode** (*int*) – episode number.
+  * **season** (*int*) – season number.
+  * **type** (*string*) – episode type.
+  * **chapters** (*tuple*) – `(url, type)`.
+  * **transcript** (*tuple*) – `(url, type)`.
+  * **block** (*bool*) – hide post.
 
 #### write(path: Path)
 

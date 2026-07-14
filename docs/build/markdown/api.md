@@ -371,9 +371,9 @@ Parameters can either be passed directly or with a tuple. The tuple type is used
 
 <a id="feedwriter.podcast_feed.PodcastFeed.write"></a>
 
-#### write(path: Path)
+#### write(path: Path | str)
 
 Write tree to .xml file.
 
 * **Parameters:**
-  **path** (*path object*) – location of output file.
+  **path** (*path object* *or* *string*) – location of output file.

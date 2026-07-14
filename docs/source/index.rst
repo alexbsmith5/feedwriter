@@ -5,5 +5,5 @@ feedwriter documentation
    :maxdepth: 2
    :caption: Contents:
 
+   tags
    api
-   guide

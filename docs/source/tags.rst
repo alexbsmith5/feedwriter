@@ -1,9 +1,11 @@
-Guide
-=====
+Tags
+====
+
+The information about the show and episodes of a podcast is transmitted with RSS feeds which use XML. The information in an XML document is found and created in it's tags. For Apple Podcasts, there are tags that are required, recommended, and situational. For the required tags, they must be present to pass the feed validation process. For recommended and situational tags, they are not necessarily required, but they can be important depending on the situation.
 
 Required Tags
 *************
-The following tags are required for the channel and for every post. If these tags are missing, the show will fail Apple Podcast's feed validation blocking it from being listed.
+The following tags are required for the channel and for every post. If these tags are missing, the show will fail Apple Podcasts' feed validation blocking it from being listed.
 
 Channel Tags
 ############
@@ -19,7 +21,7 @@ Episode Tags
 ############
 The following commands must be called for every single episode on the feed to pass validation.
 
-These commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponsing kwargs.
+These commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponding kwargs.
 
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_title`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_enclosure`
@@ -27,7 +29,7 @@ These commands can be run by themselves, defaulting to the last created post or 
 
 Recommended Tags
 ****************
-While these tags are not required to pass Apple Podcast's feed validation, they can provide helpful information to users.
+While these tags are not required to pass Apple Podcasts' feed validation, they can provide helpful information to users.
 
 Channel Tags
 ############

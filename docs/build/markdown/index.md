@@ -4,9 +4,9 @@
 
 # Contents:
 
+* [Tags](tags.md)
+  * [Required Tags](tags.md#required-tags)
+  * [Recommended Tags](tags.md#recommended-tags)
+  * [Situational Tags](tags.md#situational-tags)
 * [API Reference](api.md)
   * [`PodcastFeed`](api.md#feedwriter.podcast_feed.PodcastFeed)
-* [Guide](guide.md)
-  * [Required Tags](guide.md#required-tags)
-  * [Recommended Tags](guide.md#recommended-tags)
-  * [Situational Tags](guide.md#situational-tags)

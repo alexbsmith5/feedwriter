@@ -1,3 +1,5 @@
+<a id="feedwriter-documentation"></a>
+
 # feedwriter documentation
 
 # Contents:

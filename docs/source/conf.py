@@ -3,15 +3,6 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-project = "feedwriter"
-copyright = "2026, Alex Smith"
-author = "Alex Smith"
-release = "0.0.0"
-
-
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -20,6 +11,7 @@ extensions = [
     "sphinx.ext.autodoc",
 ]
 
+# sphinx_markdown_builder
 markdown_anchor_signatures = True
 markdown_anchor_sections = True
 

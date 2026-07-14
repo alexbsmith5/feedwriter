@@ -1,7 +1,7 @@
 # feedwriter
 [![tests](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml/badge.svg)](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml)
 
-A Python library to generate podcast rss feeds.
+A Python library to generate podcast RSS feeds.
 
 Currently, passing Apple Podcasts' feed validation is the main focus, but in the future other platforms will be supported.
 

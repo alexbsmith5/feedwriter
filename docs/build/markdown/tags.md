@@ -19,6 +19,7 @@ The following commands specified below must be called in order to pass validatio
 > * [`title()`](api.md#feedwriter.podcast_feed.PodcastFeed.title)
 > * [`description()`](api.md#feedwriter.podcast_feed.PodcastFeed.description)
 > * [`image()`](api.md#feedwriter.podcast_feed.PodcastFeed.image)
+> * [`language()`](api.md#feedwriter.podcast_feed.PodcastFeed.language)
 > * [`category()`](api.md#feedwriter.podcast_feed.PodcastFeed.category)
 > * [`explicit()`](api.md#feedwriter.podcast_feed.PodcastFeed.explicit)
 

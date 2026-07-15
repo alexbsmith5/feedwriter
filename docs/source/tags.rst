@@ -14,6 +14,7 @@ The following commands specified below must be called in order to pass validatio
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.title`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.description`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.image`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.language`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.category`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.explicit`
 

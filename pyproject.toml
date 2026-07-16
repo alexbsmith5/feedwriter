@@ -16,9 +16,19 @@ classifiers = [
 license = "LGPL-3.0-only"
 license-files = ["LICEN[CS]E*"]
 
+[project.urls]
+Repository = "https://github.com/alexbsmith5/feedwriter"
+
 [build-system]
 requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
-[project.urls]
-Repository = "https://github.com/alexbsmith5/feedwriter"
+[tool.coverage.run]
+parallel = true
+source = ["feedwriter"]
+
+[tool.coverage.paths]
+source = [
+    "src/feedwriter",
+    ".tox/*/lib/python*/site-packages/feedwriter",
+]

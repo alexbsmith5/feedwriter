@@ -10,9 +10,6 @@ def base_feed(tmp_path):
     return PodcastFeed()
 
 
-# ns = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd" }
-
-
 # test xml output for text or attrib
 @pytest.fixture
 def assert_xml(tmp_path):

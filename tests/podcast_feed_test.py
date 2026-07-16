@@ -1,7 +1,17 @@
 import pytest
-
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+from feedwriter import PodcastFeed
+
+
+def test_get_post_index():
+    feed = PodcastFeed()
+    feed.new_post(title="lorem")
+    feed.new_post(title="ipsum")
+    assert feed.get_post_index("lorem") == 0
+    assert feed.get_post_index("ipsum") == 1
+    assert feed.get_post_index("dolor") == -1
 
 
 @pytest.mark.parametrize(
@@ -91,6 +101,7 @@ from zoneinfo import ZoneInfo
             {"text": "Drama"},
         ),
         ("explicit", {"explicit": True}, "./channel/itunes:explicit", "true", None),
+        ("explicit", {"explicit": False}, "./channel/itunes:explicit", "false", None),
         (
             "author",
             {"author": "Lorem Ipsum"},
@@ -206,6 +217,13 @@ from zoneinfo import ZoneInfo
                 "type": "audio/mpeg",
             },
         ),
+        (
+            "new_post",
+            {"guid": "example"},
+            "./channel/item/guid",
+            "example",
+            None,
+        ),
         (  # date w/ string
             "new_post",
             {"date": "Thu, 11 Jun 2026 10:00:00 +0000"},
@@ -293,6 +311,13 @@ from zoneinfo import ZoneInfo
             {"explicit": True},
             "./channel/item/itunes:explicit",
             "true",
+            None,
+        ),
+        (
+            "new_post",
+            {"explicit": False},
+            "./channel/item/itunes:explicit",
+            "false",
             None,
         ),
         (

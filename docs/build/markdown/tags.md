@@ -16,12 +16,14 @@ The following tags are required for the channel and for every post. If these tag
 
 The following commands specified below must be called in order to pass validation.
 
+> * [`link_feed()`](api.md#feedwriter.podcast_feed.PodcastFeed.link_feed)
 > * [`title()`](api.md#feedwriter.podcast_feed.PodcastFeed.title)
 > * [`description()`](api.md#feedwriter.podcast_feed.PodcastFeed.description)
 > * [`image()`](api.md#feedwriter.podcast_feed.PodcastFeed.image)
 > * [`language()`](api.md#feedwriter.podcast_feed.PodcastFeed.language)
 > * [`category()`](api.md#feedwriter.podcast_feed.PodcastFeed.category)
 > * [`explicit()`](api.md#feedwriter.podcast_feed.PodcastFeed.explicit)
+> * [`link_page()`](api.md#feedwriter.podcast_feed.PodcastFeed.link_page)
 
 <a id="episode-tags"></a>
 
@@ -45,8 +47,8 @@ While these tags are not required to pass Apple Podcasts’ feed validation, the
 
 ### Channel Tags
 
+> * [`guid()`](api.md#feedwriter.podcast_feed.PodcastFeed.guid)
 > * [`author()`](api.md#feedwriter.podcast_feed.PodcastFeed.author)
-> * [`link()`](api.md#feedwriter.podcast_feed.PodcastFeed.link)
 
 <a id="id2"></a>
 
@@ -76,6 +78,7 @@ Just like recommended tags, these tags are not necessarily required but they can
 > * [`block()`](api.md#feedwriter.podcast_feed.PodcastFeed.block)
 > * [`complete()`](api.md#feedwriter.podcast_feed.PodcastFeed.complete)
 > * [`verify()`](api.md#feedwriter.podcast_feed.PodcastFeed.verify)
+> * [`funding()`](api.md#feedwriter.podcast_feed.PodcastFeed.funding)
 > * [`generator()`](api.md#feedwriter.podcast_feed.PodcastFeed.generator)
 
 <a id="id4"></a>

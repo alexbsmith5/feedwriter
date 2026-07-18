@@ -10,6 +10,15 @@
 
 PodcastFeed Class.
 
+<a id="feedwriter.podcast_feed.PodcastFeed.link_feed"></a>
+
+#### link_feed(url: str)
+
+Set url of rss feed. Should be a url that points to the `.xml` or `.rss` file where it is hosted.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to a `.xml` or `.rss` file.
+
 <a id="feedwriter.podcast_feed.PodcastFeed.title"></a>
 
 #### title(title: str)
@@ -65,6 +74,16 @@ Set show as explicit or not.
 * **Parameters:**
   **explicit** (*bool*) – `true` for explicit and `false` for not explicit.
 
+<a id="feedwriter.podcast_feed.PodcastFeed.guid"></a>
+
+#### guid(guid: str)
+
+Set guid (globally unique identifier) for show.
+
+* **Parameters:**
+  * **guid** (*string*) – UUIDv5 value.
+  * **author** (*string*) – one or multiple author names.
+
 <a id="feedwriter.podcast_feed.PodcastFeed.author"></a>
 
 #### author(author: str)
@@ -74,9 +93,9 @@ Set show author(s).
 * **Parameters:**
   **author** (*string*) – one or multiple author names.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.link"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.link_page"></a>
 
-#### link(url: str)
+#### link_page(url: str)
 
 Set link to show’s external website.
 
@@ -127,8 +146,9 @@ Only necessary if changing url of rss feed.
 
 #### block()
 
-Remove show from Apple Podcasts directory.
+Disable importing of show to podcast hosting platforms.
 
+Unless you are trying to block the feed, don’t use this function.
 Don’t use if not trying to block.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.complete"></a>
@@ -146,7 +166,16 @@ Set token to verify podcast with Apple Podcasts.
 Token will be provided by Apple during the verification process.
 
 * **Parameters:**
-  **token** (*string*) – token providec by Apple.
+  **token** (*string*) – token provided by Apple.
+
+<a id="feedwriter.podcast_feed.PodcastFeed.funding"></a>
+
+#### funding(url: str, name: str)
+
+Set a donation/funding link for the podcast.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to a donation/funding website.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.generator"></a>
 
@@ -282,7 +311,7 @@ Add post’s episode number.
 Only required for shows of `serial` type.
 
 * **Parameters:**
-  * **num** (*int*) – episode number
+  * **num** (*int*) – non-zero episode number.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_season"></a>
@@ -294,7 +323,7 @@ Add post’s season number.
 Only required for shows of `serial` type.
 
 * **Parameters:**
-  * **num** (*int*) – season number
+  * **num** (*int*) – non-zero season number.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_type"></a>

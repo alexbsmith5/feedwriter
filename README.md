@@ -5,6 +5,10 @@ A Python library to generate podcast RSS feeds.
 
 Currently, passing Apple Podcasts' feed validation is the main focus, but in the future other platforms will be supported.
 
+## Docs
+
+The main documentation for the project lies in the [docs/build/markdown/](docs/build/markdown/index.md) directory. From there you can find the api documentation as well as the list of post and episode tags. I would recommend starting on the [tags page](docs/build/markdown/tags.md), and going to the [api page](docs/build/markdown/api.md) for information on the specific functions.
+
 ## Quickstart
 
 Install `feedwriter` from [pypi](https://pypi.org/project/feedwriter/).
@@ -36,7 +40,3 @@ feed.post_duration(1800)
 # write object to file
 feed.write("feed.xml")
 ```
-
-## Docs
-
-The main documentation for the project lies in the [docs/build/markdown/](docs/build/markdown/index.md) directory. From there you can find the api documentation as well as the list of post and episode tags. I would recommend starting on the [tags page](docs/build/markdown/tags.md), and going to the [api page](docs/build/markdown/api.md) for information on the specific functions.

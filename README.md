@@ -3,7 +3,7 @@
 
 A Python library to generate podcast RSS feeds.
 
-Currently, passing Apple Podcasts' feed validation is the main focus, but in the future other platforms will be supported.
+Supports all the tags for Apple Podcasts as well as any player with a [PSP Certification](https://podstandards.org/).
 
 ## Docs
 
@@ -17,7 +17,7 @@ Install `feedwriter` from [pypi](https://pypi.org/project/feedwriter/).
 pip install feedwriter
 ```
 
-Below is a code snipped with a simple example of how to use the library. The comments should serve as a short explanation of what is being run.
+Below is a code snippet with a simple example of how to use the library. The comments should serve as a short explanation of what is being run.
 
 ``` python
 # import class from library

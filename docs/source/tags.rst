@@ -11,12 +11,14 @@ Channel Tags
 ############
 The following commands specified below must be called in order to pass validation.
 
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.link_feed`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.title`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.description`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.image`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.language`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.category`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.explicit`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.link_page`
 
 Episode Tags
 ############
@@ -34,8 +36,8 @@ While these tags are not required to pass Apple Podcasts' feed validation, they 
 
 Channel Tags
 ############
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.guid`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.author`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.link`
 
 Episode Tags
 ############
@@ -59,6 +61,7 @@ Channel Tags
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.block`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.complete`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.verify`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.funding`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.generator`
 
 Episode Tags

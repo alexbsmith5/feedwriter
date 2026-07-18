@@ -24,6 +24,7 @@ def assert_xml(tmp_path):
             "itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
             "podcast": "https://podcastindex.org/namespace/1.0",
             "content": "http://purl.org/rss/1.0/modules/content/",
+            "atom": "http://www.w3.org/2005/Atom",
         }
 
         element = root.find(xpath, namespaces=namespaces)

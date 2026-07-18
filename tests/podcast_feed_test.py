@@ -18,6 +18,17 @@ def test_get_post_index():
     "func_name, func_kwargs, xpath, expected_text, expected_attrib",
     [
         # channel tags
+        (
+            "link_feed",
+            {"url": "https://example.com/feed.xml"},
+            "./channel/atom:link",
+            None,
+            {
+                "href": "https://example.com/feed.xml",
+                "rel": "self",
+                "type": "application/rss+xml",
+            },
+        ),
         ("title", {"title": "Lorem Ipsum"}, "./channel/title", "Lorem Ipsum", None),
         (
             "title",
@@ -103,6 +114,13 @@ def test_get_post_index():
         ("explicit", {"explicit": True}, "./channel/itunes:explicit", "true", None),
         ("explicit", {"explicit": False}, "./channel/itunes:explicit", "false", None),
         (
+            "guid",
+            {"guid": "9b024349-ccf0-5f69-a609-6b82873eab3c"},
+            "./channel/podcast:guid",
+            "9b024349-ccf0-5f69-a609-6b82873eab3c",
+            None,
+        ),
+        (
             "author",
             {"author": "Lorem Ipsum"},
             "./channel/itunes:author",
@@ -117,14 +135,14 @@ def test_get_post_index():
             None,
         ),
         (
-            "link",
+            "link_page",
             {"url": "https://example.com/webpage.html"},
             "./channel/link",
             "https://example.com/webpage.html",
             None,
         ),
         (
-            "link",
+            "link_page",
             {"url": "https://example.com/lorem ipsum.html"},
             "./channel/link",
             "https://example.com/lorem%20ipsum.html",
@@ -167,6 +185,7 @@ def test_get_post_index():
             None,
         ),
         ("block", {}, "./channel/itunes:block", "Yes", None),
+        ("block", {}, "./channel/podcast:locked", "yes", None),
         ("complete", {}, "./channel/itunes:complete", "Yes", None),
         (
             "verify",
@@ -174,6 +193,13 @@ def test_get_post_index():
             "./channel/podcast:txt",
             "token",
             {"purpose": "applepodcastsverify"},
+        ),
+        (
+            "funding",
+            {"url": "https://example.com/donate", "name": "Support"},
+            "./channel/podcast:funding",
+            "Support",
+            {"url": "https://example.com/donate"},
         ),
         (
             "generator",

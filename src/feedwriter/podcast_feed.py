@@ -18,6 +18,7 @@ class PodcastFeed:
                 "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
                 "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
                 "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+                "xmlns:atom": "http://www.w3.org/2005/Atom",
             },
         )
         self.channel = ET.SubElement(self.root, "channel")
@@ -26,6 +27,21 @@ class PodcastFeed:
         self.item = []
 
     # channel tags
+
+    def link_feed(self, url: str):
+        """
+        Set url of rss feed. Should be a url that points to the ``.xml`` or ``.rss`` file where it is hosted.
+
+        :param url: url pointing to a ``.xml`` or ``.rss`` file.
+        :type url: string
+        """
+        ET.SubElement(
+            self.channel,
+            "atom:link",
+            href=quote(url, safe="/:"),
+            rel="self",
+            type="application/rss+xml",
+        ).text
 
     def title(self, title: str):
         """
@@ -98,6 +114,19 @@ class PodcastFeed:
             text = "false"
         ET.SubElement(self.channel, "itunes:explicit").text = text
 
+    def guid(self, guid: str):
+        # TODO: generate UUIDv5 value from url.
+        """
+        Set guid (globally unique identifier) for show.
+
+        :param guid: UUIDv5 value.
+        :type guid: string
+
+        :param author: one or multiple author names.
+        :type author: string
+        """
+        ET.SubElement(self.channel, "podcast:guid").text = guid
+
     def author(self, author: str):
         """
         Set show author(s).
@@ -107,7 +136,7 @@ class PodcastFeed:
         """
         ET.SubElement(self.channel, "itunes:author").text = _escape(author)
 
-    def link(self, url: str):
+    def link_page(self, url: str):
         """
         Set link to show's external website.
 
@@ -158,11 +187,13 @@ class PodcastFeed:
 
     def block(self):
         """
-        Remove show from Apple Podcasts directory.
+        Disable importing of show to podcast hosting platforms.
 
+        Unless you are trying to block the feed, don't use this function.
         Don't use if not trying to block.
         """
         ET.SubElement(self.channel, "itunes:block").text = "Yes"
+        ET.SubElement(self.channel, "podcast:locked").text = "yes"
 
     def complete(self):
         """
@@ -176,12 +207,23 @@ class PodcastFeed:
 
         Token will be provided by Apple during the verification process.
 
-        :param token: token providec by Apple.
+        :param token: token provided by Apple.
         :type token: string
         """
         ET.SubElement(
             self.channel, "podcast:txt", purpose="applepodcastsverify"
         ).text = token
+
+    def funding(self, url: str, name: str):
+        """
+        Set a donation/funding link for the podcast.
+
+        :param url: url pointing to a donation/funding website.
+        :type url: string
+        """
+        ET.SubElement(
+            self.channel, "podcast:funding", url=quote(url, safe="/:")
+        ).text = name
 
     def generator(self, url: str):
         """
@@ -355,7 +397,7 @@ class PodcastFeed:
 
         Only required for shows of ``serial`` type.
 
-        :param num: episode number
+        :param num: non-zero episode number.
         :type num: int
         :param index: (optional) index of post; defaults to last created.
         :type index: int
@@ -368,7 +410,7 @@ class PodcastFeed:
 
         Only required for shows of ``serial`` type.
 
-        :param num: season number
+        :param num: non-zero season number.
         :type num: int
         :param index: (optional) index of post; defaults to last created.
         :type index: int

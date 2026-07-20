@@ -1,15 +1,15 @@
 Tags
 ====
 
-The information about the show and episodes of a podcast is transmitted with RSS feeds which use XML. The information in an XML document is found and created in it's tags. For Apple Podcasts, there are tags that are required, recommended, and situational. For the required tags, they must be present to pass the feed validation process. For recommended and situational tags, they are not necessarily required, but they can be important depending on the situation.
+The information about the show and episodes of a podcast is transmitted with RSS feeds which use XML. The information in an XML document is found and created in it's tags. For podcast players, there are tags that are required, recommended and situational. For the required tags, they must be present to pass each players feed validation process. For recommended and situational tags, they are not necessarily required, but they can be important depending on the situation.
 
 Required Tags
 *************
-The following tags are required for the channel and for every post. If these tags are missing, the show will fail Apple Podcasts' feed validation blocking it from being listed.
+The following tags must be present in order to pass validation. If these tags are missing, the show will fail validation, and not be added to the podcast player's catalog.
 
 Channel Tags
 ############
-The following commands specified below must be called in order to pass validation.
+The following commands specified below must be called to be validated.
 
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.link_feed`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.title`
@@ -22,9 +22,9 @@ The following commands specified below must be called in order to pass validatio
 
 Episode Tags
 ############
-The following commands must be called for every single episode on the feed to pass validation.
+For every single post they must contain the following tags to be validated.
 
-These commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponding kwargs.
+To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponding kwargs.
 
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_title`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_enclosure`
@@ -32,7 +32,7 @@ These commands can be run by themselves, defaulting to the last created post or 
 
 Recommended Tags
 ****************
-While these tags are not required to pass Apple Podcasts' feed validation, they can provide helpful information to users.
+While these tags are not required to pass feed validation, they can provide helpful information to users.
 
 Channel Tags
 ############

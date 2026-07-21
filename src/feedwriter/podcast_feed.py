@@ -10,8 +10,8 @@ class PodcastFeed:
     PodcastFeed Class.
     """
 
-    def __init__(self):
-        self.root = ET.Element(
+    def __init__(self) -> None:
+        self.root: ET.Element = ET.Element(
             "rss",
             {
                 "version": "2.0",
@@ -21,10 +21,10 @@ class PodcastFeed:
                 "xmlns:atom": "http://www.w3.org/2005/Atom",
             },
         )
-        self.channel = ET.SubElement(self.root, "channel")
-        self.tree = ET.ElementTree(self.root)
-        self.channel_category = []
-        self.item = []
+        self.channel: ET.Element = ET.SubElement(self.root, "channel")
+        self.tree: ET.ElementTree = ET.ElementTree(self.root)
+        self.channel_category: list[ET.Element] = []
+        self.item: list[ET.Element] = []
 
     # channel tags
 

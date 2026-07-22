@@ -1,5 +1,7 @@
 # feedwriter
 [![tests](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml/badge.svg)](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml)
+[![PyPI Version](https://img.shields.io/pypi/v/feedwriter)](https://pypi.org/project/feedwriter/)
+![PyPI Python Version](https://img.shields.io/pypi/pyversions/feedwriter)
 
 A Python library to generate podcast RSS feeds.
 

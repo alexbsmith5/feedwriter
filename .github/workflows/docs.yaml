@@ -2,7 +2,7 @@ name: docs
 on:
   push:
     branches: main
-    path:
+    paths:
       - "src/feedwriter/**"
       - "docs/source/**"
 

@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 
 class RSSFeed:
@@ -42,6 +43,6 @@ class RSSFeed:
     ):
         self._tag(index, tag, content, **kwargs)
 
-    def write(self, path: str):
+    def write(self, path: Path | str):
         self.tree = ET.ElementTree(self.root)
         self.tree.write(path, xml_declaration=True, encoding="UTF-8")

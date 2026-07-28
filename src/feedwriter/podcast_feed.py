@@ -1,7 +1,8 @@
 import xml.etree.ElementTree as ET
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from urllib.parse import quote
+
 from .helpers import _escape
 
 
@@ -35,13 +36,13 @@ class PodcastFeed:
         :param url: url pointing to a ``.xml`` or ``.rss`` file.
         :type url: string
         """
-        ET.SubElement(
+        _ = ET.SubElement(
             self.channel,
             "atom:link",
             href=quote(url, safe="/:"),
             rel="self",
             type="application/rss+xml",
-        ).text
+        )
 
     def title(self, title: str):
         """
@@ -75,7 +76,7 @@ class PodcastFeed:
         :param url: url pointing to a ``.jpg`` or ``.png``.
         :type url: string
         """
-        ET.SubElement(self.channel, "itunes:image", href=quote(url, safe="/:")).text
+        _ = ET.SubElement(self.channel, "itunes:image", href=quote(url, safe="/:"))
 
     def language(self, language: str):
         """
@@ -97,9 +98,9 @@ class PodcastFeed:
             ET.SubElement(self.channel, "itunes:category", text=_escape(category))
         )
         if subcategory != "":
-            ET.SubElement(
+            _ = ET.SubElement(
                 self.channel_category[-1], "itunes:category", text=_escape(subcategory)
-            ).text
+            )
 
     def explicit(self, explicit: bool):
         """
@@ -246,7 +247,7 @@ class PodcastFeed:
         :rtype: int
         """
         index = 0
-        for item in self.root.findall(".//item"):
+        for index, item in enumerate(self.root.findall(".//item")):
             if item.find("title").text == title:
                 return index
             index += 1
@@ -363,7 +364,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:image", href=quote(url, safe="/:")).text
+        _ = ET.SubElement(self.item[index], "itunes:image", href=quote(url, safe="/:"))
 
     def post_explicit(self, explicit: bool, index: int = -1):
         """
@@ -439,9 +440,9 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(
+        _ = ET.SubElement(
             self.item[index], "podcast:chapters", url=quote(url, safe="/:"), type=type
-        ).text
+        )
 
     def post_transcript(self, url: str, type: str, index: int = -1):
         """
@@ -456,9 +457,9 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(
+        _ = ET.SubElement(
             self.item[index], "podcast:transcript", url=quote(url, safe="/:"), type=type
-        ).text
+        )
 
     def post_block(self, index: int = -1):
         """

@@ -1,9 +1,10 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from typing import Any
+
 import pytest
 
-from feedwriter import Feed
-from feedwriter import PodcastFeed
+from feedwriter import Feed, PodcastFeed
 
 
 # create rss_feed object
@@ -45,7 +46,7 @@ def assert_xml(tmp_path: Path):
     def _assert_xml(
         rss_feed: Feed,
         func_name: str,
-        func_kwargs: dict[str, str],
+        func_kwargs: dict[str, Any],
         xpath: str,
         expected_text: str | None,
         expected_attrib: dict[str, str] | None,

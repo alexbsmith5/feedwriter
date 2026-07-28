@@ -2,14 +2,14 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import pytest
 
-from feedwriter.rss_feed import RSSFeed
+from feedwriter import Feed
 from feedwriter import PodcastFeed
 
 
 # create rss_feed object
 @pytest.fixture
-def rss_feed() -> RSSFeed:
-    return RSSFeed()
+def rss_feed() -> Feed:
+    return Feed()
 
 
 # create podcast_feed object
@@ -19,9 +19,7 @@ def podcast_feed() -> PodcastFeed:
 
 
 # return element given xpath
-def _get_xml_element(
-    rss_feed: RSSFeed, xpath: str, tmp_path: Path
-) -> ET.Element | None:
+def _get_xml_element(rss_feed: Feed, xpath: str, tmp_path: Path) -> ET.Element | None:
     # write tmp_file
     tmp_file = tmp_path / "feed.xml"
     rss_feed.write(tmp_file)
@@ -45,7 +43,7 @@ def _get_xml_element(
 @pytest.fixture
 def assert_xml(tmp_path: Path):
     def _assert_xml(
-        rss_feed: RSSFeed,
+        rss_feed: Feed,
         func_name: str,
         func_kwargs: dict[str, str],
         xpath: str,

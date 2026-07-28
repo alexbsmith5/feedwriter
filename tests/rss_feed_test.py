@@ -1,6 +1,6 @@
 import pytest
 
-from feedwriter.rss_feed import RSSFeed
+from feedwriter import Feed
 
 
 @pytest.mark.parametrize(
@@ -23,7 +23,7 @@ from feedwriter.rss_feed import RSSFeed
     ],
 )
 def test_function(
-    rss_feed: RSSFeed,
+    rss_feed: Feed,
     assert_xml,
     func_name: str,
     func_kwargs: dict[str, str],

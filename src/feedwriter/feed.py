@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-class RSSFeed:
+class Feed:
     def __init__(self) -> None:
         self.root: ET.Element = ET.Element(
             "rss",

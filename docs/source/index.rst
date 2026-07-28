@@ -6,4 +6,6 @@ feedwriter documentation
    :caption: Contents:
 
    tags
-   api
+   podcastfeed_api
+
+   feed_api

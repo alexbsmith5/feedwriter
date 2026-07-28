@@ -416,12 +416,15 @@ def test_get_post_index():
         ("new_post", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
     ],
 )
-def test_element(
-    base_feed, assert_xml, func_name, func_kwargs, xpath, expected_text, expected_attrib
+def test_function(
+    podcast_feed: PodcastFeed,
+    assert_xml,
+    func_name: str,
+    func_kwargs: dict[str, str],
+    xpath: str,
+    expected_text: str | None,
+    expected_attrib: dict[str, str] | None,
 ):
-    mapped_func = getattr(base_feed, func_name)
-    mapped_func(**func_kwargs)
-
     assert_xml(
-        base_feed, xpath, expected_text=expected_text, expected_attrib=expected_attrib
+        podcast_feed, func_name, func_kwargs, xpath, expected_text, expected_attrib
     )

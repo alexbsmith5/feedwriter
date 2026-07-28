@@ -3,12 +3,19 @@ from pathlib import Path
 import pytest
 
 from feedwriter.rss_feed import RSSFeed
+from feedwriter import PodcastFeed
 
 
 # create rss_feed object
 @pytest.fixture
 def rss_feed() -> RSSFeed:
     return RSSFeed()
+
+
+# create podcast_feed object
+@pytest.fixture
+def podcast_feed() -> PodcastFeed:
+    return PodcastFeed()
 
 
 # return element given xpath
@@ -23,8 +30,16 @@ def _get_xml_element(
     tree = ET.parse(tmp_file)
     root = tree.getroot()
 
+    # set namespaces
+    namespaces: dict[str, str] = {
+        "itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+        "podcast": "https://podcastindex.org/namespace/1.0",
+        "content": "http://purl.org/rss/1.0/modules/content/",
+        "atom": "http://www.w3.org/2005/Atom",
+    }
+
     # return element (if found)
-    return root.find(xpath)
+    return root.find(xpath, namespaces)
 
 
 @pytest.fixture

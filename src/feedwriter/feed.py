@@ -15,9 +15,6 @@ class Feed:
         self.channel_category: list[ET.Element] = []
         self.item: list[ET.Element] = []
 
-    def new_item(self):
-        self.item.append(ET.SubElement(self.channel, "item"))
-
     def _tag(
         self, index: int | None, tag: str, content: str | None = None, **kwargs: str
     ):
@@ -42,6 +39,13 @@ class Feed:
         self, tag: str, content: str | None = None, index: int = -1, **kwargs: str
     ):
         self._tag(index, tag, content, **kwargs)
+
+    def new_item(
+        self, tag: str | None = None, content: str | None = None, **kwargs: str
+    ):
+        self.item.append(ET.SubElement(self.channel, "item"))
+        if tag is not None:
+            self.item_tag(tag, content, -1, **kwargs)
 
     def write(self, path: Path | str):
         self.tree = ET.ElementTree(self.root)

@@ -20,6 +20,17 @@ from feedwriter import Feed
             None,
             {"href": "https://example.com/image.jpg"},
         ),
+        (
+            "new_item",
+            {
+                "tag": "title",
+                "content": "ipsum",
+                "attrib": "lorem",
+            },
+            "./channel/item/title",
+            "ipsum",
+            {"attrib": "lorem"},
+        ),
     ],
 )
 def test_function(

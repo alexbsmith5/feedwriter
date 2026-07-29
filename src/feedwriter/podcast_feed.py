@@ -31,8 +31,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to a ``.xml`` or ``.rss`` file.
         :type url: string
         """
-        _ = ET.SubElement(
-            self.channel,
+        self.channel_tag(
             "atom:link",
             href=quote(url, safe="/:"),
             rel="self",
@@ -46,7 +45,7 @@ class PodcastFeed(Feed):
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "title").text = _escape(title)
+        self.channel_tag("title", _escape(title))
 
     def description(self, description: str, cdata: bool = False):
         """
@@ -58,11 +57,9 @@ class PodcastFeed(Feed):
         :type cdata: bool
         """
         if cdata:
-            ET.SubElement(
-                self.channel, "description"
-            ).text = f"<![CDATA[ {description} ]]>"
+            self.channel_tag("description", f"<![CDATA[ {description} ]]>")
         else:
-            ET.SubElement(self.channel, "description").text = _escape(description)
+            self.channel_tag("description", _escape(description))
 
     def image(self, url: str):
         """
@@ -71,7 +68,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to a ``.jpg`` or ``.png``.
         :type url: string
         """
-        _ = ET.SubElement(self.channel, "itunes:image", href=quote(url, safe="/:"))
+        self.channel_tag("itunes:image", href=quote(url, safe="/:"))
 
     def language(self, language: str):
         """
@@ -80,7 +77,7 @@ class PodcastFeed(Feed):
         :param language: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
         :type language: string
         """
-        ET.SubElement(self.channel, "language").text = language
+        self.channel_tag("language", language)
 
     def category(self, category: str, subcategory: str = ""):
         """
@@ -89,6 +86,7 @@ class PodcastFeed(Feed):
         :param category: category from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
         :type category: string
         """
+        # TODO: use Feed class functions
         self.channel_category.append(
             ET.SubElement(self.channel, "itunes:category", text=_escape(category))
         )
@@ -108,7 +106,8 @@ class PodcastFeed(Feed):
             text = "true"
         else:
             text = "false"
-        ET.SubElement(self.channel, "itunes:explicit").text = text
+
+        self.channel_tag("itunes:explicit", text)
 
     def guid(self, guid: str):
         # TODO: generate UUIDv5 value from url.
@@ -121,7 +120,7 @@ class PodcastFeed(Feed):
         :param author: one or multiple author names.
         :type author: string
         """
-        ET.SubElement(self.channel, "podcast:guid").text = guid
+        self.channel_tag("podcast:guid", guid)
 
     def author(self, author: str):
         """
@@ -130,7 +129,7 @@ class PodcastFeed(Feed):
         :param author: one or multiple author names.
         :type author: string
         """
-        ET.SubElement(self.channel, "itunes:author").text = _escape(author)
+        self.channel_tag("itunes:author", _escape(author))
 
     def link_page(self, url: str):
         """
@@ -139,7 +138,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to a website.
         :type url: string
         """
-        ET.SubElement(self.channel, "link").text = quote(url, safe="/:")
+        self.channel_tag("link", quote(url, safe="/:"))
 
     def itunes_title(self, title: str):
         """
@@ -148,7 +147,7 @@ class PodcastFeed(Feed):
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "itunes:title").text = _escape(title)
+        self.channel_tag("itunes:title", _escape(title))
 
     def type(self, type: str):
         """
@@ -159,7 +158,7 @@ class PodcastFeed(Feed):
         :param type: contains either ``episodic`` or ``serial``.
         :type type: string
         """
-        ET.SubElement(self.channel, "itunes:type").text = type
+        self.channel_tag("itunes:type", type)
 
     def copyright(self, copyright: str):
         """
@@ -168,7 +167,7 @@ class PodcastFeed(Feed):
         :param copyright: copyright information.
         :type copyright: string
         """
-        ET.SubElement(self.channel, "copyright").text = _escape(copyright)
+        self.channel_tag("copyright", _escape(copyright))
 
     def feed_url_new(self, url: str):
         """
@@ -179,7 +178,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to new rss feed location.
         :type url: string
         """
-        ET.SubElement(self.channel, "itunes:new-feed-url").text = quote(url, safe="/:")
+        self.channel_tag("itunes:new-feed-url", quote(url, safe="/:"))
 
     def block(self):
         """
@@ -188,14 +187,14 @@ class PodcastFeed(Feed):
         Unless you are trying to block the feed, don't use this function.
         Don't use if not trying to block.
         """
-        ET.SubElement(self.channel, "itunes:block").text = "Yes"
-        ET.SubElement(self.channel, "podcast:locked").text = "yes"
+        self.channel_tag("itunes:block", "Yes")
+        self.channel_tag("podcast:locked", "yes")
 
     def complete(self):
         """
         Set show as complete, meaning no new episodes will be added.
         """
-        ET.SubElement(self.channel, "itunes:complete").text = "Yes"
+        self.channel_tag("itunes:complete", "Yes")
 
     def verify(self, token: str):
         """
@@ -206,9 +205,7 @@ class PodcastFeed(Feed):
         :param token: token provided by Apple.
         :type token: string
         """
-        ET.SubElement(
-            self.channel, "podcast:txt", purpose="applepodcastsverify"
-        ).text = token
+        self.channel_tag("podcast:txt", token, purpose="applepodcastsverify")
 
     def funding(self, url: str, name: str):
         """
@@ -217,9 +214,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to a donation/funding website.
         :type url: string
         """
-        ET.SubElement(
-            self.channel, "podcast:funding", url=quote(url, safe="/:")
-        ).text = name
+        self.channel_tag("podcast:funding", name, url=quote(url, safe="/:"))
 
     def generator(self, url: str):
         """
@@ -228,7 +223,7 @@ class PodcastFeed(Feed):
         :param url: url pointing to rss generator website.
         :type url: string
         """
-        ET.SubElement(self.channel, "generator").text = quote(url, safe="/:")
+        self.channel_tag("generator", quote(url, safe="/:"))
 
     # episode tags
 

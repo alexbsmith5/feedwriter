@@ -527,13 +527,3 @@ class PodcastFeed(Feed):
                     mapped_function(*value)
                 else:
                     mapped_function(value)
-
-    def write(self, path: Path | str):
-        """
-        Write tree to .xml file.
-
-        :param path: location of output file.
-        :type path: path object or string
-        """
-        self.tree = ET.ElementTree(self.root)
-        self.tree.write(path, xml_declaration=True, encoding="UTF-8")

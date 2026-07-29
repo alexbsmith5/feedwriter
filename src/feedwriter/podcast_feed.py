@@ -1,31 +1,24 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from pathlib import Path
 from urllib.parse import quote
 
+from .feed import Feed
 from .helpers import _escape
 
 
-class PodcastFeed:
+class PodcastFeed(Feed):
     """
     PodcastFeed Class.
     """
 
     def __init__(self) -> None:
-        self.root: ET.Element = ET.Element(
-            "rss",
-            {
-                "version": "2.0",
-                "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
-                "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
-                "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
-                "xmlns:atom": "http://www.w3.org/2005/Atom",
-            },
-        )
-        self.channel: ET.Element = ET.SubElement(self.root, "channel")
-        self.tree: ET.ElementTree = ET.ElementTree(self.root)
-        self.channel_category: list[ET.Element] = []
-        self.item: list[ET.Element] = []
+        namespaces: dict[str, str] = {
+            "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+            "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
+            "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+            "xmlns:atom": "http://www.w3.org/2005/Atom",
+        }
+        Feed.__init__(self, namespaces)
 
     # channel tags
 
@@ -36,8 +29,7 @@ class PodcastFeed:
         :param url: url pointing to a ``.xml`` or ``.rss`` file.
         :type url: string
         """
-        _ = ET.SubElement(
-            self.channel,
+        self.channel_tag(
             "atom:link",
             href=quote(url, safe="/:"),
             rel="self",
@@ -51,7 +43,7 @@ class PodcastFeed:
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "title").text = _escape(title)
+        self.channel_tag("title", _escape(title))
 
     def description(self, description: str, cdata: bool = False):
         """
@@ -63,11 +55,9 @@ class PodcastFeed:
         :type cdata: bool
         """
         if cdata:
-            ET.SubElement(
-                self.channel, "description"
-            ).text = f"<![CDATA[ {description} ]]>"
+            self.channel_tag("description", f"<![CDATA[ {description} ]]>")
         else:
-            ET.SubElement(self.channel, "description").text = _escape(description)
+            self.channel_tag("description", _escape(description))
 
     def image(self, url: str):
         """
@@ -76,7 +66,7 @@ class PodcastFeed:
         :param url: url pointing to a ``.jpg`` or ``.png``.
         :type url: string
         """
-        _ = ET.SubElement(self.channel, "itunes:image", href=quote(url, safe="/:"))
+        self.channel_tag("itunes:image", href=quote(url, safe="/:"))
 
     def language(self, language: str):
         """
@@ -85,19 +75,20 @@ class PodcastFeed:
         :param language: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
         :type language: string
         """
-        ET.SubElement(self.channel, "language").text = language
+        self.channel_tag("language", language)
 
-    def category(self, category: str, subcategory: str = ""):
+    def category(self, category: str, subcategory: str | None = None):
         """
         Set show category.
 
         :param category: category from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
         :type category: string
         """
+        # TODO: use Feed class functions
         self.channel_category.append(
             ET.SubElement(self.channel, "itunes:category", text=_escape(category))
         )
-        if subcategory != "":
+        if subcategory is not None:
             _ = ET.SubElement(
                 self.channel_category[-1], "itunes:category", text=_escape(subcategory)
             )
@@ -113,7 +104,8 @@ class PodcastFeed:
             text = "true"
         else:
             text = "false"
-        ET.SubElement(self.channel, "itunes:explicit").text = text
+
+        self.channel_tag("itunes:explicit", text)
 
     def guid(self, guid: str):
         # TODO: generate UUIDv5 value from url.
@@ -126,7 +118,7 @@ class PodcastFeed:
         :param author: one or multiple author names.
         :type author: string
         """
-        ET.SubElement(self.channel, "podcast:guid").text = guid
+        self.channel_tag("podcast:guid", guid)
 
     def author(self, author: str):
         """
@@ -135,7 +127,7 @@ class PodcastFeed:
         :param author: one or multiple author names.
         :type author: string
         """
-        ET.SubElement(self.channel, "itunes:author").text = _escape(author)
+        self.channel_tag("itunes:author", _escape(author))
 
     def link_page(self, url: str):
         """
@@ -144,7 +136,7 @@ class PodcastFeed:
         :param url: url pointing to a website.
         :type url: string
         """
-        ET.SubElement(self.channel, "link").text = quote(url, safe="/:")
+        self.channel_tag("link", quote(url, safe="/:"))
 
     def itunes_title(self, title: str):
         """
@@ -153,7 +145,7 @@ class PodcastFeed:
         :param title: show name.
         :type title: string
         """
-        ET.SubElement(self.channel, "itunes:title").text = _escape(title)
+        self.channel_tag("itunes:title", _escape(title))
 
     def type(self, type: str):
         """
@@ -164,7 +156,7 @@ class PodcastFeed:
         :param type: contains either ``episodic`` or ``serial``.
         :type type: string
         """
-        ET.SubElement(self.channel, "itunes:type").text = type
+        self.channel_tag("itunes:type", type)
 
     def copyright(self, copyright: str):
         """
@@ -173,7 +165,7 @@ class PodcastFeed:
         :param copyright: copyright information.
         :type copyright: string
         """
-        ET.SubElement(self.channel, "copyright").text = _escape(copyright)
+        self.channel_tag("copyright", _escape(copyright))
 
     def feed_url_new(self, url: str):
         """
@@ -184,7 +176,7 @@ class PodcastFeed:
         :param url: url pointing to new rss feed location.
         :type url: string
         """
-        ET.SubElement(self.channel, "itunes:new-feed-url").text = quote(url, safe="/:")
+        self.channel_tag("itunes:new-feed-url", quote(url, safe="/:"))
 
     def block(self):
         """
@@ -193,14 +185,14 @@ class PodcastFeed:
         Unless you are trying to block the feed, don't use this function.
         Don't use if not trying to block.
         """
-        ET.SubElement(self.channel, "itunes:block").text = "Yes"
-        ET.SubElement(self.channel, "podcast:locked").text = "yes"
+        self.channel_tag("itunes:block", "Yes")
+        self.channel_tag("podcast:locked", "yes")
 
     def complete(self):
         """
         Set show as complete, meaning no new episodes will be added.
         """
-        ET.SubElement(self.channel, "itunes:complete").text = "Yes"
+        self.channel_tag("itunes:complete", "Yes")
 
     def verify(self, token: str):
         """
@@ -211,9 +203,7 @@ class PodcastFeed:
         :param token: token provided by Apple.
         :type token: string
         """
-        ET.SubElement(
-            self.channel, "podcast:txt", purpose="applepodcastsverify"
-        ).text = token
+        self.channel_tag("podcast:txt", token, purpose="applepodcastsverify")
 
     def funding(self, url: str, name: str):
         """
@@ -222,9 +212,7 @@ class PodcastFeed:
         :param url: url pointing to a donation/funding website.
         :type url: string
         """
-        ET.SubElement(
-            self.channel, "podcast:funding", url=quote(url, safe="/:")
-        ).text = name
+        self.channel_tag("podcast:funding", name, url=quote(url, safe="/:"))
 
     def generator(self, url: str):
         """
@@ -233,7 +221,7 @@ class PodcastFeed:
         :param url: url pointing to rss generator website.
         :type url: string
         """
-        ET.SubElement(self.channel, "generator").text = quote(url, safe="/:")
+        self.channel_tag("generator", quote(url, safe="/:"))
 
     # episode tags
 
@@ -262,7 +250,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "title").text = title
+        self.item_tag("title", title, index=index)
 
     def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
         """
@@ -278,9 +266,9 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(
-            self.item[index],
+        self.item_tag(
             "enclosure",
+            index=index,
             url=quote(url, safe="/:"),
             length=str(file_size),
             type=type,
@@ -295,7 +283,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "guid").text = guid
+        self.item_tag("guid", guid, index=index)
 
     def post_date(self, date: str | datetime, index: int = -1):
         """
@@ -307,13 +295,13 @@ class PodcastFeed:
         :type index: int
         """
         if isinstance(date, str):
-            ET.SubElement(self.item[index], "pubdate").text = date
-        elif isinstance(date, datetime):
+            self.item_tag("pubdate", date, index=index)
+        else:  # if datetime object
             if date.tzinfo is not None:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
             else:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            ET.SubElement(self.item[index], "pubdate").text = date_str
+            self.item_tag("pubdate", date_str, index=index)
 
     def post_description(self, description: str, cdata: bool = False, index: int = -1):
         """
@@ -327,11 +315,9 @@ class PodcastFeed:
         :type index: int
         """
         if cdata:
-            ET.SubElement(
-                self.item[index], "description"
-            ).text = f"<![CDATA[ {description} ]]>"
+            self.item_tag("description", f"<![CDATA[ {description} ]]>", index=index)
         else:
-            ET.SubElement(self.item[index], "description").text = _escape(description)
+            self.item_tag("description", _escape(description), index=index)
 
     def post_duration(self, seconds: int, index: int = -1):
         """
@@ -342,7 +328,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:duration").text = str(seconds)
+        self.item_tag("itunes:duration", str(seconds), index=index)
 
     def post_link(self, url: str, index: int = -1):
         """
@@ -353,7 +339,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "link").text = quote(url, safe="/:")
+        self.item_tag("link", quote(url, safe="/:"), index=index)
 
     def post_image(self, url: str, index: int = -1):
         """
@@ -364,7 +350,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(self.item[index], "itunes:image", href=quote(url, safe="/:"))
+        self.item_tag("itunes:image", index=index, href=quote(url, safe="/:"))
 
     def post_explicit(self, explicit: bool, index: int = -1):
         """
@@ -379,7 +365,7 @@ class PodcastFeed:
             text = "true"
         else:
             text = "false"
-        ET.SubElement(self.item[index], "itunes:explicit").text = text
+        self.item_tag("itunes:explicit", text, index=index)
 
     def post_itunes_title(self, title: str, index: int = -1):
         """
@@ -390,7 +376,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:title").text = _escape(title)
+        self.item_tag("itunes:title", _escape(title), index=index)
 
     def post_episode(self, num: int, index: int = -1):
         """
@@ -403,7 +389,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:episode").text = str(num)
+        self.item_tag("itunes:episode", str(num), index=index)
 
     def post_season(self, num: int, index: int = -1):
         """
@@ -416,7 +402,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:season").text = str(num)
+        self.item_tag("itunes:season", str(num), index=index)
 
     def post_type(self, type: str, index: int = -1):
         """
@@ -427,7 +413,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:episodeType").text = type
+        self.item_tag("itunes:episodeType", type, index=index)
 
     def post_chapters(self, url: str, type: str, index: int = -1):
         """
@@ -440,8 +426,8 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(
-            self.item[index], "podcast:chapters", url=quote(url, safe="/:"), type=type
+        self.item_tag(
+            "podcast:chapters", index=index, url=quote(url, safe="/:"), type=type
         )
 
     def post_transcript(self, url: str, type: str, index: int = -1):
@@ -457,8 +443,8 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(
-            self.item[index], "podcast:transcript", url=quote(url, safe="/:"), type=type
+        self.item_tag(
+            "podcast:transcript", index=index, url=quote(url, safe="/:"), type=type
         )
 
     def post_block(self, index: int = -1):
@@ -470,7 +456,7 @@ class PodcastFeed:
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:block").text = "Yes"
+        self.item_tag("itunes:block", "Yes", index=index)
 
     def new_post(self, **kwargs):
         """
@@ -511,7 +497,7 @@ class PodcastFeed:
         :param block: (optional) hide post. Use empty tuple ``()``.
         :type block: tuple
         """
-        self.item.append(ET.SubElement(self.channel, "item"))
+        self.new_item()
 
         func_map = {
             "title": self.post_title,
@@ -539,13 +525,3 @@ class PodcastFeed:
                     mapped_function(*value)
                 else:
                     mapped_function(value)
-
-    def write(self, path: Path | str):
-        """
-        Write tree to .xml file.
-
-        :param path: location of output file.
-        :type path: path object or string
-        """
-        self.tree = ET.ElementTree(self.root)
-        self.tree.write(path, xml_declaration=True, encoding="UTF-8")

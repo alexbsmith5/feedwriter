@@ -252,7 +252,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "title").text = title
+        self.item_tag("title", title, index=index)
 
     def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
         """
@@ -268,9 +268,9 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(
-            self.item[index],
+        self.item_tag(
             "enclosure",
+            index=index,
             url=quote(url, safe="/:"),
             length=str(file_size),
             type=type,
@@ -285,7 +285,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "guid").text = guid
+        self.item_tag("guid", guid, index=index)
 
     def post_date(self, date: str | datetime, index: int = -1):
         """
@@ -297,13 +297,13 @@ class PodcastFeed(Feed):
         :type index: int
         """
         if isinstance(date, str):
-            ET.SubElement(self.item[index], "pubdate").text = date
-        elif isinstance(date, datetime):
+            self.item_tag("pubdate", date, index=index)
+        else:  # if datetime object
             if date.tzinfo is not None:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
             else:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            ET.SubElement(self.item[index], "pubdate").text = date_str
+            self.item_tag("pubdate", date_str, index=index)
 
     def post_description(self, description: str, cdata: bool = False, index: int = -1):
         """
@@ -317,11 +317,9 @@ class PodcastFeed(Feed):
         :type index: int
         """
         if cdata:
-            ET.SubElement(
-                self.item[index], "description"
-            ).text = f"<![CDATA[ {description} ]]>"
+            self.item_tag("description", f"<![CDATA[ {description} ]]>", index=index)
         else:
-            ET.SubElement(self.item[index], "description").text = _escape(description)
+            self.item_tag("description", _escape(description), index=index)
 
     def post_duration(self, seconds: int, index: int = -1):
         """
@@ -332,7 +330,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:duration").text = str(seconds)
+        self.item_tag("itunes:duration", str(seconds), index=index)
 
     def post_link(self, url: str, index: int = -1):
         """
@@ -343,7 +341,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "link").text = quote(url, safe="/:")
+        self.item_tag("link", quote(url, safe="/:"), index=index)
 
     def post_image(self, url: str, index: int = -1):
         """
@@ -354,7 +352,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(self.item[index], "itunes:image", href=quote(url, safe="/:"))
+        self.item_tag("itunes:image", index=index, href=quote(url, safe="/:"))
 
     def post_explicit(self, explicit: bool, index: int = -1):
         """
@@ -369,7 +367,7 @@ class PodcastFeed(Feed):
             text = "true"
         else:
             text = "false"
-        ET.SubElement(self.item[index], "itunes:explicit").text = text
+        self.item_tag("itunes:explicit", text, index=index)
 
     def post_itunes_title(self, title: str, index: int = -1):
         """
@@ -380,7 +378,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:title").text = _escape(title)
+        self.item_tag("itunes:title", _escape(title), index=index)
 
     def post_episode(self, num: int, index: int = -1):
         """
@@ -393,7 +391,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:episode").text = str(num)
+        self.item_tag("itunes:episode", str(num), index=index)
 
     def post_season(self, num: int, index: int = -1):
         """
@@ -406,7 +404,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:season").text = str(num)
+        self.item_tag("itunes:season", str(num), index=index)
 
     def post_type(self, type: str, index: int = -1):
         """
@@ -417,7 +415,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:episodeType").text = type
+        self.item_tag("itunes:episodeType", type, index=index)
 
     def post_chapters(self, url: str, type: str, index: int = -1):
         """
@@ -430,8 +428,8 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(
-            self.item[index], "podcast:chapters", url=quote(url, safe="/:"), type=type
+        self.item_tag(
+            "podcast:chapters", index=index, url=quote(url, safe="/:"), type=type
         )
 
     def post_transcript(self, url: str, type: str, index: int = -1):
@@ -447,8 +445,8 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        _ = ET.SubElement(
-            self.item[index], "podcast:transcript", url=quote(url, safe="/:"), type=type
+        self.item_tag(
+            "podcast:transcript", index=index, url=quote(url, safe="/:"), type=type
         )
 
     def post_block(self, index: int = -1):
@@ -460,7 +458,7 @@ class PodcastFeed(Feed):
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        ET.SubElement(self.item[index], "itunes:block").text = "Yes"
+        self.item_tag("itunes:block", "Yes", index=index)
 
     def new_post(self, **kwargs):
         """

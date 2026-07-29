@@ -58,7 +58,7 @@ Set show language.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.category"></a>
 
-#### category(category: str, subcategory: str = '')
+#### category(category: str, subcategory: str | None = None)
 
 Set show category.
 
@@ -397,12 +397,3 @@ Parameters can either be passed directly or with a tuple. The tuple type is used
   * **chapters** (*tuple*) – (optional) `(url, type)`.
   * **transcript** (*tuple*) – (optional) `(url, type)`.
   * **block** (*tuple*) – (optional) hide post. Use empty tuple `()`.
-
-<a id="feedwriter.podcast_feed.PodcastFeed.write"></a>
-
-#### write(path: Path | str)
-
-Write tree to .xml file.
-
-* **Parameters:**
-  **path** (*path object* *or* *string*) – location of output file.

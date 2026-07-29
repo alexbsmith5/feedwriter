@@ -6,7 +6,7 @@
 
 <a id="feedwriter.feed.Feed"></a>
 
-### *class* feedwriter.feed.Feed
+### *class* feedwriter.feed.Feed(namespaces: dict[str, str] | None = None)
 
 Feed Class.
 

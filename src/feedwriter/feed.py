@@ -7,13 +7,12 @@ class Feed:
     Feed Class.
     """
 
-    def __init__(self) -> None:
-        self.root: ET.Element = ET.Element(
-            "rss",
-            {
-                "version": "2.0",
-            },
-        )
+    def __init__(self, namespaces: dict[str, str] | None = None) -> None:
+        xml_declaration = {"version": "2.0"}
+        if namespaces is not None:
+            xml_declaration = xml_declaration | namespaces
+
+        self.root: ET.Element = ET.Element("rss", xml_declaration)
         self.channel: ET.Element = ET.SubElement(self.root, "channel")
         self.tree: ET.ElementTree = ET.ElementTree(self.root)
         self.channel_category: list[ET.Element] = []

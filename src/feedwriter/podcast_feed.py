@@ -5,27 +5,22 @@ from urllib.parse import quote
 
 from .helpers import _escape
 
+from .feed import Feed
 
-class PodcastFeed:
+
+class PodcastFeed(Feed):
     """
     PodcastFeed Class.
     """
 
     def __init__(self) -> None:
-        self.root: ET.Element = ET.Element(
-            "rss",
-            {
-                "version": "2.0",
-                "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
-                "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
-                "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
-                "xmlns:atom": "http://www.w3.org/2005/Atom",
-            },
-        )
-        self.channel: ET.Element = ET.SubElement(self.root, "channel")
-        self.tree: ET.ElementTree = ET.ElementTree(self.root)
-        self.channel_category: list[ET.Element] = []
-        self.item: list[ET.Element] = []
+        namespaces: dict[str, str] = {
+            "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+            "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
+            "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+            "xmlns:atom": "http://www.w3.org/2005/Atom",
+        }
+        Feed.__init__(self, namespaces)
 
     # channel tags
 

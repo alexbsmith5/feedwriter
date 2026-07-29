@@ -1,11 +1,9 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from pathlib import Path
 from urllib.parse import quote
 
-from .helpers import _escape
-
 from .feed import Feed
+from .helpers import _escape
 
 
 class PodcastFeed(Feed):

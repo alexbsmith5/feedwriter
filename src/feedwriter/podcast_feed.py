@@ -79,7 +79,7 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("language", language)
 
-    def category(self, category: str, subcategory: str = ""):
+    def category(self, category: str, subcategory: str | None = None):
         """
         Set show category.
 
@@ -90,7 +90,7 @@ class PodcastFeed(Feed):
         self.channel_category.append(
             ET.SubElement(self.channel, "itunes:category", text=_escape(category))
         )
-        if subcategory != "":
+        if subcategory is not None:
             _ = ET.SubElement(
                 self.channel_category[-1], "itunes:category", text=_escape(subcategory)
             )
@@ -499,7 +499,7 @@ class PodcastFeed(Feed):
         :param block: (optional) hide post. Use empty tuple ``()``.
         :type block: tuple
         """
-        self.item.append(ET.SubElement(self.channel, "item"))
+        self.new_item()
 
         func_map = {
             "title": self.post_title,

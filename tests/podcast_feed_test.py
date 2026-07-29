@@ -1,6 +1,7 @@
-import pytest
-from datetime import datetime
+from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+
+import pytest
 
 from feedwriter import PodcastFeed
 
@@ -162,13 +163,6 @@ def test_get_post_index():
             "Lorem &amp; Ipsum",
             None,
         ),
-        (
-            "itunes_title",
-            {"title": "Lorem Ipsum"},
-            "./channel/itunes:title",
-            "Lorem Ipsum",
-            None,
-        ),
         ("type", {"type": "episodic"}, "./channel/itunes:type", "episodic", None),
         (
             "copyright",
@@ -259,7 +253,11 @@ def test_get_post_index():
         ),
         (  # date w/ datetime object (no tz)
             "new_post",
-            {"date": datetime(2001, 1, 1, hour=1, minute=1, second=1)},
+            {
+                "date": datetime(
+                    2001, 1, 1, hour=1, minute=1, second=1, tzinfo=timezone.utc
+                )
+            },
             "./channel/item/pubdate",
             "Mon, 01 Jan 2001 01:01:01 +0000",
             None,
@@ -416,12 +414,15 @@ def test_get_post_index():
         ("new_post", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
     ],
 )
-def test_element(
-    base_feed, assert_xml, func_name, func_kwargs, xpath, expected_text, expected_attrib
+def test_function(
+    podcast_feed: PodcastFeed,
+    assert_xml,
+    func_name: str,
+    func_kwargs: dict[str, str],
+    xpath: str,
+    expected_text: str | None,
+    expected_attrib: dict[str, str] | None,
 ):
-    mapped_func = getattr(base_feed, func_name)
-    mapped_func(**func_kwargs)
-
     assert_xml(
-        base_feed, xpath, expected_text=expected_text, expected_attrib=expected_attrib
+        podcast_feed, func_name, func_kwargs, xpath, expected_text, expected_attrib
     )

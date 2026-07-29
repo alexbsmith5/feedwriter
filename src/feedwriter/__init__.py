@@ -1,3 +1,4 @@
+from .feed import Feed
 from .podcast_feed import PodcastFeed
 
-__all__ = ["PodcastFeed"]
+__all__ = ["Feed", "PodcastFeed"]

@@ -9,7 +9,7 @@ Supports all the tags for Apple Podcasts as well as any player with a [PSP Certi
 
 ## Docs
 
-The main documentation for the project lies in the [docs/build/markdown/](docs/build/markdown/index.md) directory. From there you can find the api documentation as well as the list of post and episode tags. I would recommend starting on the [tags page](docs/build/markdown/tags.md), and going to the [api page](docs/build/markdown/api.md) for information on the specific functions.
+The main documentation for the project lies in the [docs/build/markdown/](docs/build/markdown/index.md) directory. From there you can find the api documentation as well as the list of post and episode tags. I would recommend starting on the [tags page](docs/build/markdown/tags.md), and going to the [api page](docs/build/markdown/podcastfeed_api.md) for information on the specific functions.
 
 ## Quickstart
 

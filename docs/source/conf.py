@@ -15,9 +15,6 @@ extensions = [
 markdown_anchor_signatures = True
 markdown_anchor_sections = True
 
-templates_path = ["_templates"]
-exclude_patterns = []
-
 autodoc_member_order = "bysource"
 
 # -- Options for HTML output -------------------------------------------------

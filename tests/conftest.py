@@ -61,15 +61,15 @@ def assert_xml(tmp_path: Path):
 
         # check expected content
         if expected_text is not None:
-            assert element.text == expected_text, (
-                f"Expected {element.tag} to contain {expected_text}, got {element.text}."
-            )
+            assert (
+                element.text == expected_text
+            ), f"Expected {element.tag} to contain {expected_text}, got {element.text}."
 
         # check expected attributes
         if expected_attrib is not None:
             for attrib, value in expected_attrib.items():
-                assert element.get(attrib) == value, (
-                    f"Expected {attrib} to contain {value}, got {element.get(attrib)}."
-                )
+                assert (
+                    element.get(attrib) == value
+                ), f"Expected {attrib} to contain {value}, got {element.get(attrib)}."
 
     return _assert_xml

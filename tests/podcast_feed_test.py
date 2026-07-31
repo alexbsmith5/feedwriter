@@ -253,11 +253,7 @@ def test_get_post_index():
         ),
         (  # date w/ datetime object (no tz)
             "new_post",
-            {
-                "date": datetime(
-                    2001, 1, 1, hour=1, minute=1, second=1, tzinfo=timezone.utc
-                )
-            },
+            {"date": datetime(2001, 1, 1, hour=1, minute=1, second=1)},
             "./channel/item/pubdate",
             "Mon, 01 Jan 2001 01:01:01 +0000",
             None,

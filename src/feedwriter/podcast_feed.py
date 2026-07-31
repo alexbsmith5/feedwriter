@@ -236,7 +236,8 @@ class PodcastFeed(Feed):
         """
         index = 0
         for index, item in enumerate(self.root.findall(".//item")):
-            if item.find("title").text == title:
+            title_element = item.find("title")
+            if title_element is not None and title_element.text == title:
                 return index
             index += 1
         return -1  # if title not found return -1 index

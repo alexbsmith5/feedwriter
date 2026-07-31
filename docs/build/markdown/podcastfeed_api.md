@@ -1,8 +1,8 @@
+<a id="module-feedwriter.podcast_feed"></a>
+
 <a id="podcastfeed-class-api-reference"></a>
 
 # PodcastFeed Class API Reference
-
-<a id="module-feedwriter.podcast_feed"></a>
 
 <a id="feedwriter.podcast_feed.PodcastFeed"></a>
 

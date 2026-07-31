@@ -9,3 +9,13 @@ commands = [["coverage", "run", "-p", "-m", "pytest", { replace = "posargs", def
 description = "build documentation with sphinx"
 deps = [ "sphinx", "sphinx-markdown-builder==0.6.10" ]
 commands = [["sphinx-build", "-M", "markdown", "docs/source", "docs/build", ]]
+
+[env.mypy]
+description = "run mypy to typecheck and lint"
+deps = [ "mypy", "pytest" ]
+commands = [["mypy", "." ]]
+
+[env.black]
+description = "run black to check formatting"
+deps = [ "black" ]
+commands = [["black", "--check", "." ]]

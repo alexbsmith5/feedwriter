@@ -12,6 +12,7 @@ on:
       - "docs/source/**"
       - "src/feedwriter/**"
       - "tests/**"
+  workflow_dispatch:
 
 jobs:
   typecheck-lint-format:

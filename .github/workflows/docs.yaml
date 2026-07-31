@@ -5,6 +5,7 @@ on:
     paths:
       - "src/feedwriter/**"
       - "docs/source/**"
+  workflow_dispatch:
 
 jobs:
   docs:

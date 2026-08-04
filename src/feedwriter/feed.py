@@ -32,19 +32,25 @@ class Feed:
         for attrib, value in kwargs.items():
             attributes[attrib] = value
 
+        # create element
+        def element(
+            parent_element: ET.Element,
+            tag: str,
+            attributes: dict[str, str],
+            content: str | None,
+        ) -> ET.Element:
+            element = ET.SubElement(parent_element, tag, attributes)
+            if content is not None:
+                element.text = content
+            return element
+
+        # set specific parent elements depending on type of index
         if isinstance(index, ET.Element):
-            element = ET.SubElement(index, tag, attributes)
-            if content is not None:
-                element.text = content
+            return element(index, tag, attributes, content)
         elif index is None:
-            element = ET.SubElement(self.channel, tag, attributes)
-            if content is not None:
-                element.text = content
+            return element(self.channel, tag, attributes, content)
         else:
-            element = ET.SubElement(self.item[index], tag, attributes)
-            if content is not None:
-                element.text = content
-        return element
+            return element(self.item[index], tag, attributes, content)
 
     def channel_tag(self, tag: str, content: str | None = None, **kwargs: str):
         """

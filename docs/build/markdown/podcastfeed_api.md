@@ -63,7 +63,10 @@ Set show language.
 Set show category.
 
 * **Parameters:**
-  **category** (*string*) – category from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list.
+  * **category** (*string*) – category from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list.
+  * **subcategory** (*string*) – 
+
+    subcategory from the [Apple Podcasts categories](https://podcasters.apple.com/support/1691-apple-podcasts-categories) list.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.explicit"></a>
 

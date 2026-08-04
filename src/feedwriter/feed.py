@@ -15,11 +15,14 @@ class Feed:
         self.root: ET.Element = ET.Element("rss", xml_declaration)
         self.channel: ET.Element = ET.SubElement(self.root, "channel")
         self.tree: ET.ElementTree = ET.ElementTree(self.root)
-        self.channel_category: list[ET.Element] = []
         self.item: list[ET.Element] = []
 
     def _tag(
-        self, index: int | None, tag: str, content: str | None = None, **kwargs: str
+        self,
+        index: int | ET.Element | None,
+        tag: str,
+        content: str | None = None,
+        **kwargs: str,
     ):
 
         # initialize empty attribute dictionary
@@ -29,10 +32,19 @@ class Feed:
         for attrib, value in kwargs.items():
             attributes[attrib] = value
 
-        if index is None:
-            ET.SubElement(self.channel, tag, attributes).text = content
+        if isinstance(index, ET.Element):
+            element = ET.SubElement(index, tag, attributes)
+            if content is not None:
+                element.text = content
+        elif index is None:
+            element = ET.SubElement(self.channel, tag, attributes)
+            if content is not None:
+                element.text = content
         else:
-            ET.SubElement(self.item[index], tag, attributes).text = content
+            element = ET.SubElement(self.item[index], tag, attributes)
+            if content is not None:
+                element.text = content
+        return element
 
     def channel_tag(self, tag: str, content: str | None = None, **kwargs: str):
         """
@@ -45,7 +57,7 @@ class Feed:
         :param kwargs: (optional) name-value pair in the element.
         :type kwargs: string
         """
-        self._tag(None, tag, content, **kwargs)
+        return self._tag(None, tag, content, **kwargs)
 
     def item_tag(
         self, tag: str, content: str | None = None, index: int = -1, **kwargs: str
@@ -62,7 +74,7 @@ class Feed:
         :param kwargs: (optional) name-value pair in the element.
         :type kwargs: string
         """
-        self._tag(index, tag, content, **kwargs)
+        return self._tag(index, tag, content, **kwargs)
 
     def new_item(
         self, tag: str | None = None, content: str | None = None, **kwargs: str

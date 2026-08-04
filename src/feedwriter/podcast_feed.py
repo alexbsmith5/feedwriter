@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from urllib.parse import quote
 
@@ -83,15 +82,15 @@ class PodcastFeed(Feed):
 
         :param category: category from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
         :type category: string
+        :param subcategory: subcategory from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
+        :type subcategory: string
         """
         # TODO: use Feed class functions
-        self.channel_category.append(
-            ET.SubElement(self.channel, "itunes:category", text=_escape(category))
-        )
-        if subcategory is not None:
-            _ = ET.SubElement(
-                self.channel_category[-1], "itunes:category", text=_escape(subcategory)
-            )
+        if subcategory is None:
+            self.channel_tag("itunes:category", text=_escape(category))
+        else:
+            category = self._tag(None, "itunes:category", text=_escape(category))
+            self._tag(category, "itunes:category", text=_escape(subcategory))
 
     def explicit(self, explicit: bool):
         """

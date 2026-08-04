@@ -89,8 +89,8 @@ class PodcastFeed(Feed):
         if subcategory is None:
             self.channel_tag("itunes:category", text=_escape(category))
         else:
-            category = self._tag(None, "itunes:category", text=_escape(category))
-            self._tag(category, "itunes:category", text=_escape(subcategory))
+            cat_element = self._tag(None, "itunes:category", text=_escape(category))
+            self._tag(cat_element, "itunes:category", text=_escape(subcategory))
 
     def explicit(self, explicit: bool):
         """

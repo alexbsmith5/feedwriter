@@ -12,7 +12,7 @@ Supports all the tags for Apple Podcasts as well as any player with a [PSP Certi
 
 Documentation is found [here](docs/build/markdown/index.md).
 
-I would recommend starting with the [quickstart](##Quickstart), and from there going to the [tags page](docs/build/markdown/tags.md) to find the functions for a specific tag.
+I would recommend starting with the [quickstart](#quickstart), and from there going to the [tags page](docs/build/markdown/tags.md) to find the functions for a specific tag.
 
 For more information on the `PodcastFeed` and `Feed` classes, you can find their respective API documentation below:
 

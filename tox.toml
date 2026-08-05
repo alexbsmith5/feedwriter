@@ -24,3 +24,8 @@ commands = [["isort", "-c", "." ]]
 description = "run black to check formatting"
 deps = [ "black" ]
 commands = [["black", "--check", "." ]]
+
+[env.flake8]
+description = "run flake8 to lint"
+deps = [ "flake8" ]
+commands = [["flake8", "docs/source/", "src/", "tests/" ]]

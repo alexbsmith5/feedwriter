@@ -1,4 +1,5 @@
 # feedwriter
+
 [![tests](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml/badge.svg)](https://github.com/alexbsmith5/feedwriter/actions/workflows/tests.yaml)
 [![PyPI Version](https://img.shields.io/pypi/v/feedwriter)](https://pypi.org/project/feedwriter/)
 ![PyPI Python Version](https://img.shields.io/pypi/pyversions/feedwriter)
@@ -9,7 +10,14 @@ Supports all the tags for Apple Podcasts as well as any player with a [PSP Certi
 
 ## Docs
 
-The main documentation for the project lies in the [docs/build/markdown/](docs/build/markdown/index.md) directory. From there you can find the api documentation as well as the list of post and episode tags. I would recommend starting on the [tags page](docs/build/markdown/tags.md), and going to the [api page](docs/build/markdown/podcastfeed_api.md) for information on the specific functions.
+Documentation is found [here](docs/build/markdown/index.md).
+
+I would recommend starting with the [quickstart](##Quickstart), and from there going to the [tags page](docs/build/markdown/tags.md) to find the functions for a specific tag.
+
+For more information on the `PodcastFeed` and `Feed` classes, you can find their respective API documentation below:
+
+- [`PodcastFeed`](docs/build/markdown/podcastfeed_api.md)
+- [`Feed`](docs/build/markdown/feed_api.md)
 
 ## Quickstart
 
@@ -21,7 +29,7 @@ pip install feedwriter
 
 Below is a code snippet with a simple example of how to use the library. The comments should serve as a short explanation of what is being run.
 
-``` python
+```python
 # import class from library
 from feedwriter import PodcastFeed
 

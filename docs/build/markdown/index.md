@@ -12,7 +12,7 @@ This library has two main classes:
 
 The `PodcastFeed` class is the child class to `Feed`, and inherits all of the functionality found in `Feed`.
 
-To get started with creating a podcast RSS feed, go the the [Tags](tags.md) page where you will find which tags are required, recommended and situational for podcast players. When you need more information about a function, you can click on the link on the [Tags](tags.md) page and it will take you to the [PodcastFeed Class API Reference](podcastfeed_api.md).
+To get started with creating a podcast RSS feed, go to the [Tags](tags.md) page where you will find which tags are required, recommended and situational for podcast players. When you need more information about a function, you can click on the link on the [Tags](tags.md) page and it will take you to the [PodcastFeed Class API Reference](podcastfeed_api.md).
 
 <a id="feed-class"></a>
 

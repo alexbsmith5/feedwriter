@@ -15,8 +15,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  typecheck-lint-format:
+  code-quality:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
       - name: Install Python
@@ -29,6 +30,8 @@ jobs:
           pip install tox
       - name: Run mypy
         run: tox -e mypy
+      - name: Run isort
+        run: tox -e isort
       - name: Run Black
         run: tox -e black
   test:

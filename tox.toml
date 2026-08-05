@@ -15,6 +15,11 @@ description = "run mypy to typecheck and lint"
 deps = [ "mypy", "pytest" ]
 commands = [["mypy", "." ]]
 
+[env.isort]
+description = "run isort to alphabetize imports"
+deps = [ "isort" ]
+commands = [["isort", "-c", "." ]]
+
 [env.black]
 description = "run black to check formatting"
 deps = [ "black" ]

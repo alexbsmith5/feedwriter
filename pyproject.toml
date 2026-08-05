@@ -32,3 +32,6 @@ source = [
     "src/feedwriter",
     ".tox/*/lib/python*/site-packages/feedwriter",
 ]
+
+[tool.isort]
+profile = "black"

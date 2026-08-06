@@ -8,7 +8,7 @@
 
 ### *class* feedwriter.podcast_feed.PodcastFeed
 
-PodcastFeed Class.
+Create PodcastFeed class.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.link_feed"></a>
 

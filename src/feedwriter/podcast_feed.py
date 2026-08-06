@@ -6,11 +6,10 @@ from .helpers import _escape
 
 
 class PodcastFeed(Feed):
-    """
-    PodcastFeed Class.
-    """
-
     def __init__(self) -> None:
+        """
+        Create PodcastFeed class.
+        """
         namespaces: dict[str, str] = {
             "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
             "xmlns:podcast": "https://podcastindex.org/namespace/1.0",

@@ -8,7 +8,10 @@
 
 ### *class* feedwriter.feed.Feed(namespaces: dict[str, str] | None = None)
 
-Feed Class.
+Create Feed class.
+
+* **Parameters:**
+  **namespaces** (*dict* *[**str* *,* *str* *]*) – (optional) dictionary with namespace and it’s url.
 
 <a id="feedwriter.feed.Feed.channel_tag"></a>
 

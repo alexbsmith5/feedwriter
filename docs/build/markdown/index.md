@@ -3,8 +3,8 @@
 # feedwriter documentation
 
 This library has two main classes:
-\* Feed: contains only functions to create a rss feed and add elements
-\* PodcastFeed: has specific functions to create elements for podcast players.
+\* `Feed`: contains only functions to create a rss feed and add elements
+\* `PodcastFeed`: has specific functions to create elements for podcast players.
 
 <a id="podcastfeed-class"></a>
 

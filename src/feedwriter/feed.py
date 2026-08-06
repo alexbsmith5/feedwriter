@@ -3,11 +3,13 @@ from pathlib import Path
 
 
 class Feed:
-    """
-    Feed Class.
-    """
-
     def __init__(self, namespaces: dict[str, str] | None = None) -> None:
+        """
+        Create Feed class.
+
+        :param namespaces: (optional) dictionary with namespace and it's url.
+        :type namespaces: dict[str, str]
+        """
         xml_declaration = {"version": "2.0"}
         if namespaces is not None:
             xml_declaration = xml_declaration | namespaces

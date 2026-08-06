@@ -6,7 +6,17 @@
 
 A Python library to generate podcast RSS feeds.
 
-Supports all the tags for Apple Podcasts as well as any player with a [PSP Certification](https://podstandards.org/).
+## Supported Clients
+
+This library has functions which are supported on the following podcast players:
+
+- [Apple Podcasts](https://www.apple.com/apple-podcasts/) and players that pull their feeds from the Apple Podcasts Directory.
+  - [Overcast](https://overcast.fm/)
+  - [Castro](https://castro.fm/)
+- [PSP Certified players](https://podstandards.org/)
+  - [Pocket Casts](https://pocketcasts.com/)
+  - [Podcast Guru](https://podcastguru.io/)
+  - [Many more](https://podstandards.org/) (scroll down to "Podcast Players" section)
 
 ## Docs
 

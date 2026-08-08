@@ -21,21 +21,21 @@ Set url of rss feed. Should be a url that points to the `.xml` or `.rss` file wh
 
 <a id="feedwriter.podcast_feed.PodcastFeed.title"></a>
 
-#### title(title: str)
+#### title(text: str)
 
 Set show title.
 
 * **Parameters:**
-  **title** (*string*) – show name.
+  **text** (*string*) – show title.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.description"></a>
 
-#### description(description: str, cdata: bool = False)
+#### description(text: str, cdata: bool = False)
 
 Set show description.
 
 * **Parameters:**
-  * **description** (*string*) – show description.
+  * **text** (*string*) – show description.
   * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.image"></a>
@@ -49,12 +49,12 @@ Set show artwork.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.language"></a>
 
-#### language(language: str)
+#### language(text: str)
 
 Set show language.
 
 * **Parameters:**
-  **language** (*string*) – language from the [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php) specification.
+  **text** (*string*) – language from the [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php) specification.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.category"></a>
 
@@ -79,22 +79,21 @@ Set show as explicit or not.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.guid"></a>
 
-#### guid(guid: str)
+#### guid(text: str)
 
 Set guid (globally unique identifier) for show.
 
 * **Parameters:**
-  * **guid** (*string*) – UUIDv5 value.
-  * **author** (*string*) – one or multiple author names.
+  **text** (*string*) – UUIDv5 value.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.author"></a>
 
-#### author(author: str)
+#### author(text: str)
 
 Set show author(s).
 
 * **Parameters:**
-  **author** (*string*) – one or multiple author names.
+  **text** (*string*) – one or multiple author names.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.link_page"></a>
 
@@ -107,32 +106,32 @@ Set link to show’s external website.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.itunes_title"></a>
 
-#### itunes_title(title: str)
+#### itunes_title(text: str)
 
 Set specific title for show on Apple Podcasts.
 
 * **Parameters:**
-  **title** (*string*) – show name.
+  **text** (*string*) – show title.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.type"></a>
 
-#### type(type: str)
+#### type(text: str)
 
 Set show as either `episodic` or `serial`.
 
 If `serial` type is chosen, the `<itunes:episode>` tag must be specified for each post.
 
 * **Parameters:**
-  **type** (*string*) – contains either `episodic` or `serial`.
+  **text** (*string*) – contains either `episodic` or `serial`.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.copyright"></a>
 
-#### copyright(copyright: str)
+#### copyright(text: str)
 
 Set show copyright information.
 
 * **Parameters:**
-  **copyright** (*string*) – copyright information.
+  **text** (*string*) – copyright information.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.feed_url_new"></a>
 
@@ -162,23 +161,24 @@ Set show as complete, meaning no new episodes will be added.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.verify"></a>
 
-#### verify(token: str)
+#### verify(text: str)
 
 Set token to verify podcast with Apple Podcasts.
 
 Token will be provided by Apple during the verification process.
 
 * **Parameters:**
-  **token** (*string*) – token provided by Apple.
+  **text** (*string*) – token provided by Apple.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.funding"></a>
 
-#### funding(url: str, name: str)
+#### funding(url: str, text: str)
 
 Set a donation/funding link for the podcast.
 
 * **Parameters:**
-  **url** (*string*) – url pointing to a donation/funding website.
+  * **url** (*string*) – url pointing to a donation/funding website.
+  * **text** (*string*) – text of link (recommended “Support”).
 
 <a id="feedwriter.podcast_feed.PodcastFeed.generator"></a>
 

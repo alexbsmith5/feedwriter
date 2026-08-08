@@ -272,16 +272,16 @@ class PodcastFeed(Feed):
             type=type,
         )
 
-    def post_guid(self, guid: str, index: int = -1):
+    def post_guid(self, text: str, index: int = -1):
         """
         Set guid (globally unique identifier) for post.
 
-        :param guid: unique text.
-        :type guid: string
+        :param text: unique text.
+        :type text: string
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        self.item_tag("guid", guid, index=index)
+        self.item_tag("guid", text, index=index)
 
     def post_date(self, date: str | datetime, index: int = -1):
         """
@@ -301,21 +301,21 @@ class PodcastFeed(Feed):
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
             self.item_tag("pubdate", date_str, index=index)
 
-    def post_description(self, description: str, cdata: bool = False, index: int = -1):
+    def post_description(self, text: str, cdata: bool = False, index: int = -1):
         """
         Set post description.
 
-        :param description: post description.
-        :type description: string
+        :param text: post description.
+        :type text: string
         :param cdata: whether or not rich html is included. Ex. ``<a>``, ``<p>``, ``<li>``, etc.
         :type cdata: bool
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
         if cdata:
-            self.item_tag("description", f"<![CDATA[ {description} ]]>", index=index)
+            self.item_tag("description", f"<![CDATA[ {text} ]]>", index=index)
         else:
-            self.item_tag("description", _escape(description), index=index)
+            self.item_tag("description", _escape(text), index=index)
 
     def post_duration(self, seconds: int, index: int = -1):
         """
@@ -365,16 +365,16 @@ class PodcastFeed(Feed):
             text = "false"
         self.item_tag("itunes:explicit", text, index=index)
 
-    def post_itunes_title(self, title: str, index: int = -1):
+    def post_itunes_title(self, text: str, index: int = -1):
         """
         Set specific title for post on Apple Podcasts.
 
-        :param title: post name.
-        :type title: string
+        :param text: post name.
+        :type text: string
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        self.item_tag("itunes:title", _escape(title), index=index)
+        self.item_tag("itunes:title", _escape(text), index=index)
 
     def post_episode(self, num: int, index: int = -1):
         """
@@ -402,16 +402,16 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:season", str(num), index=index)
 
-    def post_type(self, type: str, index: int = -1):
+    def post_type(self, text: str, index: int = -1):
         """
         Set episode as ``full``, ``trailer``, or ``bonus``.
 
-        :param type: type of ``full``, ``trailer``, or ``bonus``.
-        :type type: string
+        :param text: type of ``full``, ``trailer``, or ``bonus``.
+        :type text: string
         :param index: (optional) index of post; defaults to last created.
         :type index: int
         """
-        self.item_tag("itunes:episodeType", type, index=index)
+        self.item_tag("itunes:episodeType", text, index=index)
 
     def post_chapters(self, url: str, type: str, index: int = -1):
         """

@@ -226,12 +226,12 @@ Set url, length, and type of media for post.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_guid"></a>
 
-#### post_guid(guid: str, index: int = -1)
+#### post_guid(text: str, index: int = -1)
 
 Set guid (globally unique identifier) for post.
 
 * **Parameters:**
-  * **guid** (*string*) – unique text.
+  * **text** (*string*) – unique text.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_date"></a>
@@ -246,12 +246,12 @@ Set date of the post’s release.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_description"></a>
 
-#### post_description(description: str, cdata: bool = False, index: int = -1)
+#### post_description(text: str, cdata: bool = False, index: int = -1)
 
 Set post description.
 
 * **Parameters:**
-  * **description** (*string*) – post description.
+  * **text** (*string*) – post description.
   * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
@@ -297,12 +297,12 @@ Set post as explicit or not.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_itunes_title"></a>
 
-#### post_itunes_title(title: str, index: int = -1)
+#### post_itunes_title(text: str, index: int = -1)
 
 Set specific title for post on Apple Podcasts.
 
 * **Parameters:**
-  * **title** (*string*) – post name.
+  * **text** (*string*) – post name.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_episode"></a>
@@ -331,12 +331,12 @@ Only required for shows of `serial` type.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_type"></a>
 
-#### post_type(type: str, index: int = -1)
+#### post_type(text: str, index: int = -1)
 
 Set episode as `full`, `trailer`, or `bonus`.
 
 * **Parameters:**
-  * **type** (*string*) – type of `full`, `trailer`, or `bonus`.
+  * **text** (*string*) – type of `full`, `trailer`, or `bonus`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_chapters"></a>

@@ -34,28 +34,28 @@ class PodcastFeed(Feed):
             type="application/rss+xml",
         )
 
-    def title(self, title: str):
+    def title(self, text: str):
         """
         Set show title.
 
-        :param title: show name.
-        :type title: string
+        :param text: show title.
+        :type text: string
         """
-        self.channel_tag("title", _escape(title))
+        self.channel_tag("title", _escape(text))
 
-    def description(self, description: str, cdata: bool = False):
+    def description(self, text: str, cdata: bool = False):
         """
         Set show description.
 
-        :param description: show description.
-        :type description: string
+        :param text: show description.
+        :type text: string
         :param cdata: whether or not rich html is included. Ex. ``<a>``, ``<p>``, ``<li>``, etc.
         :type cdata: bool
         """
         if cdata:
-            self.channel_tag("description", f"<![CDATA[ {description} ]]>")
+            self.channel_tag("description", f"<![CDATA[ {text} ]]>")
         else:
-            self.channel_tag("description", _escape(description))
+            self.channel_tag("description", _escape(text))
 
     def image(self, url: str):
         """
@@ -66,14 +66,14 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("itunes:image", href=quote(url, safe="/:"))
 
-    def language(self, language: str):
+    def language(self, text: str):
         """
         Set show language.
 
-        :param language: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
-        :type language: string
+        :param text: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
+        :type text: string
         """
-        self.channel_tag("language", language)
+        self.channel_tag("language", text)
 
     def category(self, category: str, subcategory: str | None = None):
         """
@@ -105,27 +105,24 @@ class PodcastFeed(Feed):
 
         self.channel_tag("itunes:explicit", text)
 
-    def guid(self, guid: str):
+    def guid(self, text: str):
         # TODO: generate UUIDv5 value from url.
         """
         Set guid (globally unique identifier) for show.
 
-        :param guid: UUIDv5 value.
-        :type guid: string
-
-        :param author: one or multiple author names.
-        :type author: string
+        :param text: UUIDv5 value.
+        :type text: string
         """
-        self.channel_tag("podcast:guid", guid)
+        self.channel_tag("podcast:guid", text)
 
-    def author(self, author: str):
+    def author(self, text: str):
         """
         Set show author(s).
 
-        :param author: one or multiple author names.
-        :type author: string
+        :param text: one or multiple author names.
+        :type text: string
         """
-        self.channel_tag("itunes:author", _escape(author))
+        self.channel_tag("itunes:author", _escape(text))
 
     def link_page(self, url: str):
         """
@@ -136,34 +133,34 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("link", quote(url, safe="/:"))
 
-    def itunes_title(self, title: str):
+    def itunes_title(self, text: str):
         """
         Set specific title for show on Apple Podcasts.
 
-        :param title: show name.
-        :type title: string
+        :param text: show title.
+        :type text: string
         """
-        self.channel_tag("itunes:title", _escape(title))
+        self.channel_tag("itunes:title", _escape(text))
 
-    def type(self, type: str):
+    def type(self, text: str):
         """
         Set show as either ``episodic`` or ``serial``.
 
         If ``serial`` type is chosen, the ``<itunes:episode>`` tag must be specified for each post.
 
-        :param type: contains either ``episodic`` or ``serial``.
-        :type type: string
+        :param text: contains either ``episodic`` or ``serial``.
+        :type text: string
         """
-        self.channel_tag("itunes:type", type)
+        self.channel_tag("itunes:type", text)
 
-    def copyright(self, copyright: str):
+    def copyright(self, text: str):
         """
         Set show copyright information.
 
-        :param copyright: copyright information.
-        :type copyright: string
+        :param text: copyright information.
+        :type text: string
         """
-        self.channel_tag("copyright", _escape(copyright))
+        self.channel_tag("copyright", _escape(text))
 
     def feed_url_new(self, url: str):
         """
@@ -192,25 +189,27 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("itunes:complete", "Yes")
 
-    def verify(self, token: str):
+    def verify(self, text: str):
         """
         Set token to verify podcast with Apple Podcasts.
 
         Token will be provided by Apple during the verification process.
 
-        :param token: token provided by Apple.
-        :type token: string
+        :param text: token provided by Apple.
+        :type text: string
         """
-        self.channel_tag("podcast:txt", token, purpose="applepodcastsverify")
+        self.channel_tag("podcast:txt", text, purpose="applepodcastsverify")
 
-    def funding(self, url: str, name: str):
+    def funding(self, url: str, text: str):
         """
         Set a donation/funding link for the podcast.
 
         :param url: url pointing to a donation/funding website.
         :type url: string
+        :param text: text of link (recommended "Support").
+        :type text: string
         """
-        self.channel_tag("podcast:funding", name, url=quote(url, safe="/:"))
+        self.channel_tag("podcast:funding", text, url=quote(url, safe="/:"))
 
     def generator(self, url: str):
         """

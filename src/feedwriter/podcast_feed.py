@@ -11,7 +11,10 @@ class PodcastFeed(Feed):
         Create PodcastFeed class.
         """
         namespaces: dict[str, str] = {
+            "xmlns:media": "http://search.yahoo.com/mrss/",
             "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+            "xmlns:dcterms": "http://purl.org/dc/terms",
+            "xmlns:spotify": "https://www.spotify.com/ns/rss",
             "xmlns:podcast": "https://podcastindex.org/namespace/1.0",
             "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
             "xmlns:atom": "http://www.w3.org/2005/Atom",
@@ -84,7 +87,6 @@ class PodcastFeed(Feed):
         :param subcategory: subcategory from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
         :type subcategory: string
         """
-        # TODO: use Feed class functions
         if subcategory is None:
             self.channel_tag("itunes:category", text=_escape(category))
         else:
@@ -152,6 +154,35 @@ class PodcastFeed(Feed):
         :type text: string
         """
         self.channel_tag("itunes:type", text)
+
+    def restrict(self, text: str):
+        """
+        Set allowlist of countries that can find the show. If this tag is not used, the podcast will be available in all regions.
+
+        :param text: space separated list of `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_.
+        :type text: string
+        """
+        self.channel_tag(
+            "media:restriction", text, type="country", relationship="allow"
+        )
+
+    def limit(self, limit: int):
+        """
+        Set amount of episodes that can show up on the Spotify client starting from the latest release. This means the episodes that occured before the amount specified will not be available to play or view.
+
+        :param limit: amount of episodes that will be shown in the Spotify client.
+        :type limit: int
+        """
+        self.channel_tag("spotify:limit", recentCount=str(limit))
+
+    def country(self, text: str):
+        """
+        Set list of countries where the podcast is relevant to the consumer, ordered from most to least relevant. Not using this tag defines the podcast as "global".
+
+        :param text: space separated list of `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_.
+        :type text: string
+        """
+        self.channel_tag("spotify:countryOfOrigin", text)
 
     def copyright(self, text: str):
         """
@@ -293,13 +324,13 @@ class PodcastFeed(Feed):
         :type index: int
         """
         if isinstance(date, str):
-            self.item_tag("pubdate", date, index=index)
+            self.item_tag("pubDate", date, index=index)
         else:  # if datetime object
             if date.tzinfo is not None:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
             else:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            self.item_tag("pubdate", date_str, index=index)
+            self.item_tag("pubDate", date_str, index=index)
 
     def post_description(self, text: str, cdata: bool = False, index: int = -1):
         """
@@ -349,6 +380,30 @@ class PodcastFeed(Feed):
         :type index: int
         """
         self.item_tag("itunes:image", index=index, href=quote(url, safe="/:"))
+
+    def post_thumbnail(self, url: str, index: int = -1):
+        """
+        Set thumbnail for post.
+
+        :param url: url pointing to a ``.jpg`` or ``.png``.
+        :type url: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        self.item_tag("media:thumbnail", index=index, url=url)
+
+    def post_restrict(self, text: str, index: int = -1):
+        """
+        Set allowlist of countries that view the post. If this tag is not used, the post will be available in all regions.
+
+        :param text: space separated list of `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_.
+        :type text: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        self.item_tag(
+            "media:restriction", text, index=index, type="country", relationship="allow"
+        )
 
     def post_explicit(self, explicit: bool, index: int = -1):
         """
@@ -506,6 +561,8 @@ class PodcastFeed(Feed):
             "duration": self.post_duration,
             "link": self.post_link,
             "image": self.post_image,
+            "thumbnail": self.post_thumbnail,
+            "restrict": self.post_restrict,
             "explicit": self.post_explicit,
             "itunes_title": self.post_itunes_title,
             "episode": self.post_episode,

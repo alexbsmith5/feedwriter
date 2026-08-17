@@ -32,6 +32,8 @@ def _get_xml_element(rss_feed: Feed, xpath: str, tmp_path: Path) -> ET.Element |
     # set namespaces
     namespaces: dict[str, str] = {
         "itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+        "spotify": "https://www.spotify.com/ns/rss",
+        "media": "http://search.yahoo.com/mrss/",
         "podcast": "https://podcastindex.org/namespace/1.0",
         "content": "http://purl.org/rss/1.0/modules/content/",
         "atom": "http://www.w3.org/2005/Atom",

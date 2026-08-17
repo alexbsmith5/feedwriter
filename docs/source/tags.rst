@@ -58,10 +58,13 @@ Channel Tags
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.type`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.copyright`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.feed_url_new`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.restrict`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.country`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.block`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.complete`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.verify`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.funding`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.limit`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.generator`
 
 Episode Tags
@@ -70,6 +73,8 @@ Episode Tags
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_episode`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_season`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_type`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_restrict`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_thumbnail`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_chapters`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_transcript`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_block`

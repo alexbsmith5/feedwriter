@@ -75,10 +75,13 @@ Just like recommended tags, these tags are not necessarily required but they can
 > * [`type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.type)
 > * [`copyright()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.copyright)
 > * [`feed_url_new()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.feed_url_new)
+> * [`restrict()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.restrict)
+> * [`country()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.country)
 > * [`block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.block)
 > * [`complete()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.complete)
 > * [`verify()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.verify)
 > * [`funding()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.funding)
+> * [`limit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.limit)
 > * [`generator()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.generator)
 
 <a id="id4"></a>
@@ -89,6 +92,8 @@ Just like recommended tags, these tags are not necessarily required but they can
 > * [`post_episode()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_episode)
 > * [`post_season()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_season)
 > * [`post_type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_type)
+> * [`post_restrict()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_restrict)
+> * [`post_thumbnail()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_thumbnail)
 > * [`post_chapters()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_chapters)
 > * [`post_transcript()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_transcript)
 > * [`post_block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_block)

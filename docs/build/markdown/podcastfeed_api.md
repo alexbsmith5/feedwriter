@@ -124,6 +124,45 @@ If `serial` type is chosen, the `<itunes:episode>` tag must be specified for eac
 * **Parameters:**
   **text** (*string*) – contains either `episodic` or `serial`.
 
+<a id="feedwriter.podcast_feed.PodcastFeed.restrict"></a>
+
+#### restrict(text: str)
+
+Set allowlist of countries that can find the show. If this tag is not used, the podcast will be available in all regions.
+
+* **Parameters:**
+  **text** (*string*) – space separated list of 
+
+  ```
+  `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_
+  ```
+
+  .
+
+<a id="feedwriter.podcast_feed.PodcastFeed.limit"></a>
+
+#### limit(limit: int)
+
+Set amount of episodes that can show up on the Spotify client starting from the latest release. This means the episodes that occured before the amount specified will not be available to play or view.
+
+* **Parameters:**
+  **limit** (*int*) – amount of episodes that will be shown in the Spotify client.
+
+<a id="feedwriter.podcast_feed.PodcastFeed.country"></a>
+
+#### country(text: str)
+
+Set list of countries where the podcast is relevant to the consumer, ordered from most to least relevant. Not using this tag defines the podcast as “global”.
+
+* **Parameters:**
+  **text** (*string*) – space separated list of 
+
+  ```
+  `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_
+  ```
+
+  .
+
 <a id="feedwriter.podcast_feed.PodcastFeed.copyright"></a>
 
 #### copyright(text: str)
@@ -283,6 +322,32 @@ Set image for post.
 
 * **Parameters:**
   * **url** (*string*) – url pointing to a `.jpg` or `.png`.
+  * **index** (*int*) – (optional) index of post; defaults to last created.
+
+<a id="feedwriter.podcast_feed.PodcastFeed.post_thumbnail"></a>
+
+#### post_thumbnail(url: str, index: int = -1)
+
+Set thumbnail for post.
+
+* **Parameters:**
+  * **url** (*string*) – url pointing to a `.jpg` or `.png`.
+  * **index** (*int*) – (optional) index of post; defaults to last created.
+
+<a id="feedwriter.podcast_feed.PodcastFeed.post_restrict"></a>
+
+#### post_restrict(text: str, index: int = -1)
+
+Set allowlist of countries that view the post. If this tag is not used, the post will be available in all regions.
+
+* **Parameters:**
+  * **text** (*string*) – space separated list of 
+
+    ```
+    `ISO 3166 country codes<https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes>`_
+    ```
+
+    .
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.post_explicit"></a>

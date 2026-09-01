@@ -27,15 +27,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install tox
+          pip install -r requirements-test.txt
       - name: type check (mypy)
-        run: tox -e mypy
+        run: mypy .
       - name: organize imports (isort)
-        run: tox -e isort
+        run: isort -c .
       - name: Check formatting (Black)
-        run: tox -e black
+        run: black --check .
       - name: Lint (flake8)
-        run: tox -e flake8
+        run: flake8 docs/source src/ tests/
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -49,8 +49,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
       - run: python -m pip install --upgrade pip
-      - run: pip install tox
-      - run: tox run -e ${{ matrix.python-version }}
+      - run: pip install -e .
+      - run: pip install -r requirements-test.txt
+      - run: coverage run -pm pytest
       - name: Upload coverage data artifact
         uses: actions/upload-artifact@v7
         with:

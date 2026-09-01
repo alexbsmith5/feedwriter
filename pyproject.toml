@@ -30,7 +30,6 @@ source = ["feedwriter"]
 [tool.coverage.paths]
 source = [
     "src/feedwriter",
-    ".tox/*/lib/python*/site-packages/feedwriter",
 ]
 
 [tool.isort]

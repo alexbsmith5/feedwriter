@@ -114,7 +114,7 @@ class PodcastFeed(Feed):
         """
         # check if text is valid uuid
         try:
-            test_uuid = uuid.UUID(text, version=5)
+            uuid.UUID(text, version=5)
         except ValueError:
             text = str(uuid.uuid5(uuid.NAMESPACE_DNS, text))
         self.channel_tag("podcast:guid", text)

@@ -109,7 +109,7 @@ class PodcastFeed(Feed):
         """
         Set guid (globally unique identifier) for show. If the uuid is not a valid UUIDv5 value, one will be generated, using the input name deterministically.
 
-        :param text: UUIDv5 value.
+        :param text: UUIDv5 value or input name.
         :type text: string
         """
         # check if text is valid uuid

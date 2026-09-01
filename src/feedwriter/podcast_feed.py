@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from urllib.parse import quote
 
@@ -84,7 +85,6 @@ class PodcastFeed(Feed):
         :param subcategory: subcategory from the `Apple Podcasts categories <https://podcasters.apple.com/support/1691-apple-podcasts-categories>`_ list.
         :type subcategory: string
         """
-        # TODO: use Feed class functions
         if subcategory is None:
             self.channel_tag("itunes:category", text=_escape(category))
         else:
@@ -106,13 +106,17 @@ class PodcastFeed(Feed):
         self.channel_tag("itunes:explicit", text)
 
     def guid(self, text: str):
-        # TODO: generate UUIDv5 value from url.
         """
-        Set guid (globally unique identifier) for show.
+        Set guid (globally unique identifier) for show. If the uuid is not a valid UUIDv5 value, one will be generated, using the input name deterministically.
 
         :param text: UUIDv5 value.
         :type text: string
         """
+        # check if text is valid uuid
+        try:
+            test_uuid = uuid.UUID(text, version=5)
+        except ValueError:
+            text = str(uuid.uuid5(uuid.NAMESPACE_DNS, text))
         self.channel_tag("podcast:guid", text)
 
     def author(self, text: str):

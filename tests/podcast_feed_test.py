@@ -122,6 +122,13 @@ def test_get_post_index():
             None,
         ),
         (
+            "guid",
+            {"text": "lorem ipsum"},
+            "./channel/podcast:guid",
+            "97886a05-8a68-5743-ad55-56ab2d61cf7b",
+            None,
+        ),
+        (
             "author",
             {"text": "Lorem Ipsum"},
             "./channel/itunes:author",

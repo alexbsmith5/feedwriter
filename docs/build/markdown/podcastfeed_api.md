@@ -84,7 +84,7 @@ Set show as explicit or not.
 Set guid (globally unique identifier) for show. If the uuid is not a valid UUIDv5 value, one will be generated, using the input name deterministically.
 
 * **Parameters:**
-  **text** (*string*) – UUIDv5 value.
+  **text** (*string*) – UUIDv5 value or input name.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.author"></a>
 

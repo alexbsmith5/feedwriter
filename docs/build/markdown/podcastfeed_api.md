@@ -81,7 +81,7 @@ Set show as explicit or not.
 
 #### guid(text: str)
 
-Set guid (globally unique identifier) for show.
+Set guid (globally unique identifier) for show. If the uuid is not a valid UUIDv5 value, one will be generated, using the input name deterministically.
 
 * **Parameters:**
   **text** (*string*) – UUIDv5 value.

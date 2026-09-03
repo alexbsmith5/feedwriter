@@ -4,16 +4,22 @@ from typing import Any
 
 import pytest
 
-from feedwriter import Feed, PodcastFeed
+from feedwriter import ArticleFeed, Feed, PodcastFeed
 
 
-# create rss_feed object
+# create article_feed fixture
+@pytest.fixture
+def article_feed() -> ArticleFeed:
+    return PodcastFeed()
+
+
+# create rss_feed fixture
 @pytest.fixture
 def rss_feed() -> Feed:
     return Feed()
 
 
-# create podcast_feed object
+# create podcast_feed fixture
 @pytest.fixture
 def podcast_feed() -> PodcastFeed:
     return PodcastFeed()

@@ -17,8 +17,8 @@ The following tags must be present in order to pass validation. If these tags ar
 The following commands specified below must be called to be validated.
 
 > * [`link_feed()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.link_feed)
-> * `title()`
-> * `description()`
+> * [`title()`](feed_api.md#feedwriter.feed.Feed.title)
+> * [`description()`](feed_api.md#feedwriter.feed.Feed.description)
 > * [`image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.image)
 > * [`language()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.language)
 > * [`category()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.category)

@@ -12,8 +12,8 @@ Channel Tags
 The following commands specified below must be called to be validated.
 
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.link_feed`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.title`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.description`
+    * :meth:`~feedwriter.feed.Feed.title`
+    * :meth:`~feedwriter.feed.Feed.description`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.image`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.language`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.category`

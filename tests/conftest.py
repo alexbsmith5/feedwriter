@@ -10,7 +10,7 @@ from feedwriter import ArticleFeed, Feed, PodcastFeed
 # create article_feed fixture
 @pytest.fixture
 def article_feed() -> ArticleFeed:
-    return PodcastFeed()
+    return ArticleFeed()
 
 
 # create rss_feed fixture

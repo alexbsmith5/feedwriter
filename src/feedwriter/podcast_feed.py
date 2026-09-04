@@ -35,29 +35,6 @@ class PodcastFeed(Feed):
             type="application/rss+xml",
         )
 
-    def title(self, text: str):
-        """
-        Set show title.
-
-        :param text: show title.
-        :type text: string
-        """
-        self.channel_tag("title", _escape(text))
-
-    def description(self, text: str, cdata: bool = False):
-        """
-        Set show description.
-
-        :param text: show description.
-        :type text: string
-        :param cdata: whether or not rich html is included. Ex. ``<a>``, ``<p>``, ``<li>``, etc.
-        :type cdata: bool
-        """
-        if cdata:
-            self.channel_tag("description", f"<![CDATA[ {text} ]]>")
-        else:
-            self.channel_tag("description", _escape(text))
-
     def image(self, url: str):
         """
         Set show artwork.

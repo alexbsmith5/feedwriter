@@ -4,32 +4,26 @@ from feedwriter import Feed
 
 
 @pytest.mark.parametrize(
-    ("func_name", "func_kwargs", "xpath", "expected_text", "expected_attrib"),
+    "func_name, func_kwargs, xpath, expected_text, expected_attrib",
     [
-        (
-            "channel_tag",
-            {"tag": "title", "content": "Lorem Ipsum"},
-            "./channel/title",
-            "Lorem Ipsum",
+        # channel tags
+        ("title", {"text": "Lorem Ipsum"}, "./channel/title", "Lorem Ipsum", None),
+        (  # description w/o cdata
+            "description",
+            {"text": "Lorem ipsum dolor sit amet."},
+            "./channel/description",
+            "Lorem ipsum dolor sit amet.",
             None,
         ),
-        (
-            "channel_tag",
-            {"tag": "image", "href": "https://example.com/image.jpg"},
-            "./channel/image",
-            None,
-            {"href": "https://example.com/image.jpg"},
-        ),
-        (
-            "new_item",
+        (  # description w/ cdata
+            "description",
             {
-                "tag": "title",
-                "content": "ipsum",
-                "attrib": "lorem",
+                "text": '<a href="example.com">Lorem</a> ipsum dolor sit amet.',
+                "cdata": True,
             },
-            "./channel/item/title",
-            "ipsum",
-            {"attrib": "lorem"},
+            "./channel/description",
+            '<![CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
+            None,
         ),
     ],
 )

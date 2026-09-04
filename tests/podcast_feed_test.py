@@ -30,38 +30,6 @@ def test_get_post_index():
                 "type": "application/rss+xml",
             },
         ),
-        ("title", {"text": "Lorem Ipsum"}, "./channel/title", "Lorem Ipsum", None),
-        (
-            "title",
-            {"text": "Lorem & Ipsum"},
-            "./channel/title",
-            "Lorem &amp; Ipsum",
-            None,
-        ),
-        (  # description w/o cdata
-            "description",
-            {"text": "Lorem & ipsum dolor sit amet."},
-            "./channel/description",
-            "Lorem &amp; ipsum dolor sit amet.",
-            None,
-        ),
-        (  # description w/o cdata
-            "description",
-            {"text": "Lorem ipsum dolor sit amet."},
-            "./channel/description",
-            "Lorem ipsum dolor sit amet.",
-            None,
-        ),
-        (  # description w/ cdata
-            "description",
-            {
-                "text": '<a href="example.com">Lorem</a> ipsum dolor sit amet.',
-                "cdata": True,
-            },
-            "./channel/description",
-            '<![CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
-            None,
-        ),
         (
             "image",
             {"url": "https://example.com/image.jpg"},

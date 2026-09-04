@@ -56,3 +56,22 @@ Write tree to .xml file.
 
 * **Parameters:**
   **path** (*path object* *or* *string*) – location of output file.
+
+<a id="feedwriter.feed.Feed.title"></a>
+
+#### title(text)
+
+Set title.
+
+* **Parameters:**
+  **text** (*string*) – title.
+
+<a id="feedwriter.feed.Feed.description"></a>
+
+#### description(text: str, cdata: bool = False)
+
+Set description.
+
+* **Parameters:**
+  * **text** (*string*) – description.
+  * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.

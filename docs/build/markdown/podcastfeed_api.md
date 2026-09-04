@@ -19,25 +19,6 @@ Set url of rss feed. Should be a url that points to the `.xml` or `.rss` file wh
 * **Parameters:**
   **url** (*string*) – url pointing to a `.xml` or `.rss` file.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.title"></a>
-
-#### title(text: str)
-
-Set show title.
-
-* **Parameters:**
-  **text** (*string*) – show title.
-
-<a id="feedwriter.podcast_feed.PodcastFeed.description"></a>
-
-#### description(text: str, cdata: bool = False)
-
-Set show description.
-
-* **Parameters:**
-  * **text** (*string*) – show description.
-  * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
-
 <a id="feedwriter.podcast_feed.PodcastFeed.image"></a>
 
 #### image(url: str)

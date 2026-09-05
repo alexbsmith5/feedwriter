@@ -111,20 +111,6 @@ def test_get_post_index():
             None,
         ),
         (
-            "link_page",
-            {"url": "https://example.com/webpage.html"},
-            "./channel/link",
-            "https://example.com/webpage.html",
-            None,
-        ),
-        (
-            "link_page",
-            {"url": "https://example.com/lorem ipsum.html"},
-            "./channel/link",
-            "https://example.com/lorem%20ipsum.html",
-            None,
-        ),
-        (
             "itunes_title",
             {"text": "Lorem Ipsum"},
             "./channel/itunes:title",
@@ -169,13 +155,6 @@ def test_get_post_index():
             "./channel/podcast:funding",
             "Support",
             {"url": "https://example.com/donate"},
-        ),
-        (
-            "generator",
-            {"url": "https://github.com/alexbsmith5/feedwriter"},
-            "./channel/generator",
-            "https://github.com/alexbsmith5/feedwriter",
-            None,
         ),
         (
             "new_post",

@@ -25,6 +25,27 @@ from feedwriter import Feed
             '<![CDATA[ <a href="example.com">Lorem</a> ipsum dolor sit amet. ]]>',
             None,
         ),
+        (
+            "link",
+            {"url": "https://example.com/webpage.html"},
+            "./channel/link",
+            "https://example.com/webpage.html",
+            None,
+        ),
+        (
+            "link",
+            {"url": "https://example.com/lorem ipsum.html"},
+            "./channel/link",
+            "https://example.com/lorem%20ipsum.html",
+            None,
+        ),
+        (
+            "generator",
+            {"url": "https://github.com/alexbsmith5/feedwriter"},
+            "./channel/generator",
+            "https://github.com/alexbsmith5/feedwriter",
+            None,
+        ),
     ],
 )
 def test_function(

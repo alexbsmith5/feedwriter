@@ -105,15 +105,6 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("itunes:author", _escape(text))
 
-    def link_page(self, url: str):
-        """
-        Set link to show's external website.
-
-        :param url: url pointing to a website.
-        :type url: string
-        """
-        self.channel_tag("link", quote(url, safe="/:"))
-
     def itunes_title(self, text: str):
         """
         Set specific title for show on Apple Podcasts.
@@ -191,15 +182,6 @@ class PodcastFeed(Feed):
         :type text: string
         """
         self.channel_tag("podcast:funding", text, url=quote(url, safe="/:"))
-
-    def generator(self, url: str):
-        """
-        Set url of rss generator website.
-
-        :param url: url pointing to rss generator website.
-        :type url: string
-        """
-        self.channel_tag("generator", quote(url, safe="/:"))
 
     # episode tags
 

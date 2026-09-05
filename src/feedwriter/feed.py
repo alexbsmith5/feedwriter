@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import quote
 
 
 class Feed:
@@ -137,3 +138,21 @@ class Feed:
             self.channel_tag("description", f"<![CDATA[ {text} ]]>")
         else:
             self.channel_tag("description", text)
+
+    def link(self, url: str):
+        """
+        Set link to show's external website.
+
+        :param url: url pointing to a website.
+        :type url: string
+        """
+        self.channel_tag("link", quote(url, safe="/:"))
+
+    def generator(self, url: str):
+        """
+        Set url of rss generator website.
+
+        :param url: url pointing to rss generator website.
+        :type url: string
+        """
+        self.channel_tag("generator", quote(url, safe="/:"))

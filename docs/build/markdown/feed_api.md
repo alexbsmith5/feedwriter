@@ -75,3 +75,21 @@ Set description.
 * **Parameters:**
   * **text** (*string*) – description.
   * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
+
+<a id="feedwriter.feed.Feed.link"></a>
+
+#### link(url: str)
+
+Set link to show’s external website.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to a website.
+
+<a id="feedwriter.feed.Feed.generator"></a>
+
+#### generator(url: str)
+
+Set url of rss generator website.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to rss generator website.

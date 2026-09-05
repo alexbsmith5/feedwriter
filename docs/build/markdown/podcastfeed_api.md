@@ -76,15 +76,6 @@ Set show author(s).
 * **Parameters:**
   **text** (*string*) – one or multiple author names.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.link_page"></a>
-
-#### link_page(url: str)
-
-Set link to show’s external website.
-
-* **Parameters:**
-  **url** (*string*) – url pointing to a website.
-
 <a id="feedwriter.podcast_feed.PodcastFeed.itunes_title"></a>
 
 #### itunes_title(text: str)
@@ -160,15 +151,6 @@ Set a donation/funding link for the podcast.
 * **Parameters:**
   * **url** (*string*) – url pointing to a donation/funding website.
   * **text** (*string*) – text of link (recommended “Support”).
-
-<a id="feedwriter.podcast_feed.PodcastFeed.generator"></a>
-
-#### generator(url: str)
-
-Set url of rss generator website.
-
-* **Parameters:**
-  **url** (*string*) – url pointing to rss generator website.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.get_post_index"></a>
 

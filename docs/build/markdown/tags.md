@@ -23,7 +23,7 @@ The following commands specified below must be called to be validated.
 > * [`language()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.language)
 > * [`category()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.category)
 > * [`explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.explicit)
-> * [`link_page()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.link_page)
+> * [`link()`](feed_api.md#feedwriter.feed.Feed.link)
 
 <a id="episode-tags"></a>
 
@@ -79,7 +79,7 @@ Just like recommended tags, these tags are not necessarily required but they can
 > * [`complete()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.complete)
 > * [`verify()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.verify)
 > * [`funding()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.funding)
-> * [`generator()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.generator)
+> * [`generator()`](feed_api.md#feedwriter.feed.Feed.generator)
 
 <a id="id4"></a>
 

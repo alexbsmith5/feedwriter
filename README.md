@@ -50,12 +50,12 @@ feed = PodcastFeed()
 feed.title("Example")
 
 # create post with title and guid
-feed.new_post(title="Lorem ipsum", guid="1234")
+feed.item(title="Lorem ipsum", guid="1234")
 
 # create empty post and add tags later
-feed.new_post()
-feed.post_title("Lorem ipsum dolor")
-feed.post_duration(1800)
+feed.new_item()
+feed.item_title("Lorem ipsum dolor")
+feed.item_duration(1800)
 
 # write object to file
 feed.write("feed.xml")

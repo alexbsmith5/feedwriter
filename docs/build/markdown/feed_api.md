@@ -93,3 +93,13 @@ Set url of rss generator website.
 
 * **Parameters:**
   **url** (*string*) – url pointing to rss generator website.
+
+<a id="feedwriter.feed.Feed.item_title"></a>
+
+#### item_title(title: str, index: int = -1)
+
+Set title for post.
+
+* **Parameters:**
+  * **title** (*string*) – post title.
+  * **index** (*int*) – (optional) index of post; defaults to last created.

@@ -165,19 +165,9 @@ Find the index of a post from the title.
 * **Return type:**
   int
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_title"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_enclosure"></a>
 
-#### post_title(title: str, index: int = -1)
-
-Set title for post.
-
-* **Parameters:**
-  * **title** (*string*) – post title.
-  * **index** (*int*) – (optional) index of post; defaults to last created.
-
-<a id="feedwriter.podcast_feed.PodcastFeed.post_enclosure"></a>
-
-#### post_enclosure(url: str, file_size: int, type: str, index: int = -1)
+#### item_enclosure(url: str, file_size: int, type: str, index: int = -1)
 
 Set url, length, and type of media for post.
 
@@ -187,9 +177,9 @@ Set url, length, and type of media for post.
   * **type** (*string*) – mime type of file (usually `audio/mpeg`). Options `audio/x-m4a`, `audio/mpeg`, `video/quicktime`, `video/mp4`, `video/x-m4v`, `application/pdf`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_guid"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_guid"></a>
 
-#### post_guid(text: str, index: int = -1)
+#### item_guid(text: str, index: int = -1)
 
 Set guid (globally unique identifier) for post.
 
@@ -197,9 +187,9 @@ Set guid (globally unique identifier) for post.
   * **text** (*string*) – unique text.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_date"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_date"></a>
 
-#### post_date(date: str | datetime, index: int = -1)
+#### item_date(date: str | datetime, index: int = -1)
 
 Set date of the post’s release.
 
@@ -207,9 +197,9 @@ Set date of the post’s release.
   * **date** (*string* *or* *datetime object*) – Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_description"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_description"></a>
 
-#### post_description(text: str, cdata: bool = False, index: int = -1)
+#### item_description(text: str, cdata: bool = False, index: int = -1)
 
 Set post description.
 
@@ -218,9 +208,9 @@ Set post description.
   * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_duration"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_duration"></a>
 
-#### post_duration(seconds: int, index: int = -1)
+#### item_duration(seconds: int, index: int = -1)
 
 Set the length of audio, in seconds.
 
@@ -228,9 +218,9 @@ Set the length of audio, in seconds.
   * **seconds** (*int*) – number of seconds.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_link"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_link"></a>
 
-#### post_link(url: str, index: int = -1)
+#### item_link(url: str, index: int = -1)
 
 Set link to external website for post.
 
@@ -238,9 +228,9 @@ Set link to external website for post.
   * **url** (*string*) – url pointing to a website.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_image"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_image"></a>
 
-#### post_image(url: str, index: int = -1)
+#### item_image(url: str, index: int = -1)
 
 Set image for post.
 
@@ -248,9 +238,9 @@ Set image for post.
   * **url** (*string*) – url pointing to a `.jpg` or `.png`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_explicit"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_explicit"></a>
 
-#### post_explicit(explicit: bool, index: int = -1)
+#### item_explicit(explicit: bool, index: int = -1)
 
 Set post as explicit or not.
 
@@ -258,9 +248,9 @@ Set post as explicit or not.
   * **explicit** (*bool*) – `true` for explicit and `false` for not explicit.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_itunes_title"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_itunes_title"></a>
 
-#### post_itunes_title(text: str, index: int = -1)
+#### item_itunes_title(text: str, index: int = -1)
 
 Set specific title for post on Apple Podcasts.
 
@@ -268,9 +258,9 @@ Set specific title for post on Apple Podcasts.
   * **text** (*string*) – post name.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_episode"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_episode"></a>
 
-#### post_episode(num: int, index: int = -1)
+#### item_episode(num: int, index: int = -1)
 
 Add post’s episode number.
 
@@ -280,9 +270,9 @@ Only required for shows of `serial` type.
   * **num** (*int*) – non-zero episode number.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_season"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_season"></a>
 
-#### post_season(num: int, index: int = -1)
+#### item_season(num: int, index: int = -1)
 
 Add post’s season number.
 
@@ -292,9 +282,9 @@ Only required for shows of `serial` type.
   * **num** (*int*) – non-zero season number.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_type"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_type"></a>
 
-#### post_type(text: str, index: int = -1)
+#### item_type(text: str, index: int = -1)
 
 Set episode as `full`, `trailer`, or `bonus`.
 
@@ -302,9 +292,9 @@ Set episode as `full`, `trailer`, or `bonus`.
   * **text** (*string*) – type of `full`, `trailer`, or `bonus`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_chapters"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_chapters"></a>
 
-#### post_chapters(url: str, type: str, index: int = -1)
+#### item_chapters(url: str, type: str, index: int = -1)
 
 Set url of chapters file.
 
@@ -314,9 +304,9 @@ File must follow the [podcastindex.org json chapters format](https://github.com/
   * **url** (*string*) – url pointing to a `.json` file.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_transcript"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_transcript"></a>
 
-#### post_transcript(url: str, type: str, index: int = -1)
+#### item_transcript(url: str, type: str, index: int = -1)
 
 Set url of transcript file.
 
@@ -327,9 +317,9 @@ File must follow the [podcastindex.org transcript format](https://github.com/Pod
   * **type** (*string*) – mime type of file. Options `text/plain`, `text/html`, `text/vtt`, `application/json` or `application/x-subrip`.
   * **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.post_block"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item_block"></a>
 
-#### post_block(index: int = -1)
+#### item_block(index: int = -1)
 
 Add post block (hides epsiode in Apple Podcasts.
 
@@ -338,9 +328,9 @@ Only call function if trying to block episodes.
 * **Parameters:**
   **index** (*int*) – (optional) index of post; defaults to last created.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.new_post"></a>
+<a id="feedwriter.podcast_feed.PodcastFeed.item"></a>
 
-#### new_post(\*\*kwargs)
+#### item(\*\*kwargs)
 
 Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with `post_{arg}` format.
 

@@ -31,11 +31,11 @@ The following commands specified below must be called to be validated.
 
 For every single post they must contain the following tags to be validated.
 
-To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the [`new_post()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.new_post) function and pass in the corresponding kwargs.
+To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the `new_post()` function and pass in the corresponding kwargs.
 
-> * [`post_title()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_title)
-> * [`post_enclosure()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_enclosure)
-> * [`post_guid()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_guid)
+> * `post_title()`
+> * `post_enclosure()`
+> * `post_guid()`
 
 <a id="recommended-tags"></a>
 
@@ -54,12 +54,12 @@ While these tags are not required to pass feed validation, they can provide help
 
 ### Episode Tags
 
-> * [`post_date()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_date)
-> * [`post_description()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_description)
-> * [`post_duration()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_duration)
-> * [`post_link()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_link)
-> * [`post_image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_image)
-> * [`post_explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_explicit)
+> * `post_date()`
+> * `post_description()`
+> * `post_duration()`
+> * `post_link()`
+> * `post_image()`
+> * `post_explicit()`
 
 <a id="situational-tags"></a>
 
@@ -85,10 +85,10 @@ Just like recommended tags, these tags are not necessarily required but they can
 
 ### Episode Tags
 
-> * [`post_itunes_title()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_itunes_title)
-> * [`post_episode()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_episode)
-> * [`post_season()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_season)
-> * [`post_type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_type)
-> * [`post_chapters()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_chapters)
-> * [`post_transcript()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_transcript)
-> * [`post_block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.post_block)
+> * `post_itunes_title()`
+> * `post_episode()`
+> * `post_season()`
+> * `post_type()`
+> * `post_chapters()`
+> * `post_transcript()`
+> * `post_block()`

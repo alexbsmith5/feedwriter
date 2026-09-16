@@ -8,8 +8,8 @@ from feedwriter import PodcastFeed
 
 def test_get_post_index():
     feed = PodcastFeed()
-    feed.new_post(title="lorem")
-    feed.new_post(title="ipsum")
+    feed.item(title="lorem")
+    feed.item(title="ipsum")
     assert feed.get_post_index("lorem") == 0
     assert feed.get_post_index("ipsum") == 1
     assert feed.get_post_index("dolor") == -1
@@ -157,14 +157,14 @@ def test_get_post_index():
             {"url": "https://example.com/donate"},
         ),
         (
-            "new_post",
+            "item",
             {"title": "Lorem Ipsum"},
             "./channel/item/title",
             "Lorem Ipsum",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"enclosure": ("https://website.com/post.mp3", 5650880, "audio/mpeg")},
             "./channel/item/enclosure",
             None,
@@ -175,7 +175,7 @@ def test_get_post_index():
             },
         ),
         (
-            "new_post",
+            "item",
             {
                 "enclosure": (
                     "https://website.com/lorem ipsum.mp3",
@@ -192,49 +192,49 @@ def test_get_post_index():
             },
         ),
         (
-            "new_post",
+            "item",
             {"guid": "example"},
             "./channel/item/guid",
             "example",
             None,
         ),
         (  # date w/ string
-            "new_post",
+            "item",
             {"date": "Thu, 11 Jun 2026 10:00:00 +0000"},
             "./channel/item/pubdate",
             "Thu, 11 Jun 2026 10:00:00 +0000",
             None,
         ),
         (  # date w/ datetime object (no tz)
-            "new_post",
+            "item",
             {"date": datetime(2001, 1, 1, hour=1, minute=1, second=1)},
             "./channel/item/pubdate",
             "Mon, 01 Jan 2001 01:01:01 +0000",
             None,
         ),
         (  # date w/ datetime object (EST tz)
-            "new_post",
+            "item",
             {"date": datetime(2001, 1, 1, tzinfo=ZoneInfo("America/New_York"))},
             "./channel/item/pubdate",
             "Mon, 01 Jan 2001 00:00:00 -0500",
             None,
         ),
         (  # description w/o cdata
-            "new_post",
+            "item",
             {"description": "Lorem ipsum dolor sit amet."},
             "./channel/item/description",
             "Lorem ipsum dolor sit amet.",
             None,
         ),
         (  # description w/o cdata
-            "new_post",
+            "item",
             {"description": "Lorem & ipsum dolor sit amet."},
             "./channel/item/description",
             "Lorem &amp; ipsum dolor sit amet.",
             None,
         ),
         (  # description w/ cdata
-            "new_post",
+            "item",
             {
                 "description": (
                     '<a href="example.com">Lorem</a> ipsum dolor sit amet.',
@@ -246,79 +246,79 @@ def test_get_post_index():
             None,
         ),
         (
-            "new_post",
+            "item",
             {"duration": 6536},
             "./channel/item/itunes:duration",
             "6536",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"link": "https://example.com/post.html"},
             "./channel/item/link",
             "https://example.com/post.html",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"link": "https://example.com/lorem ipsum.html"},
             "./channel/item/link",
             "https://example.com/lorem%20ipsum.html",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"image": "https://example.com/post.jpg"},
             "./channel/item/itunes:image",
             None,
             {"href": "https://example.com/post.jpg"},
         ),
         (
-            "new_post",
+            "item",
             {"image": "https://example.com/lorem ipsum.jpg"},
             "./channel/item/itunes:image",
             None,
             {"href": "https://example.com/lorem%20ipsum.jpg"},
         ),
         (
-            "new_post",
+            "item",
             {"explicit": True},
             "./channel/item/itunes:explicit",
             "true",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"explicit": False},
             "./channel/item/itunes:explicit",
             "false",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"itunes_title": "Lorem Ipsum"},
             "./channel/item/itunes:title",
             "Lorem Ipsum",
             None,
         ),
         (
-            "new_post",
+            "item",
             {"itunes_title": "Lorem & Ipsum"},
             "./channel/item/itunes:title",
             "Lorem &amp; Ipsum",
             None,
         ),
-        ("new_post", {"episode": 1}, "./channel/item/itunes:episode", "1", None),
-        ("new_post", {"season": 1}, "./channel/item/itunes:season", "1", None),
+        ("item", {"episode": 1}, "./channel/item/itunes:episode", "1", None),
+        ("item", {"season": 1}, "./channel/item/itunes:season", "1", None),
         (
-            "new_post",
+            "item",
             {"type": "full"},
             "./channel/item/itunes:episodeType",
             "full",
             None,
         ),
         (
-            "new_post",
+            "item",
             {
                 "chapters": (
                     "https://example.com/post-chapters.json",
@@ -333,7 +333,7 @@ def test_get_post_index():
             },
         ),
         (
-            "new_post",
+            "item",
             {
                 "chapters": (
                     "https://example.com/post chapters.json",
@@ -348,20 +348,20 @@ def test_get_post_index():
             },
         ),
         (
-            "new_post",
+            "item",
             {"transcript": ("https://example.com/post-transcript.vtt", "text/vtt")},
             "./channel/item/podcast:transcript",
             None,
             {"url": "https://example.com/post-transcript.vtt", "type": "text/vtt"},
         ),
         (
-            "new_post",
+            "item",
             {"transcript": ("https://example.com/post transcript.vtt", "text/vtt")},
             "./channel/item/podcast:transcript",
             None,
             {"url": "https://example.com/post%20transcript.vtt", "type": "text/vtt"},
         ),
-        ("new_post", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
+        ("item", {"block": ()}, "./channel/item/itunes:block", "Yes", None),
     ],
 )
 def test_function(

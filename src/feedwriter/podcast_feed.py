@@ -202,18 +202,7 @@ class PodcastFeed(Feed):
             index += 1
         return -1  # if title not found return -1 index
 
-    def post_title(self, title: str, index: int = -1):
-        """
-        Set title for post.
-
-        :param title: post title.
-        :type title: string
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        self.item_tag("title", title, index=index)
-
-    def post_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
+    def item_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
         """
         Set url, length, and type of media for post.
 
@@ -235,7 +224,7 @@ class PodcastFeed(Feed):
             type=type,
         )
 
-    def post_guid(self, text: str, index: int = -1):
+    def item_guid(self, text: str, index: int = -1):
         """
         Set guid (globally unique identifier) for post.
 
@@ -246,7 +235,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("guid", text, index=index)
 
-    def post_date(self, date: str | datetime, index: int = -1):
+    def item_date(self, date: str | datetime, index: int = -1):
         """
         Set date of the post's release.
 
@@ -264,7 +253,7 @@ class PodcastFeed(Feed):
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
             self.item_tag("pubdate", date_str, index=index)
 
-    def post_description(self, text: str, cdata: bool = False, index: int = -1):
+    def item_description(self, text: str, cdata: bool = False, index: int = -1):
         """
         Set post description.
 
@@ -280,7 +269,7 @@ class PodcastFeed(Feed):
         else:
             self.item_tag("description", _escape(text), index=index)
 
-    def post_duration(self, seconds: int, index: int = -1):
+    def item_duration(self, seconds: int, index: int = -1):
         """
         Set the length of audio, in seconds.
 
@@ -291,7 +280,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:duration", str(seconds), index=index)
 
-    def post_link(self, url: str, index: int = -1):
+    def item_link(self, url: str, index: int = -1):
         """
         Set link to external website for post.
 
@@ -302,7 +291,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("link", quote(url, safe="/:"), index=index)
 
-    def post_image(self, url: str, index: int = -1):
+    def item_image(self, url: str, index: int = -1):
         """
         Set image for post.
 
@@ -313,7 +302,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:image", index=index, href=quote(url, safe="/:"))
 
-    def post_explicit(self, explicit: bool, index: int = -1):
+    def item_explicit(self, explicit: bool, index: int = -1):
         """
         Set post as explicit or not.
 
@@ -328,7 +317,7 @@ class PodcastFeed(Feed):
             text = "false"
         self.item_tag("itunes:explicit", text, index=index)
 
-    def post_itunes_title(self, text: str, index: int = -1):
+    def item_itunes_title(self, text: str, index: int = -1):
         """
         Set specific title for post on Apple Podcasts.
 
@@ -339,7 +328,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:title", _escape(text), index=index)
 
-    def post_episode(self, num: int, index: int = -1):
+    def item_episode(self, num: int, index: int = -1):
         """
         Add post's episode number.
 
@@ -352,7 +341,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:episode", str(num), index=index)
 
-    def post_season(self, num: int, index: int = -1):
+    def item_season(self, num: int, index: int = -1):
         """
         Add post's season number.
 
@@ -365,7 +354,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:season", str(num), index=index)
 
-    def post_type(self, text: str, index: int = -1):
+    def item_type(self, text: str, index: int = -1):
         """
         Set episode as ``full``, ``trailer``, or ``bonus``.
 
@@ -376,7 +365,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:episodeType", text, index=index)
 
-    def post_chapters(self, url: str, type: str, index: int = -1):
+    def item_chapters(self, url: str, type: str, index: int = -1):
         """
         Set url of chapters file.
 
@@ -391,7 +380,7 @@ class PodcastFeed(Feed):
             "podcast:chapters", index=index, url=quote(url, safe="/:"), type=type
         )
 
-    def post_transcript(self, url: str, type: str, index: int = -1):
+    def item_transcript(self, url: str, type: str, index: int = -1):
         """
         Set url of transcript file.
 
@@ -408,7 +397,7 @@ class PodcastFeed(Feed):
             "podcast:transcript", index=index, url=quote(url, safe="/:"), type=type
         )
 
-    def post_block(self, index: int = -1):
+    def item_block(self, index: int = -1):
         """
         Add post block (hides epsiode in Apple Podcasts.
 
@@ -419,7 +408,7 @@ class PodcastFeed(Feed):
         """
         self.item_tag("itunes:block", "Yes", index=index)
 
-    def new_post(self, **kwargs):
+    def item(self, **kwargs):
         """
         Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with ``post_{arg}`` format.
 
@@ -461,22 +450,22 @@ class PodcastFeed(Feed):
         self.new_item()
 
         func_map = {
-            "title": self.post_title,
-            "enclosure": self.post_enclosure,
-            "guid": self.post_guid,
-            "date": self.post_date,
-            "description": self.post_description,
-            "duration": self.post_duration,
-            "link": self.post_link,
-            "image": self.post_image,
-            "explicit": self.post_explicit,
-            "itunes_title": self.post_itunes_title,
-            "episode": self.post_episode,
-            "season": self.post_season,
-            "type": self.post_type,
-            "chapters": self.post_chapters,
-            "transcript": self.post_transcript,
-            "block": self.post_block,
+            "title": self.item_title,
+            "enclosure": self.item_enclosure,
+            "guid": self.item_guid,
+            "date": self.item_date,
+            "description": self.item_description,
+            "duration": self.item_duration,
+            "link": self.item_link,
+            "image": self.item_image,
+            "explicit": self.item_explicit,
+            "itunes_title": self.item_itunes_title,
+            "episode": self.item_episode,
+            "season": self.item_season,
+            "type": self.item_type,
+            "chapters": self.item_chapters,
+            "transcript": self.item_transcript,
+            "block": self.item_block,
         }
 
         for func, value in kwargs.items():

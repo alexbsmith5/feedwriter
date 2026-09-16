@@ -18,7 +18,7 @@ class Feed:
         self.root: ET.Element = ET.Element("rss", xml_declaration)
         self.channel: ET.Element = ET.SubElement(self.root, "channel")
         self.tree: ET.ElementTree = ET.ElementTree(self.root)
-        self.item: list[ET.Element] = []
+        self.item_list: list[ET.Element] = []
 
     def _tag(
         self,
@@ -53,7 +53,7 @@ class Feed:
         elif index is None:
             return element(self.channel, tag, attributes, content)
         else:
-            return element(self.item[index], tag, attributes, content)
+            return element(self.item_list[index], tag, attributes, content)
 
     def channel_tag(self, tag: str, content: str | None = None, **kwargs: str):
         """
@@ -100,7 +100,7 @@ class Feed:
         :param kwargs: (optional) name-value pair in the element.
         :type kwargs: string
         """
-        self.item.append(ET.SubElement(self.channel, "item"))
+        self.item_list.append(ET.SubElement(self.channel, "item"))
         if tag is not None:
             self.item_tag(tag, content, -1, **kwargs)
 
@@ -156,3 +156,16 @@ class Feed:
         :type url: string
         """
         self.channel_tag("generator", quote(url, safe="/:"))
+
+    # item tags
+
+    def item_title(self, title: str, index: int = -1):
+        """
+        Set title for post.
+
+        :param title: post title.
+        :type title: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        self.item_tag("title", title, index=index)

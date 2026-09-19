@@ -410,7 +410,7 @@ class PodcastFeed(Feed):
 
     def item(self, **kwargs):
         """
-        Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with ``post_{arg}`` format.
+        Create new post, using optional keyword arguments to add tags. Each parameter is calling a specific episode tag function with ``item_{keyword}`` format.
 
         Parameters can either be passed directly or with a tuple. The tuple type is used when the function takes in more than one paramater.
 

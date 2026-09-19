@@ -104,6 +104,22 @@ class Feed:
         if tag is not None:
             self.item_tag(tag, content, -1, **kwargs)
 
+    def _parse_kwargs(self, func_map, **kwargs):
+        """
+        Parse kwargs and run function if in map
+        :param func_map: map of names and functions.
+        :type func_map: dict[str, func]
+        :param kwargs: arguments from function call.
+        :type kwargs: dict
+        """
+        for func, value in kwargs.items():
+            if func in func_map:
+                mapped_function = func_map[func]
+                if isinstance(value, tuple):
+                    mapped_function(*value)
+                else:
+                    mapped_function(value)
+
     def write(self, path: Path | str):
         """
         Write tree to .xml file.
@@ -169,12 +185,3 @@ class Feed:
         :type index: int
         """
         self.item_tag("title", title, index=index)
-
-    def _parse_kwargs(self, func_map, **kwargs):
-        for func, value in kwargs.items():
-            if func in func_map:
-                mapped_function = func_map[func]
-                if isinstance(value, tuple):
-                    mapped_function(*value)
-                else:
-                    mapped_function(value)

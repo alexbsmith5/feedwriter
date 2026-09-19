@@ -169,3 +169,12 @@ class Feed:
         :type index: int
         """
         self.item_tag("title", title, index=index)
+
+    def _parse_kwargs(self, func_map, **kwargs):
+        for func, value in kwargs.items():
+            if func in func_map:
+                mapped_function = func_map[func]
+                if isinstance(value, tuple):
+                    mapped_function(*value)
+                else:
+                    mapped_function(value)

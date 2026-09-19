@@ -468,10 +468,4 @@ class PodcastFeed(Feed):
             "block": self.item_block,
         }
 
-        for func, value in kwargs.items():
-            if func in func_map:
-                mapped_function = func_map[func]
-                if isinstance(value, tuple):
-                    mapped_function(*value)
-                else:
-                    mapped_function(value)
+        self._parse_kwargs(func_map, **kwargs)

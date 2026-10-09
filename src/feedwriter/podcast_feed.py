@@ -202,24 +202,6 @@ class PodcastFeed(Feed):
             index += 1
         return -1  # if title not found return -1 index
 
-    def item_date(self, date: str | datetime, index: int = -1):
-        """
-        Set date of the post's release.
-
-        :param date: Either a string of date following the `RFC 2822 specification <https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>`_ exactly, or datetime object with optional tzinfo (assumes utc).
-        :type date: string or datetime object
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        if isinstance(date, str):
-            self.item_tag("pubdate", date, index=index)
-        else:  # if datetime object
-            if date.tzinfo is not None:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
-            else:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            self.item_tag("pubdate", date_str, index=index)
-
     def item_duration(self, seconds: int, index: int = -1):
         """
         Set the length of audio, in seconds.

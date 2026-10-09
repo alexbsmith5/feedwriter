@@ -16,14 +16,14 @@ The following tags must be present in order to pass validation. If these tags ar
 
 The following commands specified below must be called to be validated.
 
-> * `link_feed()`
-> * `title()`
-> * `description()`
-> * `image()`
-> * `language()`
-> * `category()`
-> * `explicit()`
-> * `link()`
+> * [`link_feed()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.link_feed)
+> * [`title()`](feed_api.md#feedwriter.feed.Feed.title)
+> * [`description()`](feed_api.md#feedwriter.feed.Feed.description)
+> * [`image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.image)
+> * [`language()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.language)
+> * [`category()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.category)
+> * [`explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.explicit)
+> * [`link()`](feed_api.md#feedwriter.feed.Feed.link)
 
 <a id="episode-tags"></a>
 
@@ -34,8 +34,8 @@ For every single post they must contain the following tags to be validated.
 To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the `new_post()` function and pass in the corresponding kwargs.
 
 > * `post_title()`
-> * `item_enclosure()`
-> * `item_guid()`
+> * [`item_enclosure()`](feed_api.md#feedwriter.feed.Feed.item_enclosure)
+> * [`item_guid()`](feed_api.md#feedwriter.feed.Feed.item_guid)
 
 <a id="recommended-tags"></a>
 
@@ -47,17 +47,17 @@ While these tags are not required to pass feed validation, they can provide help
 
 ### Channel Tags
 
-> * `guid()`
-> * `author()`
+> * [`guid()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.guid)
+> * [`author()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.author)
 
 <a id="id2"></a>
 
 ### Episode Tags
 
-> * `item_date()`
-> * `item_description()`
+> * [`item_date()`](feed_api.md#feedwriter.feed.Feed.item_date)
+> * [`item_description()`](feed_api.md#feedwriter.feed.Feed.item_description)
 > * `post_duration()`
-> * `item_link()`
+> * [`item_link()`](feed_api.md#feedwriter.feed.Feed.item_link)
 > * `post_image()`
 > * `post_explicit()`
 
@@ -71,15 +71,15 @@ Just like recommended tags, these tags are not necessarily required but they can
 
 ### Channel Tags
 
-> * `itunes_title()`
-> * `type()`
-> * `copyright()`
-> * `feed_url_new()`
-> * `block()`
-> * `complete()`
-> * `verify()`
-> * `funding()`
-> * `generator()`
+> * [`itunes_title()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.itunes_title)
+> * [`type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.type)
+> * [`copyright()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.copyright)
+> * [`feed_url_new()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.feed_url_new)
+> * [`block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.block)
+> * [`complete()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.complete)
+> * [`verify()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.verify)
+> * [`funding()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.funding)
+> * [`generator()`](feed_api.md#feedwriter.feed.Feed.generator)
 
 <a id="id4"></a>
 

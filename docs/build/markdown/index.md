@@ -28,4 +28,6 @@ The `Feed` class is relatively simple, and with that only has one page (currentl
   * [Recommended Tags](tags.md#recommended-tags)
   * [Situational Tags](tags.md#situational-tags)
 * [PodcastFeed Class API Reference](podcastfeed_api.md)
+  * [`PodcastFeed`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed)
 * [Feed Class API Reference](feed_api.md)
+  * [`Feed`](feed_api.md#feedwriter.feed.Feed)

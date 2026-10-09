@@ -1,5 +1,4 @@
 import uuid
-from datetime import datetime
 from urllib.parse import quote
 
 from .feed import Feed

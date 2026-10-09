@@ -202,39 +202,6 @@ class PodcastFeed(Feed):
             index += 1
         return -1  # if title not found return -1 index
 
-    def item_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
-        """
-        Set url, length, and type of media for post.
-
-        :param url: url pointing to a mp3 file.
-        :type url: string
-        :param length: file size of file in bytes.
-        :type length: int
-        :param type: mime type of file (usually ``audio/mpeg``). Options ``audio/x-m4a``, ``audio/mpeg``, ``video/quicktime``, ``video/mp4``, ``video/x-m4v``, ``application/pdf``.
-
-        :type type: string
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        self.item_tag(
-            "enclosure",
-            index=index,
-            url=quote(url, safe="/:"),
-            length=str(file_size),
-            type=type,
-        )
-
-    def item_guid(self, text: str, index: int = -1):
-        """
-        Set guid (globally unique identifier) for post.
-
-        :param text: unique text.
-        :type text: string
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        self.item_tag("guid", text, index=index)
-
     def item_date(self, date: str | datetime, index: int = -1):
         """
         Set date of the post's release.
@@ -253,22 +220,6 @@ class PodcastFeed(Feed):
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
             self.item_tag("pubdate", date_str, index=index)
 
-    def item_description(self, text: str, cdata: bool = False, index: int = -1):
-        """
-        Set post description.
-
-        :param text: post description.
-        :type text: string
-        :param cdata: whether or not rich html is included. Ex. ``<a>``, ``<p>``, ``<li>``, etc.
-        :type cdata: bool
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        if cdata:
-            self.item_tag("description", f"<![CDATA[ {text} ]]>", index=index)
-        else:
-            self.item_tag("description", _escape(text), index=index)
-
     def item_duration(self, seconds: int, index: int = -1):
         """
         Set the length of audio, in seconds.
@@ -279,17 +230,6 @@ class PodcastFeed(Feed):
         :type index: int
         """
         self.item_tag("itunes:duration", str(seconds), index=index)
-
-    def item_link(self, url: str, index: int = -1):
-        """
-        Set link to external website for post.
-
-        :param url: url pointing to a website.
-        :type url: string
-        :param index: (optional) index of post; defaults to last created.
-        :type index: int
-        """
-        self.item_tag("link", quote(url, safe="/:"), index=index)
 
     def item_image(self, url: str, index: int = -1):
         """

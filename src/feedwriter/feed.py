@@ -2,6 +2,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import quote
 
+from .helpers import _escape
+
 
 class Feed:
     def __init__(self, namespaces: dict[str, str] | None = None) -> None:
@@ -185,3 +187,82 @@ class Feed:
         :type index: int
         """
         self.item_tag("title", title, index=index)
+
+    def item_link(self, url: str, index: int = -1):
+        """
+        Set link to an external website, or item.
+
+        :param url: url pointing to a webpage.
+        :type url: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        self.item_tag("link", quote(url, safe="/:"), index=index)
+
+    def item_description(self, text: str, cdata: bool = False, index: int = -1):
+        """
+        Set item description.
+
+        :param text: description.
+        :type text: string
+        :param cdata: whether or not rich html is included. Ex. ``<a>``, ``<p>``, ``<li>``, etc.
+        :type cdata: bool
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        if cdata:
+            self.item_tag("description", f"<![CDATA[ {text} ]]>", index=index)
+        else:
+            self.item_tag("description", _escape(text), index=index)
+
+    def item_enclosure(self, url: str, file_size: int, type: str, index: int = -1):
+        """
+        Describe a media object attatched to the item.
+
+        :param url: url pointing to a mp3 file.
+        :type url: string
+        :param length: file size of file in bytes.
+        :type length: int
+        :param type: mime type of file (usually ``audio/mpeg``). Options ``audio/x-m4a``, ``audio/mpeg``, ``video/quicktime``, ``video/mp4``, ``video/x-m4v``, ``application/pdf``.
+
+        :type type: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+
+        """
+        self.item_tag(
+            "enclosure",
+            index=index,
+            url=quote(url, safe="/:"),
+            length=str(file_size),
+            type=type,
+        )
+
+    def item_guid(self, text: str, index: int = -1):
+        """
+        Set guid (globally unique identifier) for an item.
+
+        :param text: unique text.
+        :type text: string
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        self.item_tag("guid", text, index=index)
+
+    def item_date(self, date: str | datetime, index: int = -1):
+        """
+        Set date of the post's release.
+
+        :param date: Either a string of date following the `RFC 2822 specification <https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>`_ exactly, or datetime object with optional tzinfo (assumes utc).
+        :type date: string or datetime object
+        :param index: (optional) index of post; defaults to last created.
+        :type index: int
+        """
+        if isinstance(date, str):
+            self.item_tag("pubdate", date, index=index)
+        else:  # if datetime object
+            if date.tzinfo is not None:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
+            else:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
+            self.item_tag("pubdate", date_str, index=index)

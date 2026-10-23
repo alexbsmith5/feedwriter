@@ -267,3 +267,17 @@ Set date of the post’s release.
 
     Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
   * **index** (*int*) – (optional) index of post; defaults to last created.
+
+<a id="feedwriter.feed.Feed.item"></a>
+
+#### item(\*\*kwargs)
+
+Add a new item, using optional keyword arguments to add tags. Each parameter is calling a specific item tag function with `item_{keyword}` format.
+
+* **Parameters:**
+  * **title** (*string*) – (optional) item title.
+  * **link** (*string*) – (optional) item link.
+  * **description** (*tuple* *[**str* *,* *bool* *]*) – (optional) `(text, cdada)`.
+  * **enclosure** (*tuple* *[**str* *,* *int* *,* *str* *]*) – (optional) (url, file_size, type).
+  * **guid** (*string*) – (optional) item guid.
+  * **date** (*str* *|* *datetime*) – (optional) item date.

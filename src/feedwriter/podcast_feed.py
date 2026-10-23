@@ -43,15 +43,6 @@ class PodcastFeed(Feed):
         """
         self.channel_tag("itunes:image", href=quote(url, safe="/:"))
 
-    def language(self, text: str):
-        """
-        Set show language.
-
-        :param text: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
-        :type text: string
-        """
-        self.channel_tag("language", text)
-
     def category(self, category: str, subcategory: str | None = None):
         """
         Set show category.
@@ -123,15 +114,6 @@ class PodcastFeed(Feed):
         :type text: string
         """
         self.channel_tag("itunes:type", text)
-
-    def copyright(self, text: str):
-        """
-        Set show copyright information.
-
-        :param text: copyright information.
-        :type text: string
-        """
-        self.channel_tag("copyright", _escape(text))
 
     def feed_url_new(self, url: str):
         """

@@ -44,7 +44,6 @@ def test_get_post_index():
             None,
             {"href": "https://example.com/post%20image.jpg"},
         ),
-        ("language", {"text": "eng"}, "./channel/language", "eng", None),
         (
             "category",
             {"category": "Education"},
@@ -125,13 +124,6 @@ def test_get_post_index():
             None,
         ),
         ("type", {"text": "episodic"}, "./channel/itunes:type", "episodic", None),
-        (
-            "copyright",
-            {"text": "© Lorem Ipsum"},
-            "./channel/copyright",
-            "&#xA9; Lorem Ipsum",
-            None,
-        ),
         (
             "feed_url_new",
             {"url": "https://example.com/new_feed.xml"},

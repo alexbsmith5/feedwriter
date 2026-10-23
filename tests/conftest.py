@@ -52,14 +52,17 @@ def assert_xml(tmp_path: Path):
     def _assert_xml(
         rss_feed: Feed,
         func_name: str,
-        func_kwargs: dict[str, Any],
+        func_kwargs: dict[str, Any] | tuple[int],
         xpath: str,
         expected_text: str | None,
         expected_attrib: dict[str, str] | None,
     ):
         # run function w/ kwargs
         mapped_func = getattr(rss_feed, func_name)
-        mapped_func(**func_kwargs)
+        if isinstance(func_kwargs, dict):
+            mapped_func(**func_kwargs)
+        else:
+            mapped_func(*func_kwargs)
 
         # check if element exists
         element: ET.Element | None = _get_xml_element(rss_feed, xpath, tmp_path)

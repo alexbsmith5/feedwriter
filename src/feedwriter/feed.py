@@ -135,6 +135,8 @@ class Feed:
 
     # shared tags
 
+    # channel tags
+
     def title(self, text):
         """
         Set title.
@@ -143,6 +145,15 @@ class Feed:
         :type text: string
         """
         self.channel_tag("title", text)
+
+    def link(self, url: str):
+        """
+        Set link to show's external website.
+
+        :param url: url pointing to a website.
+        :type url: string
+        """
+        self.channel_tag("link", quote(url, safe="/:"))
 
     def description(self, text: str, cdata: bool = False):
         """
@@ -158,14 +169,78 @@ class Feed:
         else:
             self.channel_tag("description", text)
 
-    def link(self, url: str):
+    def language(self, text: str):
         """
-        Set link to show's external website.
+        Set show language.
 
-        :param url: url pointing to a website.
-        :type url: string
+        :param text: language from the `ISO 639 <https://www.loc.gov/standards/iso639-2/php/code_list.php>`_ specification.
+        :type text: string
         """
-        self.channel_tag("link", quote(url, safe="/:"))
+        self.channel_tag("language", text)
+
+    def copyright(self, text: str):
+        """
+        Set show copyright information.
+
+        :param text: copyright information.
+        :type text: string
+        """
+        self.channel_tag("copyright", _escape(text))
+
+    def web_master(self, text: str):
+        """
+        Set the email address for person responsible for technical issues.
+
+        Example: betty@herald.com (Betty Guernsey)
+
+        :param text: email address w/ accompanying text.
+        :type text: string
+        """
+        self.channel_tag("webMaster", text)
+
+    def pub_date(self, date: str | datetime):
+        """
+        Set date of last publication.
+
+        :param date: Either a string of date following the `RFC 2822 specification <https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>`_ exactly, or datetime object with optional tzinfo (assumes utc).
+        :type date: string or datetime object
+        :param index: (optional) index of post; defaults to last created.
+        """
+        # TODO: create helper function for datetime conversion
+        if isinstance(date, str):
+            self.channel_tag("pubDate", date)
+        else:  # if datetime object
+            if date.tzinfo is not None:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
+            else:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
+            self.channel_tag("pubDate", date_str)
+
+    def last_build_date(self, date: str | datetime):
+        """
+        Set date of last time content was changed.
+
+        :param date: Either a string of date following the `RFC 2822 specification <https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>`_ exactly, or datetime object with optional tzinfo (assumes utc).
+        :type date: string or datetime object
+        :param index: (optional) index of post; defaults to last created.
+        """
+        if isinstance(date, str):
+            self.channel_tag("lastBuildDate", date)
+        else:  # if datetime object
+            if date.tzinfo is not None:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
+            else:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
+            self.channel_tag("lastBuildDate", date_str)
+
+    def category(self, text: str):
+        """
+        Set category of channel.
+
+        :param category: category name.
+        :type category: string
+        """
+        self.channel_tag("category", text)
 
     def generator(self, url: str):
         """
@@ -175,6 +250,71 @@ class Feed:
         :type url: string
         """
         self.channel_tag("generator", quote(url, safe="/:"))
+
+    def docs(self, url: str):
+        """
+        Set url that points to RSS specification.
+
+        :param url: url pointing to the RSS specification.
+        :type url: string
+        """
+        self.channel_tag("docs", quote(url, safe="/:"))
+
+    # TODO: cloud
+
+    def ttl(self, num: int):
+        """
+        Set number of minutes a channel can be cached before refreshing from source
+
+        :param num: number of minutes
+        :type num: int
+        """
+        self.channel_tag("ttl", str(num))
+
+    def image(self, url: str, title: str, link: str):
+        """
+        Set url that points to RSS specification.
+        Set image that can be displayed with the channel.
+
+        :param url: url pointing to a ``.gif``, ``.jpg``, or ``.png``.
+        :type url: string
+        :param title: name of the image (should be the same as the <title> channel tag).
+        :type title: string
+        :param link: url of the site (should be the same as the <link> channel tag).
+        :type link: string
+        """
+        image_tag = self.channel_tag("image")
+        self._tag(image_tag, "url", url)
+        self._tag(image_tag, "title", title)
+        self._tag(image_tag, "link", link)
+
+    # TODO: rating
+    # TODO: textInput
+
+    def skip_hours(self, *hours: int):
+        # TODO: document *hours more succinctly
+        """
+        Set hours of the day (GMT) where aggregators should skip updating the feed.
+
+        :param hours: pass in number for hour (0-24).
+        :type hours: tuple[int, ...]
+        """
+        hours_tag = self.channel_tag("skipHours")
+        for hour in hours:
+            self._tag(hours_tag, "hour", str(hour))
+
+    def skip_days(self, *text: str):
+        """
+        Set hours of the day (GMT) where aggregators should skip updating the feed.
+        Set days of the week where aggregators should skip updating the feed.
+
+        :param text: pass in days of week (ex. Monday, Tuesday, etc.).
+        :type text: tuple[str, ...]
+        """
+
+        days_tag = self.channel_tag("skipDays")
+        for day in text:
+            self._tag(days_tag, "day", day)
 
     # item tags
 

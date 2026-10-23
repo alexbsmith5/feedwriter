@@ -34,7 +34,7 @@ class PodcastFeed(Feed):
             type="application/rss+xml",
         )
 
-    def image(self, url: str):
+    def image(self, url: str, *args):
         """
         Set show artwork.
 

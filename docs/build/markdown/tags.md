@@ -20,7 +20,7 @@ The following commands specified below must be called to be validated.
 > * [`title()`](feed_api.md#feedwriter.feed.Feed.title)
 > * [`description()`](feed_api.md#feedwriter.feed.Feed.description)
 > * [`image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.image)
-> * [`language()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.language)
+> * `language()`
 > * [`category()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.category)
 > * [`explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.explicit)
 > * [`link()`](feed_api.md#feedwriter.feed.Feed.link)
@@ -73,7 +73,7 @@ Just like recommended tags, these tags are not necessarily required but they can
 
 > * [`itunes_title()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.itunes_title)
 > * [`type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.type)
-> * [`copyright()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.copyright)
+> * `copyright()`
 > * [`feed_url_new()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.feed_url_new)
 > * [`block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.block)
 > * [`complete()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.complete)

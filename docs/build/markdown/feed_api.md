@@ -66,6 +66,15 @@ Set title.
 * **Parameters:**
   **text** (*string*) – title.
 
+<a id="feedwriter.feed.Feed.link"></a>
+
+#### link(url: str)
+
+Set link to show’s external website.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to a website.
+
 <a id="feedwriter.feed.Feed.description"></a>
 
 #### description(text: str, cdata: bool = False)
@@ -76,14 +85,65 @@ Set description.
   * **text** (*string*) – description.
   * **cdata** (*bool*) – whether or not rich html is included. Ex. `<a>`, `<p>`, `<li>`, etc.
 
-<a id="feedwriter.feed.Feed.link"></a>
+<a id="feedwriter.feed.Feed.language"></a>
 
-#### link(url: str)
+#### language(text: str)
 
-Set link to show’s external website.
+Set show language.
 
 * **Parameters:**
-  **url** (*string*) – url pointing to a website.
+  **text** (*string*) – language from the [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php) specification.
+
+<a id="feedwriter.feed.Feed.copyright"></a>
+
+#### copyright(text: str)
+
+Set show copyright information.
+
+* **Parameters:**
+  **text** (*string*) – copyright information.
+
+<a id="feedwriter.feed.Feed.web_master"></a>
+
+#### web_master(text: str)
+
+Set the email address for person responsible for technical issues.
+
+Example: [betty@herald.com](mailto:betty@herald.com) (Betty Guernsey)
+
+* **Parameters:**
+  **text** (*string*) – email address w/ accompanying text.
+
+<a id="feedwriter.feed.Feed.pub_date"></a>
+
+#### pub_date(date: str | datetime)
+
+Set date of last publication.
+
+* **Parameters:**
+  * **date** (*string* *or* *datetime object*) – Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
+  * **index** – (optional) index of post; defaults to last created.
+
+<a id="feedwriter.feed.Feed.last_build_date"></a>
+
+#### last_build_date(date: str | datetime)
+
+Set date of last time content was changed.
+
+* **Parameters:**
+  * **date** (*string* *or* *datetime object*) – 
+
+    Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
+  * **index** – (optional) index of post; defaults to last created.
+
+<a id="feedwriter.feed.Feed.category"></a>
+
+#### category(text: str)
+
+Set category of channel.
+
+* **Parameters:**
+  **category** (*string*) – category name.
 
 <a id="feedwriter.feed.Feed.generator"></a>
 
@@ -93,6 +153,55 @@ Set url of rss generator website.
 
 * **Parameters:**
   **url** (*string*) – url pointing to rss generator website.
+
+<a id="feedwriter.feed.Feed.docs"></a>
+
+#### docs(url: str)
+
+Set url that points to RSS specification.
+
+* **Parameters:**
+  **url** (*string*) – url pointing to the RSS specification.
+
+<a id="feedwriter.feed.Feed.ttl"></a>
+
+#### ttl(num: int)
+
+Set number of minutes a channel can be cached before refreshing from source
+
+* **Parameters:**
+  **num** (*int*) – number of minutes
+
+<a id="feedwriter.feed.Feed.image"></a>
+
+#### image(url: str, title: str, link: str)
+
+Set url that points to RSS specification.
+Set image that can be displayed with the channel.
+
+* **Parameters:**
+  * **url** (*string*) – url pointing to a `.gif`, `.jpg`, or `.png`.
+  * **title** (*string*) – name of the image (should be the same as the <title> channel tag).
+  * **link** (*string*) – url of the site (should be the same as the <link> channel tag).
+
+<a id="feedwriter.feed.Feed.skip_hours"></a>
+
+#### skip_hours(\*hours: int)
+
+Set hours of the day (GMT) where aggregators should skip updating the feed.
+
+* **Parameters:**
+  **hours** (*tuple* *[**int* *,*  *...* *]*) – pass in number for hour (0-24).
+
+<a id="feedwriter.feed.Feed.skip_days"></a>
+
+#### skip_days(\*text: str)
+
+Set hours of the day (GMT) where aggregators should skip updating the feed.
+Set days of the week where aggregators should skip updating the feed.
+
+* **Parameters:**
+  **text** (*tuple* *[**str* *,*  *...* *]*) – pass in days of week (ex. Monday, Tuesday, etc.).
 
 <a id="feedwriter.feed.Feed.item_title"></a>
 
@@ -154,5 +263,7 @@ Set guid (globally unique identifier) for an item.
 Set date of the post’s release.
 
 * **Parameters:**
-  * **date** (*string* *or* *datetime object*) – Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
+  * **date** (*string* *or* *datetime object*) – 
+
+    Either a string of date following the [RFC 2822 specification](https://datatracker.ietf.org/doc/html/rfc2822#section-3.3) exactly, or datetime object with optional tzinfo (assumes utc).
   * **index** (*int*) – (optional) index of post; defaults to last created.

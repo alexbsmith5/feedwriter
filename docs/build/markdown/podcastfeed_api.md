@@ -28,15 +28,6 @@ Set show artwork.
 * **Parameters:**
   **url** (*string*) – url pointing to a `.jpg` or `.png`.
 
-<a id="feedwriter.podcast_feed.PodcastFeed.language"></a>
-
-#### language(text: str)
-
-Set show language.
-
-* **Parameters:**
-  **text** (*string*) – language from the [ISO 639](https://www.loc.gov/standards/iso639-2/php/code_list.php) specification.
-
 <a id="feedwriter.podcast_feed.PodcastFeed.category"></a>
 
 #### category(category: str, subcategory: str | None = None)
@@ -95,15 +86,6 @@ If `serial` type is chosen, the `<itunes:episode>` tag must be specified for eac
 
 * **Parameters:**
   **text** (*string*) – contains either `episodic` or `serial`.
-
-<a id="feedwriter.podcast_feed.PodcastFeed.copyright"></a>
-
-#### copyright(text: str)
-
-Set show copyright information.
-
-* **Parameters:**
-  **text** (*string*) – copyright information.
 
 <a id="feedwriter.podcast_feed.PodcastFeed.feed_url_new"></a>
 

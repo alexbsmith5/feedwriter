@@ -21,7 +21,7 @@ Set url of rss feed. Should be a url that points to the `.xml` or `.rss` file wh
 
 <a id="feedwriter.podcast_feed.PodcastFeed.image"></a>
 
-#### image(url: str)
+#### image(url: str, \*args)
 
 Set show artwork.
 

@@ -4,13 +4,7 @@ from typing import Any
 
 import pytest
 
-from feedwriter import ArticleFeed, Feed, PodcastFeed
-
-
-# create article_feed fixture
-@pytest.fixture
-def article_feed() -> ArticleFeed:
-    return ArticleFeed()
+from feedwriter import Feed, PodcastFeed
 
 
 # create rss_feed fixture

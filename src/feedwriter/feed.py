@@ -407,3 +407,33 @@ class Feed:
             else:
                 date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
             self.item_tag("pubdate", date_str, index=index)
+
+    def item(self, **kwargs):
+        """
+        Add a new item, using optional keyword arguments to add tags. Each parameter is calling a specific item tag function with ``item_{keyword}`` format.
+
+        :param title: (optional) item title.
+        :type title: string
+        :param link: (optional) item link.
+        :type link: string
+        :param description: (optional) ``(text, cdada)``.
+        :type description: tuple[str, bool]
+        :param enclosure: (optional) (url, file_size, type).
+        :type enclosure: tuple[str, int, str]
+        :param guid: (optional) item guid.
+        :type guid: string
+        :param date: (optional) item date.
+        :type date: str | datetime
+        """
+        self.new_item()
+
+        func_map = {
+            "title": self.item_title,
+            "link": self.item_link,
+            "description": self.item_description,
+            "enclosure": self.item_enclosure,
+            "guid": self.item_guid,
+            "date": self.item_date,
+        }
+
+        self._parse_kwargs(func_map, **kwargs)

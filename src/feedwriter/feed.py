@@ -107,6 +107,17 @@ class Feed:
         if tag is not None:
             self.item_tag(tag, content, -1, **kwargs)
 
+    def _date_format(self, date: str | datetime) -> str:
+        if isinstance(date, str):
+            return date
+        else:  # if datetime object
+            if date.tzinfo is not None:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
+            else:
+                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
+
+        return date_str
+
     def _parse_kwargs(self, func_map, **kwargs):
         """
         Parse kwargs and run function if in map
@@ -206,15 +217,7 @@ class Feed:
         :type date: string or datetime object
         :param index: (optional) index of post; defaults to last created.
         """
-        # TODO: create helper function for datetime conversion
-        if isinstance(date, str):
-            self.channel_tag("pubDate", date)
-        else:  # if datetime object
-            if date.tzinfo is not None:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
-            else:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            self.channel_tag("pubDate", date_str)
+        self.channel_tag("pubDate", self._date_format(date))
 
     def last_build_date(self, date: str | datetime):
         """
@@ -224,14 +227,7 @@ class Feed:
         :type date: string or datetime object
         :param index: (optional) index of post; defaults to last created.
         """
-        if isinstance(date, str):
-            self.channel_tag("lastBuildDate", date)
-        else:  # if datetime object
-            if date.tzinfo is not None:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S %z")
-            else:
-                date_str = date.strftime("%a, %d %b %Y %H:%M:%S +0000")  # assume utc
-            self.channel_tag("lastBuildDate", date_str)
+        self.channel_tag("lastBuildDate", self._date_format(date))
 
     def category(self, text: str):
         """

@@ -15,7 +15,7 @@ The following commands specified below must be called to be validated.
     * :meth:`~feedwriter.feed.Feed.title`
     * :meth:`~feedwriter.feed.Feed.description`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.image`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.language`
+    * :meth:`~feedwriter.feed.Feed.language`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.category`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.explicit`
     * :meth:`~feedwriter.feed.Feed.link`
@@ -26,7 +26,7 @@ For every single post they must contain the following tags to be validated.
 
 To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponding kwargs.
 
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_title`
+    * :meth:`~feedwriter.feed.Feed.post_title`
     * :meth:`~feedwriter.feed.Feed.item_enclosure`
     * :meth:`~feedwriter.feed.Feed.item_guid`
 
@@ -43,10 +43,10 @@ Episode Tags
 ############
     * :meth:`~feedwriter.feed.Feed.item_date`
     * :meth:`~feedwriter.feed.Feed.item_description`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_duration`
+    * :meth:`~feedwriter.feed.Feed.post_duration`
     * :meth:`~feedwriter.feed.Feed.item_link`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_image`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_explicit`
+    * :meth:`~feedwriter.feed.Feed.post_image`
+    * :meth:`~feedwriter.feed.Feed.post_explicit`
 
 Situational Tags
 ****************
@@ -56,7 +56,7 @@ Channel Tags
 ############
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.itunes_title`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.type`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.copyright`
+    * :meth:`~feedwriter.feed.Feed.copyright`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.feed_url_new`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.block`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.complete`

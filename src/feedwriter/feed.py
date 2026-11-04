@@ -288,24 +288,23 @@ class Feed:
     # TODO: textInput
 
     def skip_hours(self, *hours: int):
-        # TODO: document *hours more succinctly
-        """
+        r"""
         Set hours of the day (GMT) where aggregators should skip updating the feed.
 
-        :param hours: pass in number for hour (0-24).
-        :type hours: tuple[int, ...]
+        :param \*hours: pass in number for hour, each 0-23.
+        :type \*hours: int
         """
         hours_tag = self.channel_tag("skipHours")
         for hour in hours:
             self._tag(hours_tag, "hour", str(hour))
 
     def skip_days(self, *text: str):
-        """
+        r"""
         Set hours of the day (GMT) where aggregators should skip updating the feed.
         Set days of the week where aggregators should skip updating the feed.
 
-        :param text: pass in days of week (ex. Monday, Tuesday, etc.).
-        :type text: tuple[str, ...]
+        :param \*text: pass in days of week, each \"Monday\", \"Tuesday\", etc.
+        :type \*text: str
         """
 
         days_tag = self.channel_tag("skipDays")

@@ -191,7 +191,7 @@ Set image that can be displayed with the channel.
 Set hours of the day (GMT) where aggregators should skip updating the feed.
 
 * **Parameters:**
-  **hours** (*tuple* *[**int* *,*  *...* *]*) – pass in number for hour (0-24).
+  **\*hours** (*int*) – pass in number for hour, each 0-23.
 
 <a id="feedwriter.feed.Feed.skip_days"></a>
 
@@ -201,7 +201,7 @@ Set hours of the day (GMT) where aggregators should skip updating the feed.
 Set days of the week where aggregators should skip updating the feed.
 
 * **Parameters:**
-  **text** (*tuple* *[**str* *,*  *...* *]*) – pass in days of week (ex. Monday, Tuesday, etc.).
+  **\*text** (*str*) – pass in days of week, each "Monday", "Tuesday", etc.
 
 <a id="feedwriter.feed.Feed.item_title"></a>
 

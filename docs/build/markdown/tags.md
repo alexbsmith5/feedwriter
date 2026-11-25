@@ -56,7 +56,7 @@ While these tags are not required to pass feed validation, they can provide help
 
 > * [`item_date()`](feed_api.md#feedwriter.feed.Feed.item_date)
 > * [`item_description()`](feed_api.md#feedwriter.feed.Feed.item_description)
-> * `item_duration()`
+> * [`item_duration()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_duration)
 > * [`item_link()`](feed_api.md#feedwriter.feed.Feed.item_link)
 > * [`item_image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_image)
 > * [`item_explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_explicit)

@@ -26,7 +26,7 @@ For every single post they must contain the following tags to be validated.
 
 To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the :meth:`~feedwriter.podcast_feed.PodcastFeed.new_post` function and pass in the corresponding kwargs.
 
-    * :meth:`~feedwriter.feed.Feed.post_title`
+    * :meth:`~feedwriter.feed.Feed.item_title`
     * :meth:`~feedwriter.feed.Feed.item_enclosure`
     * :meth:`~feedwriter.feed.Feed.item_guid`
 
@@ -43,10 +43,10 @@ Episode Tags
 ############
     * :meth:`~feedwriter.feed.Feed.item_date`
     * :meth:`~feedwriter.feed.Feed.item_description`
-    * :meth:`~feedwriter.feed.Feed.post_duration`
+    * :meth:`~feedwriter.feed.Feed.item_duration`
     * :meth:`~feedwriter.feed.Feed.item_link`
-    * :meth:`~feedwriter.feed.Feed.post_image`
-    * :meth:`~feedwriter.feed.Feed.post_explicit`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_image`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_explicit`
 
 Situational Tags
 ****************
@@ -66,10 +66,10 @@ Channel Tags
 
 Episode Tags
 ############
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_itunes_title`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_episode`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_season`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_type`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_chapters`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_transcript`
-    * :meth:`~feedwriter.podcast_feed.PodcastFeed.post_block`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_itunes_title`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_episode`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_season`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_type`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_chapters`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_transcript`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_block`

@@ -18,7 +18,7 @@ This library has functions which are supported on the following podcast players:
   - [Podcast Guru](https://podcastguru.io/)
   - [Many more](https://podstandards.org/) (scroll down to "Podcast Players" section)
 
-## Docs
+## Documentation
 
 Documentation is found [here](docs/build/markdown/index.md).
 

@@ -43,7 +43,7 @@ Episode Tags
 ############
     * :meth:`~feedwriter.feed.Feed.item_date`
     * :meth:`~feedwriter.feed.Feed.item_description`
-    * :meth:`~feedwriter.feed.Feed.item_duration`
+    * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_duration`
     * :meth:`~feedwriter.feed.Feed.item_link`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_image`
     * :meth:`~feedwriter.podcast_feed.PodcastFeed.item_explicit`

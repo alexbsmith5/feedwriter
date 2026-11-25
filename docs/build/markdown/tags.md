@@ -33,7 +33,7 @@ For every single post they must contain the following tags to be validated.
 
 To add the tags, the following commands can be run by themselves, defaulting to the last created post or passing the index. Another option is to run the `new_post()` function and pass in the corresponding kwargs.
 
-> * `post_title()`
+> * [`item_title()`](feed_api.md#feedwriter.feed.Feed.item_title)
 > * [`item_enclosure()`](feed_api.md#feedwriter.feed.Feed.item_enclosure)
 > * [`item_guid()`](feed_api.md#feedwriter.feed.Feed.item_guid)
 
@@ -56,10 +56,10 @@ While these tags are not required to pass feed validation, they can provide help
 
 > * [`item_date()`](feed_api.md#feedwriter.feed.Feed.item_date)
 > * [`item_description()`](feed_api.md#feedwriter.feed.Feed.item_description)
-> * `post_duration()`
+> * `item_duration()`
 > * [`item_link()`](feed_api.md#feedwriter.feed.Feed.item_link)
-> * `post_image()`
-> * `post_explicit()`
+> * [`item_image()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_image)
+> * [`item_explicit()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_explicit)
 
 <a id="situational-tags"></a>
 
@@ -85,10 +85,10 @@ Just like recommended tags, these tags are not necessarily required but they can
 
 ### Episode Tags
 
-> * `post_itunes_title()`
-> * `post_episode()`
-> * `post_season()`
-> * `post_type()`
-> * `post_chapters()`
-> * `post_transcript()`
-> * `post_block()`
+> * [`item_itunes_title()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_itunes_title)
+> * [`item_episode()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_episode)
+> * [`item_season()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_season)
+> * [`item_type()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_type)
+> * [`item_chapters()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_chapters)
+> * [`item_transcript()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_transcript)
+> * [`item_block()`](podcastfeed_api.md#feedwriter.podcast_feed.PodcastFeed.item_block)
